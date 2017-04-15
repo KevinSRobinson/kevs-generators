@@ -2,14 +2,14 @@ Imports DevExpress.Xpo
 Imports QLoad.BusinesssObjects.Classes
 Imports Qload.BusinesssObjects.Common
 
-Namespace CRM.OrganisationDto.List
+Namespace CRM.Organisation.List
     Public Interface IContactsListView
 
         Event Add As EventHandler(Of EventArgs)
 
-        Property OrganisationDtos As IEnumerable(Of OrganisationDto)
+        Property Organisations As IEnumerable(Of Organisation)
 
-        Event SelectionChanged As EventHandler(Of EventArgs(of OrganisationDto))
+        Event SelectionChanged As EventHandler(Of EventArgs(of Organisation))
 
     End Interface
 End Namespace

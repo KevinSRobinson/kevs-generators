@@ -29,10 +29,32 @@ module.exports = class extends Generator {
       this.destinationPath('Generated\IContactView.vb')
     );
 
-   this.fs.copyTpl(
+    this.fs.copyTpl(
       this.templatePath('Contacts/List/IContactsListView.vb'),
       this.destinationPath('Generated/IContactsListView.vb'),
-      { DtoName: 'Organisation' }
+      {
+        DtoName: 'OrganisationDto',
+        ClassName: 'Organisation'
+      }
+    );
+
+
+    this.fs.copyTpl(
+      this.templatePath('Contacts/List/IContactsListView.vb'),
+      this.destinationPath('Generated/IContactsListView.vb'),
+      {
+        DtoName: 'OrganisationDto',
+        ClassName: 'Organisation'
+      }
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('Contacts/List/ucContactsViewPresenter.vb'),
+      this.destinationPath('Generated/Contacts/List/ucContactsViewPresenter.vb'),
+      {
+        DtoName: 'OrganisationDto',
+        ClassName: 'Organisation'
+      }
     );
   }
 
