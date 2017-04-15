@@ -24,17 +24,24 @@ module.exports = class extends Generator {
       'Welcome to the world-class ' + chalk.red('generator-yeoman-qload') + ' generator!'
     ));
 
-    // const prompts = [{
-    //   type: 'confirm',
-    //   name: 'someAnswer',
-    //   message: 'Would you like to enable this option?',
-    //   default: true
-    // }];
+    const prompts = [{
+      type: 'confirm',
+      name: 'someAnswer',
+      message: 'Would you like to enable this option?',
+      default: true
+    },
+    {
+      type: 'input',
+      name: 'featurename',
+      message: 'Enter a name for the feature',
+    }
+    ];
 
-    // return this.prompt(prompts).then(props => {
-    //   // To access props later use this.props.someAnswer;
-    //   this.props = props;
-    // });
+    return this.prompt(prompts).then(props => {
+      // To access props later use this.props.someAnswer;
+      this.log(props)
+      this.props = props;
+    });
   }
 
   writing() {
