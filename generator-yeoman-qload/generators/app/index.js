@@ -9,7 +9,7 @@ module.exports = class extends Generator {
     // Calling the super constructor is important so our generator is correctly set up
     super(args, opts);
 
-    this.argument('classname', {type: String, required: true})
+    this.argument('classname', { type: String, required: true })
     // Next, add your custom code
     this.log('classname (arg) : ' + this.options.classname)
     this.option('babel'); // This method adds support for a `--babel` flag
@@ -67,8 +67,18 @@ module.exports = class extends Generator {
       }
     );
   }
+  bower() {
+    var bowerJson = {
+      name: 'myapp',
+      licence: 'mit',
+      dependancies: {     }    };
 
-  install() {
-    //this.installDependencies();
+    bowerJson.dependancies['angular'] = "1.5.7";
+
+    this.fs.writeJSON('Generated/Contacts/List/bower.json', bowerJson);
   }
+
+install() {
+  //this.installDependencies();
+}
 };
