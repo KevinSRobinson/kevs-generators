@@ -34,12 +34,27 @@ module.exports = class extends Generator {
       type: 'input',
       name: 'featurename',
       message: 'Enter a name for the feature',
+    },
+    {
+      type: 'checkbox',
+      name: 'features',
+      message: 'Select Features',
+      choices: [
+        {name: 'option1', value : 'option1', checked: true},
+        {name: 'option2', value : 'option2', checked: true},
+        {name: 'option3', value : 'option3', checked: true},
+      ]
     }
     ];
 
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
       this.log(props)
+
+      this.log('option1 = ' + _.includes(props.features, 'option1'));
+      this.log('option2 = ' + _.includes(props.features, 'option2'));
+      this.log('option3 = ' + _.includes(props.features, 'option3'));
+
       this.props = props;
     });
   }
