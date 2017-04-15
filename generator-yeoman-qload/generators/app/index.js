@@ -1,9 +1,19 @@
-'use strict';
-const Generator = require('yeoman-generator');
-const chalk = require('chalk');
+
+var Generator = require('yeoman-generator');
 const yosay = require('yosay');
+const chalk = require('chalk');
 
 module.exports = class extends Generator {
+  // The name `constructor` is important here
+  constructor(args, opts) {
+    // Calling the super constructor is important so our generator is correctly set up
+    super(args, opts);
+
+    this.argument('classname', {type: String, required: true})
+    // Next, add your custom code
+    this.log('classname (arg) : ' + this.options.classname)
+    this.option('babel'); // This method adds support for a `--babel` flag
+  }
   prompting() {
     // Have Yeoman greet the user.
     this.log(yosay(
