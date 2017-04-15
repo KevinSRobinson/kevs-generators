@@ -71,16 +71,7 @@ module.exports = class extends Generator {
     this.log(_.kebabCase(userControlName));
     this.log(_.startCase(userControlName));
     this.log(_.pluralize("Category"));
-    //Interface
-    this.fs.copyTpl(
-      this.templatePath('MVP/List/IListView.vb'),
-      this.destinationPath(featureFolderName + '/List/' + interfaceName + '.vb'),
-      {
-        DtoName: this.options.classname + 'Dto',
-        ClassName: this.options.classname
-      }
-    );
-
+   
 
     if (this.options.includePresenter) {
       //Presenter
@@ -142,6 +133,6 @@ module.exports = class extends Generator {
   }
 
   install() {
-    //this.installDependencies();
+    this.installDependencies();
   }
 };
