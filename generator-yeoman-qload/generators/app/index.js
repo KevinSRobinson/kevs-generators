@@ -2,6 +2,7 @@
 var Generator = require('yeoman-generator');
 const yosay = require('yosay');
 const chalk = require('chalk');
+const lodash = require('lodash');
 
 module.exports = class extends Generator {
   // The name `constructor` is important here
@@ -34,38 +35,68 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.fs.copy(
-      this.templatePath('IContactView.vb'),
-      this.destinationPath('Generated\IContactView.vb')
-    );
 
+
+       var featureFolderName = 'Generated/' + this.options.classname + 's/';
+    var interfaceName = 'I' + this.options.classname + 'sListView';
+ var presenterName =  this.options.classname + 'sListPresenter';
+  var userControlName =  'uc' + this.options.classname + 'sListView';
+    
+
+
+    //Interface
     this.fs.copyTpl(
-      this.templatePath('Contacts/List/IContactsListView.vb'),
-      this.destinationPath('Generated/IContactsListView.vb'),
+      this.templatePath('MVP/List/IListView.vb'),
+      this.destinationPath(featureFolderName  + '/List/' + interfaceName + '.vb'),
       {
-        DtoName: 'OrganisationDto',
-        ClassName: 'Organisation'
+        DtoName: this.options.classname + 'Dto',
+        ClassName: this.options.classname
+      }
+    );
+  
+    //Presenter
+    this.fs.copyTpl(
+      this.templatePath('MVP/List/presenter.vb'),
+      this.destinationPath(featureFolderName  + '/List/' + presenterName + '.vb'),
+      {
+        DtoName: this.options.classname + 'Dto',
+        ClassName: this.options.classname
       }
     );
 
 
-    this.fs.copyTpl(
-      this.templatePath('Contacts/List/IContactsListView.vb'),
-      this.destinationPath('Generated/IContactsListView.vb'),
+
+    ///////////////////////////////
+    //UserControl - Code Behind
+     this.fs.copyTpl(
+      this.templatePath('MVP/List/UserControl/ucListView.vb'),
+      this.destinationPath(featureFolderName  + '/List/' + userControlName + '.vb'),
       {
-        DtoName: 'OrganisationDto',
-        ClassName: 'Organisation'
+        DtoName: this.options.classname + 'Dto',
+        ClassName: this.options.classname
       }
     );
 
+    //UserControl - Designer
     this.fs.copyTpl(
-      this.templatePath('Contacts/List/ucContactsViewPresenter.vb'),
-      this.destinationPath('Generated/Contacts/List/ucContactsViewPresenter.vb'),
+      this.templatePath('MVP/List/UserControl/ucContactsView.Designer.vb'),
+      this.destinationPath(featureFolderName  + '/List/' + userControlName + '.Designer.vb'),
       {
-        DtoName: 'OrganisationDto',
-        ClassName: 'Organisation'
+        DtoName: this.options.classname + 'Dto',
+        ClassName: this.options.classname
       }
     );
+
+    //UserControl - Resources File
+    this.fs.copyTpl(
+      this.templatePath('MVP/List/UserControl/ucContactsView.resx'),
+      this.destinationPath(featureFolderName  + '/List/' + userControlName + '.resx'),
+      {
+        DtoName: this.options.classname + 'Dto',
+        ClassName: this.options.classname
+      }
+    );
+
   }
   bower() {
     var bowerJson = {

@@ -1,0 +1,7 @@
+{
+  "name": "myapp",
+  "licence": "mit",
+  "dependancies": {
+    "angular": "1.5.7"
+  }
+}
