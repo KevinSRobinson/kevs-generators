@@ -2,7 +2,9 @@
 var Generator = require('yeoman-generator');
 const yosay = require('yosay');
 const chalk = require('chalk');
-const lodash = require('lodash');
+const _ = require('lodash');
+_.mixin(require("lodash-inflection"));
+
 
 module.exports = class extends Generator {
   // The name `constructor` is important here
@@ -11,6 +13,7 @@ module.exports = class extends Generator {
     super(args, opts);
 
     this.argument('classname', { type: String, required: true })
+    this.argument('includePresenter', { type: Boolean, required: false, default: false })
     // Next, add your custom code
     this.log('classname (arg) : ' + this.options.classname)
     this.option('babel'); // This method adds support for a `--babel` flag
@@ -37,40 +40,46 @@ module.exports = class extends Generator {
   writing() {
 
 
-       var featureFolderName = 'Generated/' + this.options.classname + 's/';
+    var featureFolderName = 'Generated/' + this.options.classname + 's/';
     var interfaceName = 'I' + this.options.classname + 'sListView';
- var presenterName =  this.options.classname + 'sListPresenter';
-  var userControlName =  'uc' + this.options.classname + 'sListView';
-    
+    var presenterName = this.options.classname + 'sListPresenter';
+    var userControlName = 'uc' + this.options.classname + 'sListView';
+    var ttt = _.kebabCase;
 
-
+    this.log(_.kebabCase(userControlName));
+    this.log(_.startCase(userControlName));
+    this.log(_.pluralize("Category"));
     //Interface
     this.fs.copyTpl(
       this.templatePath('MVP/List/IListView.vb'),
-      this.destinationPath(featureFolderName  + '/List/' + interfaceName + '.vb'),
+      this.destinationPath(featureFolderName + '/List/' + interfaceName + '.vb'),
       {
         DtoName: this.options.classname + 'Dto',
         ClassName: this.options.classname
       }
     );
-  
-    //Presenter
-    this.fs.copyTpl(
-      this.templatePath('MVP/List/presenter.vb'),
-      this.destinationPath(featureFolderName  + '/List/' + presenterName + '.vb'),
-      {
-        DtoName: this.options.classname + 'Dto',
-        ClassName: this.options.classname
-      }
-    );
+
+
+    if (this.options.includePresenter) {
+      //Presenter
+      this.fs.copyTpl(
+        this.templatePath('MVP/List/presenter.vb'),
+        this.destinationPath(featureFolderName + '/List/' + presenterName + '.vb'),
+        {
+          DtoName: this.options.classname + 'Dto',
+          ClassName: this.options.classname
+        }
+      );
+    }
+
 
 
 
     ///////////////////////////////
     //UserControl - Code Behind
-     this.fs.copyTpl(
+    this.fs.copyTpl(
       this.templatePath('MVP/List/UserControl/ucListView.vb'),
-      this.destinationPath(featureFolderName  + '/List/' + userControlName + '.vb'),
+      this.destinationPath(featureFolderName + '/List/' + userControlName + '.vb'),
       {
         DtoName: this.options.classname + 'Dto',
         ClassName: this.options.classname
@@ -80,7 +89,7 @@ module.exports = class extends Generator {
     //UserControl - Designer
     this.fs.copyTpl(
       this.templatePath('MVP/List/UserControl/ucContactsView.Designer.vb'),
-      this.destinationPath(featureFolderName  + '/List/' + userControlName + '.Designer.vb'),
+      this.destinationPath(featureFolderName + '/List/' + userControlName + '.Designer.vb'),
       {
         DtoName: this.options.classname + 'Dto',
         ClassName: this.options.classname
@@ -90,7 +99,7 @@ module.exports = class extends Generator {
     //UserControl - Resources File
     this.fs.copyTpl(
       this.templatePath('MVP/List/UserControl/ucContactsView.resx'),
-      this.destinationPath(featureFolderName  + '/List/' + userControlName + '.resx'),
+      this.destinationPath(featureFolderName + '/List/' + userControlName + '.resx'),
       {
         DtoName: this.options.classname + 'Dto',
         ClassName: this.options.classname
@@ -102,14 +111,15 @@ module.exports = class extends Generator {
     var bowerJson = {
       name: 'myapp',
       licence: 'mit',
-      dependancies: {     }    };
+      dependancies: {}
+    };
 
     bowerJson.dependancies['angular'] = "1.5.7";
 
     this.fs.writeJSON('Generated/Contacts/List/bower.json', bowerJson);
   }
 
-install() {
-  //this.installDependencies();
-}
+  install() {
+    //this.installDependencies();
+  }
 };
