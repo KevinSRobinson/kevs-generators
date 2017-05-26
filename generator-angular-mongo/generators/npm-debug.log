@@ -1,0 +1,305 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'generator-common',
+1 verbose cli   'generator-efrepo',
+1 verbose cli   'generator-generator',
+1 verbose cli   'generator-mssql-schema',
+1 verbose cli   'generator-yeoman-qload' ]
+2 info using npm@3.10.10
+3 info using node@v6.10.2
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readGlobalPackageData
+7 silly fetchPackageMetaData generator-common
+8 silly fetchPackageMetaData generator-efrepo
+9 silly fetchPackageMetaData generator-generator
+10 silly fetchPackageMetaData generator-mssql-schema
+11 silly fetchPackageMetaData generator-yeoman-qload
+12 silly fetchNamedPackageData generator-common
+13 silly mapToRegistry name generator-common
+14 silly mapToRegistry using default registry
+15 silly mapToRegistry registry https://registry.npmjs.org/
+16 silly mapToRegistry data Result {
+16 silly mapToRegistry   raw: 'generator-common',
+16 silly mapToRegistry   scope: null,
+16 silly mapToRegistry   escapedName: 'generator-common',
+16 silly mapToRegistry   name: 'generator-common',
+16 silly mapToRegistry   rawSpec: '',
+16 silly mapToRegistry   spec: 'latest',
+16 silly mapToRegistry   type: 'tag' }
+17 silly mapToRegistry uri https://registry.npmjs.org/generator-common
+18 silly fetchNamedPackageData generator-efrepo
+19 silly mapToRegistry name generator-efrepo
+20 silly mapToRegistry using default registry
+21 silly mapToRegistry registry https://registry.npmjs.org/
+22 silly mapToRegistry data Result {
+22 silly mapToRegistry   raw: 'generator-efrepo',
+22 silly mapToRegistry   scope: null,
+22 silly mapToRegistry   escapedName: 'generator-efrepo',
+22 silly mapToRegistry   name: 'generator-efrepo',
+22 silly mapToRegistry   rawSpec: '',
+22 silly mapToRegistry   spec: 'latest',
+22 silly mapToRegistry   type: 'tag' }
+23 silly mapToRegistry uri https://registry.npmjs.org/generator-efrepo
+24 silly fetchNamedPackageData generator-generator
+25 silly mapToRegistry name generator-generator
+26 silly mapToRegistry using default registry
+27 silly mapToRegistry registry https://registry.npmjs.org/
+28 silly mapToRegistry data Result {
+28 silly mapToRegistry   raw: 'generator-generator',
+28 silly mapToRegistry   scope: null,
+28 silly mapToRegistry   escapedName: 'generator-generator',
+28 silly mapToRegistry   name: 'generator-generator',
+28 silly mapToRegistry   rawSpec: '',
+28 silly mapToRegistry   spec: 'latest',
+28 silly mapToRegistry   type: 'tag' }
+29 silly mapToRegistry uri https://registry.npmjs.org/generator-generator
+30 silly fetchNamedPackageData generator-mssql-schema
+31 silly mapToRegistry name generator-mssql-schema
+32 silly mapToRegistry using default registry
+33 silly mapToRegistry registry https://registry.npmjs.org/
+34 silly mapToRegistry data Result {
+34 silly mapToRegistry   raw: 'generator-mssql-schema',
+34 silly mapToRegistry   scope: null,
+34 silly mapToRegistry   escapedName: 'generator-mssql-schema',
+34 silly mapToRegistry   name: 'generator-mssql-schema',
+34 silly mapToRegistry   rawSpec: '',
+34 silly mapToRegistry   spec: 'latest',
+34 silly mapToRegistry   type: 'tag' }
+35 silly mapToRegistry uri https://registry.npmjs.org/generator-mssql-schema
+36 silly fetchNamedPackageData generator-yeoman-qload
+37 silly mapToRegistry name generator-yeoman-qload
+38 silly mapToRegistry using default registry
+39 silly mapToRegistry registry https://registry.npmjs.org/
+40 silly mapToRegistry data Result {
+40 silly mapToRegistry   raw: 'generator-yeoman-qload',
+40 silly mapToRegistry   scope: null,
+40 silly mapToRegistry   escapedName: 'generator-yeoman-qload',
+40 silly mapToRegistry   name: 'generator-yeoman-qload',
+40 silly mapToRegistry   rawSpec: '',
+40 silly mapToRegistry   spec: 'latest',
+40 silly mapToRegistry   type: 'tag' }
+41 silly mapToRegistry uri https://registry.npmjs.org/generator-yeoman-qload
+42 verbose request uri https://registry.npmjs.org/generator-yeoman-qload
+43 verbose request no auth needed
+44 info attempt registry request try #1 at 11:10:21 PM
+45 verbose request id a1d16440efcd76e2
+46 http request GET https://registry.npmjs.org/generator-yeoman-qload
+47 verbose request uri https://registry.npmjs.org/generator-efrepo
+48 verbose request no auth needed
+49 info attempt registry request try #1 at 11:10:21 PM
+50 verbose etag W/"550730e7-1090"
+51 verbose lastModified Mon, 16 Mar 2015 19:37:11 GMT
+52 http request GET https://registry.npmjs.org/generator-efrepo
+53 verbose request uri https://registry.npmjs.org/generator-common
+54 verbose request no auth needed
+55 info attempt registry request try #1 at 11:10:21 PM
+56 verbose etag W/"53bd94f3-1379"
+57 verbose lastModified Wed, 09 Jul 2014 19:16:03 GMT
+58 http request GET https://registry.npmjs.org/generator-common
+59 verbose request uri https://registry.npmjs.org/generator-generator
+60 verbose request no auth needed
+61 info attempt registry request try #1 at 11:10:21 PM
+62 verbose etag W/"58f137cb-b0bc"
+63 verbose lastModified Fri, 14 Apr 2017 20:57:47 GMT
+64 http request GET https://registry.npmjs.org/generator-generator
+65 verbose request uri https://registry.npmjs.org/generator-mssql-schema
+66 verbose request no auth needed
+67 info attempt registry request try #1 at 11:10:21 PM
+68 verbose etag W/"5603f08a-1765"
+69 verbose lastModified Thu, 24 Sep 2015 12:46:02 GMT
+70 http request GET https://registry.npmjs.org/generator-mssql-schema
+71 http 304 https://registry.npmjs.org/generator-common
+72 verbose headers { date: 'Fri, 26 May 2017 22:10:21 GMT',
+72 verbose headers   via: '1.1 varnish',
+72 verbose headers   'cache-control': 'max-age=300',
+72 verbose headers   etag: 'W/"53bd94f3-1379"',
+72 verbose headers   age: '0',
+72 verbose headers   connection: 'keep-alive',
+72 verbose headers   'x-served-by': 'cache-lhr6351-LHR',
+72 verbose headers   'x-cache': 'HIT',
+72 verbose headers   'x-cache-hits': '1',
+72 verbose headers   'x-timer': 'S1495836622.535543,VS0,VE18',
+72 verbose headers   vary: 'Accept-Encoding' }
+73 silly get cb [ 304,
+73 silly get   { date: 'Fri, 26 May 2017 22:10:21 GMT',
+73 silly get     via: '1.1 varnish',
+73 silly get     'cache-control': 'max-age=300',
+73 silly get     etag: 'W/"53bd94f3-1379"',
+73 silly get     age: '0',
+73 silly get     connection: 'keep-alive',
+73 silly get     'x-served-by': 'cache-lhr6351-LHR',
+73 silly get     'x-cache': 'HIT',
+73 silly get     'x-cache-hits': '1',
+73 silly get     'x-timer': 'S1495836622.535543,VS0,VE18',
+73 silly get     vary: 'Accept-Encoding' } ]
+74 verbose etag https://registry.npmjs.org/generator-common from cache
+75 verbose get saving generator-common to C:\Users\kevin.robinson\AppData\Roaming\npm-cache\registry.npmjs.org\generator-common\.cache.json
+76 verbose correctMkdir C:\Users\kevin.robinson\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+77 http 304 https://registry.npmjs.org/generator-mssql-schema
+78 verbose headers { date: 'Fri, 26 May 2017 22:10:21 GMT',
+78 verbose headers   via: '1.1 varnish',
+78 verbose headers   'cache-control': 'max-age=300',
+78 verbose headers   etag: 'W/"5603f08a-1765"',
+78 verbose headers   age: '0',
+78 verbose headers   connection: 'keep-alive',
+78 verbose headers   'x-served-by': 'cache-lhr6344-LHR',
+78 verbose headers   'x-cache': 'HIT',
+78 verbose headers   'x-cache-hits': '1',
+78 verbose headers   'x-timer': 'S1495836622.532667,VS0,VE18',
+78 verbose headers   vary: 'Accept-Encoding' }
+79 silly get cb [ 304,
+79 silly get   { date: 'Fri, 26 May 2017 22:10:21 GMT',
+79 silly get     via: '1.1 varnish',
+79 silly get     'cache-control': 'max-age=300',
+79 silly get     etag: 'W/"5603f08a-1765"',
+79 silly get     age: '0',
+79 silly get     connection: 'keep-alive',
+79 silly get     'x-served-by': 'cache-lhr6344-LHR',
+79 silly get     'x-cache': 'HIT',
+79 silly get     'x-cache-hits': '1',
+79 silly get     'x-timer': 'S1495836622.532667,VS0,VE18',
+79 silly get     vary: 'Accept-Encoding' } ]
+80 verbose etag https://registry.npmjs.org/generator-mssql-schema from cache
+81 verbose get saving generator-mssql-schema to C:\Users\kevin.robinson\AppData\Roaming\npm-cache\registry.npmjs.org\generator-mssql-schema\.cache.json
+82 verbose correctMkdir C:\Users\kevin.robinson\AppData\Roaming\npm-cache correctMkdir already in flight; waiting
+83 http 304 https://registry.npmjs.org/generator-efrepo
+84 verbose headers { date: 'Fri, 26 May 2017 22:10:21 GMT',
+84 verbose headers   via: '1.1 varnish',
+84 verbose headers   'cache-control': 'max-age=300',
+84 verbose headers   etag: 'W/"550730e7-1090"',
+84 verbose headers   age: '0',
+84 verbose headers   connection: 'keep-alive',
+84 verbose headers   'x-served-by': 'cache-lhr6330-LHR',
+84 verbose headers   'x-cache': 'HIT',
+84 verbose headers   'x-cache-hits': '1',
+84 verbose headers   'x-timer': 'S1495836622.540261,VS0,VE18',
+84 verbose headers   vary: 'Accept-Encoding' }
+85 silly get cb [ 304,
+85 silly get   { date: 'Fri, 26 May 2017 22:10:21 GMT',
+85 silly get     via: '1.1 varnish',
+85 silly get     'cache-control': 'max-age=300',
+85 silly get     etag: 'W/"550730e7-1090"',
+85 silly get     age: '0',
+85 silly get     connection: 'keep-alive',
+85 silly get     'x-served-by': 'cache-lhr6330-LHR',
+85 silly get     'x-cache': 'HIT',
+85 silly get     'x-cache-hits': '1',
+85 silly get     'x-timer': 'S1495836622.540261,VS0,VE18',
+85 silly get     vary: 'Accept-Encoding' } ]
+86 verbose etag https://registry.npmjs.org/generator-efrepo from cache
+87 verbose get saving generator-efrepo to C:\Users\kevin.robinson\AppData\Roaming\npm-cache\registry.npmjs.org\generator-efrepo\.cache.json
+88 verbose correctMkdir C:\Users\kevin.robinson\AppData\Roaming\npm-cache correctMkdir already in flight; waiting
+89 http 304 https://registry.npmjs.org/generator-generator
+90 verbose headers { date: 'Fri, 26 May 2017 22:10:21 GMT',
+90 verbose headers   via: '1.1 varnish',
+90 verbose headers   'cache-control': 'max-age=300',
+90 verbose headers   etag: 'W/"58f137cb-b0bc"',
+90 verbose headers   age: '0',
+90 verbose headers   connection: 'keep-alive',
+90 verbose headers   'x-served-by': 'cache-lhr6343-LHR',
+90 verbose headers   'x-cache': 'HIT',
+90 verbose headers   'x-cache-hits': '1',
+90 verbose headers   'x-timer': 'S1495836622.538783,VS0,VE25',
+90 verbose headers   vary: 'Accept-Encoding' }
+91 silly get cb [ 304,
+91 silly get   { date: 'Fri, 26 May 2017 22:10:21 GMT',
+91 silly get     via: '1.1 varnish',
+91 silly get     'cache-control': 'max-age=300',
+91 silly get     etag: 'W/"58f137cb-b0bc"',
+91 silly get     age: '0',
+91 silly get     connection: 'keep-alive',
+91 silly get     'x-served-by': 'cache-lhr6343-LHR',
+91 silly get     'x-cache': 'HIT',
+91 silly get     'x-cache-hits': '1',
+91 silly get     'x-timer': 'S1495836622.538783,VS0,VE25',
+91 silly get     vary: 'Accept-Encoding' } ]
+92 verbose etag https://registry.npmjs.org/generator-generator from cache
+93 verbose get saving generator-generator to C:\Users\kevin.robinson\AppData\Roaming\npm-cache\registry.npmjs.org\generator-generator\.cache.json
+94 verbose correctMkdir C:\Users\kevin.robinson\AppData\Roaming\npm-cache correctMkdir already in flight; waiting
+95 http 404 https://registry.npmjs.org/generator-yeoman-qload
+96 verbose headers { 'content-type': 'application/json',
+96 verbose headers   'cache-control': 'max-age=0',
+96 verbose headers   'content-length': '2',
+96 verbose headers   'accept-ranges': 'bytes',
+96 verbose headers   date: 'Fri, 26 May 2017 22:10:21 GMT',
+96 verbose headers   via: '1.1 varnish',
+96 verbose headers   age: '0',
+96 verbose headers   connection: 'keep-alive',
+96 verbose headers   'x-served-by': 'cache-lhr6336-LHR',
+96 verbose headers   'x-cache': 'MISS',
+96 verbose headers   'x-cache-hits': '0',
+96 verbose headers   'x-timer': 'S1495836622.528975,VS0,VE344',
+96 verbose headers   vary: 'Accept-Encoding' }
+97 silly get cb [ 404,
+97 silly get   { 'content-type': 'application/json',
+97 silly get     'cache-control': 'max-age=0',
+97 silly get     'content-length': '2',
+97 silly get     'accept-ranges': 'bytes',
+97 silly get     date: 'Fri, 26 May 2017 22:10:21 GMT',
+97 silly get     via: '1.1 varnish',
+97 silly get     age: '0',
+97 silly get     connection: 'keep-alive',
+97 silly get     'x-served-by': 'cache-lhr6336-LHR',
+97 silly get     'x-cache': 'MISS',
+97 silly get     'x-cache-hits': '0',
+97 silly get     'x-timer': 'S1495836622.528975,VS0,VE344',
+97 silly get     vary: 'Accept-Encoding' } ]
+98 silly fetchPackageMetaData Error: Registry returned 404 for GET on https://registry.npmjs.org/generator-yeoman-qload
+98 silly fetchPackageMetaData     at makeError (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+98 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+98 silly fetchPackageMetaData     at Request._callback (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+98 silly fetchPackageMetaData     at Request.self.callback (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+98 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+98 silly fetchPackageMetaData     at Request.emit (events.js:191:7)
+98 silly fetchPackageMetaData     at Request.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+98 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+98 silly fetchPackageMetaData     at Request.emit (events.js:188:7)
+98 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12)
+98 silly fetchPackageMetaData  error for generator-yeoman-qload { Error: Registry returned 404 for GET on https://registry.npmjs.org/generator-yeoman-qload
+98 silly fetchPackageMetaData     at makeError (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+98 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+98 silly fetchPackageMetaData     at Request._callback (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+98 silly fetchPackageMetaData     at Request.self.callback (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+98 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+98 silly fetchPackageMetaData     at Request.emit (events.js:191:7)
+98 silly fetchPackageMetaData     at Request.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+98 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+98 silly fetchPackageMetaData     at Request.emit (events.js:188:7)
+98 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12)
+98 silly fetchPackageMetaData   pkgid: 'generator-yeoman-qload',
+98 silly fetchPackageMetaData   statusCode: 404,
+98 silly fetchPackageMetaData   code: 'E404' }
+99 silly rollbackFailedOptional Starting
+100 silly rollbackFailedOptional Finishing
+101 silly runTopLevelLifecycles Finishing
+102 silly install printInstalled
+103 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/generator-yeoman-qload
+103 verbose stack     at makeError (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+103 verbose stack     at CachingRegistryClient.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+103 verbose stack     at Request._callback (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+103 verbose stack     at Request.self.callback (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+103 verbose stack     at emitTwo (events.js:106:13)
+103 verbose stack     at Request.emit (events.js:191:7)
+103 verbose stack     at Request.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+103 verbose stack     at emitOne (events.js:96:13)
+103 verbose stack     at Request.emit (events.js:188:7)
+103 verbose stack     at IncomingMessage.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12)
+104 verbose statusCode 404
+105 verbose pkgid generator-yeoman-qload
+106 verbose cwd C:\Source\YeomanQload\generator-angular-mongo\generators
+107 error Windows_NT 6.1.7601
+108 error argv "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "-g" "generator-common" "generator-efrepo" "generator-generator" "generator-mssql-schema" "generator-yeoman-qload"
+109 error node v6.10.2
+110 error npm  v3.10.10
+111 error code E404
+112 error 404 Registry returned 404 for GET on https://registry.npmjs.org/generator-yeoman-qload
+113 error 404
+114 error 404 'generator-yeoman-qload' is not in the npm registry.
+115 error 404 You should bug the author to publish it (or use the name yourself!)
+116 error 404 Note that you can also install from a
+117 error 404 tarball, folder, http url, or git url.
+118 verbose exit [ 1, true ]
