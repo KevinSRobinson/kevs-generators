@@ -12,7 +12,7 @@ module.exports = class extends Generator {
 
     const prompts = [{
       type: 'input',
-      name: 'controllerName1',
+      name: 'controllerName',
       message: 'Name of Controller'
     }];
 
