@@ -7,9 +7,22 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApis.Controllers
 {
     [Route("api/[controller]")]
-    public class WorkingController : Controller
+    public class Controller : Controller
     {
-        // GET api/values
+         
+            //'if (json.hasOwnProperty(key)) {
+                firstName
+            //''}
+          
+            //'if (json.hasOwnProperty(key)) {
+                lastName
+            //''}
+          
+            //'if (json.hasOwnProperty(key)) {
+                age
+            //''}
+          
+
         [HttpGet]
         public IEnumerable<string> Get()
         {

@@ -9,7 +9,12 @@ namespace WebApis.Controllers
     [Route("api/[controller]")]
     public class <%=controllerName%>Controller : Controller
     {
-        // GET api/values
+         <%for (var key in json.properties) {  %>
+            //'if (json.hasOwnProperty(key)) {
+                <%= key  %>
+            //''}
+          <% }  %>
+
         [HttpGet]
         public IEnumerable<string> Get()
         {

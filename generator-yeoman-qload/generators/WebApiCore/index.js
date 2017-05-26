@@ -12,9 +12,14 @@ module.exports = class extends Generator {
 
     const prompts = [{
       type: 'input',
-      name: 'controllerName',
+      name: 'controllerName1',
       message: 'Name of Controller'
     }];
+
+   
+    //this.log(json);
+   
+
 
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
@@ -23,13 +28,18 @@ module.exports = class extends Generator {
   }
 
   writing() {
+
+     var json = require('./data.json');
+
+
     this.fs.copyTpl(
       this.templatePath('webapiController.cs'),
       this.destinationPath('../GeneratdWebApi/' + this.props.controllerName + 'Controller.cs'),
        {
           DtoName: this.props.featureName + 'Dto',
           ClassName: this.props.featureName,
-          controllerName: this.props.controllerName
+          controllerName: this.props.controllerName,
+          json: require('./data.json')
         }
     );
   }
