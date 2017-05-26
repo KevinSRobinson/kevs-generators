@@ -25,7 +25,7 @@ module.exports = class extends Generator {
   writing() {
     this.fs.copyTpl(
       this.templatePath('webapiController.cs'),
-      this.destinationPath('../GeneratdWebApi/WebApiController.cs'),
+      this.destinationPath('../GeneratdWebApi/' + this.props.controllerName + 'Controller.cs'),
        {
           DtoName: this.props.featureName + 'Dto',
           ClassName: this.props.featureName,
