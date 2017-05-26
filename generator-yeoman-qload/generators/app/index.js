@@ -24,12 +24,7 @@ module.exports = class extends Generator {
       'Welcome to the world-class ' + chalk.red('generator-yeoman-qload') + ' generator!'
     ));
 
-    const prompts = [{
-      type: 'confirm',
-      name: 'someAnswer',
-      message: 'Would you like to enable this option?',
-      default: true
-    },
+    const prompts = [
     {
       type: 'input',
       name: 'featurename',
