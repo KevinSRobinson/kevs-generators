@@ -1,0 +1,24 @@
+﻿
+<#+ 
+
+void GenerateIndexView(CodeClass codeClass){			
+
+
+var helper = new CodeClassHelper(codeClass);
+
+#>		
+
+
+<h1><#=helper.Plural#></h1>
+
+<#=helper.AngularClient.ListComponentTag#>
+
+
+<#+
+
+
+    CreateDirectoryFullPath(clientAppPath + helper.AngularClient.ViewsPath);
+	CreateFile(clientAppPath + helper.AngularClient.ViewsPath + "Index.html");
+
+}	
+#>

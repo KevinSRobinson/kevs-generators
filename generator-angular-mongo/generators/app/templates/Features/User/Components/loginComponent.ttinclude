@@ -1,0 +1,21 @@
+﻿<#+    void Gereratre_Login_Component(){	 #>
+var login = {
+    controllerAs:'vm',
+    controller: function (authService) {
+
+        var vm = this;
+
+        vm.authService = authService;
+
+    },
+    templateUrl: '<#=ClientCommon.LoginComponentTemplateUrl#>'
+};
+
+login.$inject = ['authService'];
+
+angular.module('<#=applicationName#>').component('login', login);
+<#+
+    CreateDirectoryFullPath(clientAppPath + ClientCommon.LoginComponentFilePath);
+    CreateFile(clientAppPath + ClientCommon.LoginComponentFilePath + "login.js");
+}	
+#>

@@ -1,0 +1,38 @@
+﻿<#+    
+
+    
+    string GetInputField(string type, string name, string propertyName){
+        return "<my-input-field input-type='" + type +"' field-label='" + name + "' ng-model='vm." + propertyName + "." + name + "'></my-input-field>";
+    }
+
+    void WriteOutFormFields(CodeClassHelper helper) {
+        foreach (CodeElement meb in helper.CodeClass.Members) {
+            if (meb.Kind == vsCMElement.vsCMElementProperty) {
+                var prop = meb as CodeProperty;
+                var type = prop.Type.AsString;
+
+                
+                if(!meb.Name.ToLower().Contains("id"))
+                {
+                    if(type == "string") {
+                        WriteLine("<my-input-field field-label='" + meb.Name + "' ng-model='vm." + helper.CamelCase + "." + meb.Name + "'></my-input-field>");                                           
+                    }
+                    if(type == "bool") {
+                        WriteLine("<my-input-field input-type='checkbox' field-label='" + meb.Name + "' ng-model='vm." + helper.CamelCase + "." + meb.Name + "'></my-input-field>");                                           
+                    }
+                    if(type == "number" || type == "float") {
+                        WriteLine("<my-input-field input-type='number' field-label='" + meb.Name + "' ng-model='vm." + helper.CamelCase + "." + meb.Name + "'></my-input-field>");                                           
+                    }
+                    else if(type=="System.DateTime"){
+                        WriteLine("<my-input-field input-type='date' field-label='" + meb.Name + "' ng-model='vm." + helper.CamelCase + "." + meb.Name + "'></my-input-field>");                       
+                    }
+                    else {
+                        //WriteLine(type + " " + meb.Name);                       
+                    }
+                }
+            }
+                
+        };			        
+    }
+
+#>

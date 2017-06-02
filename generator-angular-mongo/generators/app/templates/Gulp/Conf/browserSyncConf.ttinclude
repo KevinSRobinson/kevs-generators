@@ -1,0 +1,30 @@
+﻿
+<#+ 
+  void Generate_Gulp_Conf_BrowserSync(){			
+#>
+
+const conf = require('./gulp.conf');
+
+module.exports = function () {
+  return {
+    server: {
+      baseDir: [
+        conf.paths.tmp,
+        conf.paths.src
+      ],
+      routes: {
+        '/bower_components': 'bower_components'
+      }
+    },
+    open: false
+  };
+};
+
+		
+		
+<#+
+    CreateDirectoryFullPath(clientGulpConfFolder);
+    CreateFile(clientGulpConfFolder + "browsersync.conf.js");
+	}	
+#>
+

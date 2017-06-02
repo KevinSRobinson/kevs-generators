@@ -1,0 +1,18 @@
+﻿
+<#+ void Generate_User_Routes(){ #>
+var config = function ($stateProvider) {
+    
+$stateProvider
+    .state("login", {
+        url: "/login",
+        template: "<login></login>"
+    }) 
+};
+
+angular.module("<#=applicationName#>").config(config);
+
+<#+
+     CreateDirectoryFullPath(clientAppPath + ClientCommon.LoginComponentFilePath);
+        CreateFile(clientAppPath + ClientCommon.LoginComponentFilePath +  "routes.js");	
+}
+#>

@@ -1,0 +1,39 @@
+﻿<#+ void GenerateProtractorTestIndex(CodeClassHelper helper) {#>
+
+require("protractor");
+var ph = require("../protractorHelpers.js");
+
+
+describe('<#=helper.Name#>s', function () {
+
+    var pageTitle = '<#=helper.Name#> Details';
+    var <#=helper.CamelCase#>Repeater = '<#=helper.CamelCase#> in vm.<#=helper.CamelCasePlural#>';
+
+    browser.get('http://localhost:3001/#/<#=helper.CamelCase#>s');
+        
+    it('should load the <#=helper.CamelCasePlural#>s', function () {
+        browser.get('http://localhost:3001/#/<#=helper.CamelCasePlural#>s').then(function () {
+            ph.expectRepeaterToHaveValues(<#=helper.CamelCasePlural#>Repeater);
+        });
+    });
+
+    
+
+    describe('<#=helper.Name#> Details', function () {
+
+        it('Should display the details page', function () {
+            ph.clickOnFirstDetailsLink(<#=helper.CamelCasePlural#>Repeater);
+        });
+
+        it('Should have a Page Title', function () {
+            ph.expectPageTitle(pageTitle);
+        });
+    });
+
+});
+<#+
+    CreateDirectoryFullPath(e2eTestBasePath);
+    CreateFile(e2eTestBasePath + helper.Plural + ".test.js");
+	}	
+#>
+

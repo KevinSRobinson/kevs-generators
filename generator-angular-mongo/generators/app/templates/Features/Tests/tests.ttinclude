@@ -1,0 +1,35 @@
+﻿<#+ 
+void GenerateComponentTests(CodeClassHelper helper){			
+#>
+
+
+describe("<#=helper.Name#>", function () {
+
+    describe("<#=helper.CamelCasePlural#> List", function () {
+
+        beforeEach(function () {
+
+            bard.inject(this, "$controller", "$q", "$rootScope", "<#=helper.AngularClient.ServiceName#>");
+
+            bard.mockService("<#=helper.AngularClient.ServiceName#>", mock<#=helper.AngularClient.ServiceName#>);
+
+            //controller = $controller("<#=helper.CamelCasePlural#> ");
+
+        });
+
+        it("should instantiate the controller properly", function () {
+            expect(controller).not.toBeUndefined();
+        });
+    });
+
+
+});
+
+
+
+		
+<#+    
+   CreateDirectoryFullPath(TestBasePath);
+CreateFile(TestBasePath +  helper.CamelCasePlural +  ".spec.js");
+}	
+#>

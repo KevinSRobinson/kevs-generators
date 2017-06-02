@@ -1,0 +1,84 @@
+﻿<#+    
+
+//Build the Table <TD> string
+    string GetTableTD(string className, string property, string angularSuffix )
+    {
+        if(property == "Id"){
+            property = "_id";
+        }
+        var td = String.Format("<td>{0} {1}.{2} ", "{{", className.ToLower(), property);
+
+        if(angularSuffix!= "")
+        {
+            td += String.Format(" | {0} ", angularSuffix);         
+        }
+        
+        td += "}}</td>";
+
+        return td;
+    }
+
+
+    void WriteTableHeaders(CodeClass c){
+        var helper = new CodeClassHelper(c);
+
+        //Loop Members
+        foreach (CodeElement meb in c.Members) {
+
+            //If is a Property
+            if (meb.Kind == vsCMElement.vsCMElementProperty) {
+                var prop = meb as CodeProperty;  
+                var type = prop.Type.AsString;
+                if(type !="System.Guid"){
+                     WriteLine("<td>" +  meb.Name + "</td>");                 
+                }
+                
+             };
+        }
+    }
+
+    void WriteTableCells(CodeClass c){
+        var helper = new CodeClassHelper(c);
+
+        //Loop Members
+        foreach (CodeElement meb in c.Members) {
+
+            //If is a Property
+			if (meb.Kind == vsCMElement.vsCMElementProperty) {
+
+
+                    var prop = meb as CodeProperty;  
+
+                    //Get the property Type
+				    var type = prop.Type.AsString;
+
+                    switch(type){
+                       case "string":
+                            WriteLine(GetTableTD(helper.Name, meb.Name, ""));
+                            break;
+				        case ("System.DateTime?"):
+                            WriteLine(GetTableTD(helper.Name, meb.Name, " date:'medium'"));					    
+                            break;
+                        case ("System.DateTime"):
+                            WriteLine(GetTableTD(helper.Name, meb.Name, " date:'medium'"));					    
+                            break;
+				        case("int"):
+					          WriteLine(GetTableTD(helper.Name, meb.Name, ""));
+                            break;
+				        case "decimal":
+                            WriteLine(GetTableTD(helper.Name, meb.Name, " number:2 "));					    
+                            break;
+                        case "System.Guid":
+                           				    
+                            break;
+				        default:
+					        WriteLine("<td>" + type + "</td>");
+                            break;
+				        }
+			        };			
+
+	        };
+    }
+
+
+    #>

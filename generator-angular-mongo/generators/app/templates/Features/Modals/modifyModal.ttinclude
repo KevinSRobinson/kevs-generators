@@ -1,0 +1,14 @@
+﻿
+<#+ 
+void GenerateModifyModalTemplate(CodeClassHelper helper){		
+		#>
+<my-modal-header title="Modify <#=helper.Name#>"></my-modal-header>
+<#+ 
+        WriteOutFormFields(helper);
+#>
+<my-modal-buttons close="vm.close()" save="vm.save()"></my-modal-buttons>
+<#+
+     	CreateDirectoryFullPath(clientAppPath + helper.AngularClient.ModalsFilePath);
+	    CreateFile(clientAppPath + helper.AngularClient.ModalsFilePath +  helper.AngularClient.ModifyModalTemplateFileName);
+	}	
+#>
