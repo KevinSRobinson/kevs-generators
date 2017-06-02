@@ -5,6 +5,8 @@ const chalk = require('chalk');
 const _ = require('lodash');
 _.mixin(require("lodash-inflection"));
 const mvpList = require("./list.js");
+const mvpDetails = require("./details.js");
+const mvpMasterDetails = require("./masterDetails.js");
 
 module.exports = class extends Generator {
   // The name `constructor` is important here
@@ -58,7 +60,8 @@ module.exports = class extends Generator {
 
 
       mvpList.generateList(this);
-
+      mvpDetails.generate(this);
+      mvpMasterDetails.generate(this);
   }
   bower() {
     var bowerJson = {
