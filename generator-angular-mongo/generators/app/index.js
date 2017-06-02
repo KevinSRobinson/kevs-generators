@@ -30,68 +30,96 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    var data = {
-      appName: this.props.appName,
-      appTitle: this.props.appTitle,
-      featureName: "contact",
-      featureNamePlural: "contacts",
-      dataServiceName:  "contactsDataService"
+    writeCoreFiles() 
+    {
+      var data = {
+        appName: this.props.appName,
+        appTitle: this.props.appTitle,
+        featureName: "contact",
+        featureNamePlural: "contacts",
+        dataServiceName: "contactsDataService",
+        json: require('./data.json')
+      }
+
+      this.fs.copyTpl(
+        this.templatePath('_appRun.js'),
+        this.destinationPath('Generated/appRun.js'), {
+          data: data
+        }
+      );
+      this.fs.copyTpl(
+        this.templatePath('_app.js'),
+        this.destinationPath('Generated/app.js'), {
+          data: data
+        }
+      );
+      this.fs.copyTpl(
+        this.templatePath('_auth0Service.js'),
+        this.destinationPath('Generated/auth0Service.js'), {
+          data: data
+        }
+      );
+      this.fs.copyTpl(
+        this.templatePath('_IndexPage.html'),
+        this.destinationPath('Generated/IndexPage.html'), {
+          data: data
+        }
+      );
+      this.fs.copyTpl(
+        this.templatePath('_package.json'),
+        this.destinationPath('Generated/package.json'), {
+          data: data
+        }
+      );
+      this.fs.copyTpl(
+        this.templatePath('_routes.js'),
+        this.destinationPath('Generated/routes.js'), {
+          data: data
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('_routes.js'),
+        this.destinationPath('Generated/Features/' + data.featureNamePlural + '/routes.js'), {
+          data: data
+        }
+      );
+
+
+      this.fs.copyTpl(
+        this.templatePath('./DataServices/_angularServices.js'),
+        this.destinationPath('Generated/Features/DataServices/' + data.featureNamePlural + '.js'), {
+          data: data
+        }
+      );
+
+
+      var features = require('./features.json');
+
+
+      for (var key in features.features) {
+        var data = {
+          appName: this.props.appName,
+          appTitle: this.props.appTitle,
+          featureName: key,
+          featureNamePlural: key + "s",
+          dataServiceName: key + "DataService",
+          json: require('./data.json')
+        };
+
+
+        this.fs.copyTpl(
+          this.templatePath('./_webapiController.cs'),
+          this.destinationPath('Generated/WebApi/' + key + '.cs'), {
+            data: data
+          }
+        );
+      }
     }
-
-    this.fs.copyTpl(
-      this.templatePath('_appRun.js'),
-      this.destinationPath('Generated/appRun.js'), {
-        data: data
-      }
-    );
-    this.fs.copyTpl(
-      this.templatePath('_app.js'),
-      this.destinationPath('Generated/app.js'), {
-        data: data
-      }
-    );
-    this.fs.copyTpl(
-      this.templatePath('_auth0Service.js'),
-      this.destinationPath('Generated/auth0Service.js'), {
-        data: data
-      }
-    );
-    this.fs.copyTpl(
-      this.templatePath('_IndexPage.html'),
-      this.destinationPath('Generated/IndexPage.html'), {
-        data: data
-      }
-    );
-    this.fs.copyTpl(
-      this.templatePath('_package.json'),
-      this.destinationPath('Generated/package.json'), {
-        data: data
-      }
-    );
-    this.fs.copyTpl(
-      this.templatePath('_routes.js'),
-      this.destinationPath('Generated/routes.js'), {
-        data: data
-      }
-    );
-
-     this.fs.copyTpl(
-      this.templatePath('_routes.js'),
-      this.destinationPath('Generated/Features/' + data.featureNamePlural +  '/routes.js'), {
-        data: data
-      }
-    );
-
-
-     this.fs.copyTpl(
-      this.templatePath('./DataServices/_angularServices.js'),
-      this.destinationPath('Generated/Features/DataServices/'+ data.featureNamePlural +'.js'), {
-        data: data
-      }
-    );
   }
+}
 
-  install() {
-    this.installDependencies();
-  }
+install() {
+  this.installDependencies();
+}
 };

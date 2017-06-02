@@ -4,7 +4,7 @@ const yosay = require('yosay');
 const chalk = require('chalk');
 const _ = require('lodash');
 _.mixin(require("lodash-inflection"));
-
+const mvpList = require("./list.js");
 
 module.exports = class extends Generator {
   // The name `constructor` is important here
@@ -12,7 +12,7 @@ module.exports = class extends Generator {
     // Calling the super constructor is important so our generator is correctly set up
     super(args, opts);
 
-    this.argument('classname', { type: String, required: true })
+  
     this.argument('includePresenter', { type: Boolean, required: false, default: false })
     // Next, add your custom code
     this.log('classname (arg) : ' + this.options.classname)
@@ -27,7 +27,7 @@ module.exports = class extends Generator {
     const prompts = [
     {
       type: 'input',
-      name: 'featurename',
+      name: 'featureName',
       message: 'Enter a name for the feature',
     },
     {
@@ -57,62 +57,7 @@ module.exports = class extends Generator {
   writing() {
 
 
-    var featureFolderName = 'Generated/' + this.options.classname + 's/';
-    var interfaceName = 'I' + this.options.classname + 'sListView';
-    var presenterName = this.options.classname + 'sListPresenter';
-    var userControlName = 'uc' + this.options.classname + 'sListView';
-    var ttt = _.kebabCase;
-
-    this.log(_.kebabCase(userControlName));
-    this.log(_.startCase(userControlName));
-    this.log(_.pluralize("Category"));
-   
-
-    if (this.options.includePresenter) {
-      //Presenter
-      this.fs.copyTpl(
-        this.templatePath('MVP/List/presenter.vb'),
-        this.destinationPath(featureFolderName + '/List/' + presenterName + '.vb'),
-        {
-          DtoName: this.options.classname + 'Dto',
-          ClassName: this.options.classname
-        }
-      );
-    }
-
-
-
-
-    ///////////////////////////////
-    //UserControl - Code Behind
-    this.fs.copyTpl(
-      this.templatePath('MVP/List/UserControl/ucListView.vb'),
-      this.destinationPath(featureFolderName + '/List/' + userControlName + '.vb'),
-      {
-        DtoName: this.options.classname + 'Dto',
-        ClassName: this.options.classname
-      }
-    );
-
-    //UserControl - Designer
-    this.fs.copyTpl(
-      this.templatePath('MVP/List/UserControl/ucContactsView.Designer.vb'),
-      this.destinationPath(featureFolderName + '/List/' + userControlName + '.Designer.vb'),
-      {
-        DtoName: this.options.classname + 'Dto',
-        ClassName: this.options.classname
-      }
-    );
-
-    //UserControl - Resources File
-    this.fs.copyTpl(
-      this.templatePath('MVP/List/UserControl/ucContactsView.resx'),
-      this.destinationPath(featureFolderName + '/List/' + userControlName + '.resx'),
-      {
-        DtoName: this.options.classname + 'Dto',
-        ClassName: this.options.classname
-      }
-    );
+      mvpList.generateList(this);
 
   }
   bower() {
