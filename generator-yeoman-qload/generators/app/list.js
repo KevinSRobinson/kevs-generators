@@ -5,9 +5,9 @@ const _ = require('lodash');
 _.mixin(require("lodash-inflection"));
 
 
-module.exports.generateList = function(runner) {
+module.exports.generateList = function(runner, basepath) {
 
-  var featureFolderName = 'Generated/MVP/' + runner.props.featureName + 's/';
+  var featureFolderName = basepath + 'Generated/MVP/' + runner.props.featureName + 's/';
   var interfaceName = 'I' + runner.props.featureName + 'sListView';
   var presenterName = runner.props.featureName + 'sListPresenter';
   var userControlName = 'uc' + runner.props.featureName + 'sListView';

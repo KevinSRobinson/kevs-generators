@@ -4,6 +4,8 @@ const yosay = require('yosay');
 const chalk = require('chalk');
 const _ = require('lodash');
 _.mixin(require("lodash-inflection"));
+
+const mvpEdit = require("./edit.js");
 const mvpList = require("./list.js");
 const mvpDetails = require("./details.js");
 const mvpMasterDetails = require("./masterDetails.js");
@@ -37,9 +39,11 @@ module.exports = class extends Generator {
       name: 'features',
       message: 'Select Features',
       choices: [
-        {name: 'option1', value : 'option1', checked: true},
-        {name: 'option2', value : 'option2', checked: true},
-        {name: 'option3', value : 'option3', checked: true},
+        {name: 'Details', value : 'Details', checked: true},
+        {name: 'Edit', value : 'Edit', checked: true},
+        {name: 'List', value : 'List', checked: true},
+        {name: 'MasterDeails', value : 'MasterDeails', checked: true},
+        {name: 'Create', value : 'Create', checked: true},
       ]
     }
     ];
@@ -48,9 +52,11 @@ module.exports = class extends Generator {
       // To access props later use this.props.someAnswer;
       this.log(props)
 
-      this.log('option1 = ' + _.includes(props.features, 'option1'));
-      this.log('option2 = ' + _.includes(props.features, 'option2'));
-      this.log('option3 = ' + _.includes(props.features, 'option3'));
+      this.log('Details = ' + _.includes(props.features, 'Details'));
+      this.log('Edit = ' + _.includes(props.features, 'Edit'));
+      this.log('List = ' + _.includes(props.features, 'List'));
+      this.log('MasterDeails = ' + _.includes(props.features, 'MasterDeails'));
+      this.log('Create = ' + _.includes(props.features, 'Create'));
 
       this.props = props;
     });
@@ -58,24 +64,41 @@ module.exports = class extends Generator {
 
   writing() {
 
+    var basepath = "C:/Source/Webapis/QloadWinForms/QloadWinForms/"
 
-      mvpList.generateList(this);
-      mvpDetails.generate(this);
-      mvpMasterDetails.generate(this);
+     
+
+      if(_.includes(this.props.features, 'List') ) {
+            mvpList.generateList(this, basepath);
+      }
+
+      if(_.includes(this.props.features, 'Details') ) {
+           mvpDetails.generate(this, basepath);
+      }
+     
+      if(_.includes(this.props.features, 'Edit') ) {
+           mvpEdit.generate(this, basepath);
+      }
+
+      if(_.includes(this.props.features, 'Details') ) {
+            mvpMasterDetails.generate(this, basepath);
+      }
+   
+     
   }
   bower() {
-    var bowerJson = {
-      name: 'myapp',
-      licence: 'mit',
-      dependancies: {}
-    };
+    // var bowerJson = {
+    //   name: 'myapp',
+    //   licence: 'mit',
+    //   dependancies: {}
+    // };
 
-    bowerJson.dependancies['angular'] = "1.5.7";
+    //bowerJson.dependancies['angular'] = "1.5.7";
 
-    this.fs.writeJSON('Generated/Contacts/List/bower.json', bowerJson);
+    //this.fs.writeJSON('Generated/Contacts/List/bower.json', bowerJson);
   }
 
   install() {
-    this.installDependencies();
+    //this.installDependencies();
   }
 };
