@@ -22,13 +22,20 @@ Partial Class ucEdit<%=data.model.title%>
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         
-        
+         <% for (var key in data.model.properties) {  
+         for (var subkey in data.model.properties[key]) {
 
-        <% 
-        for (var key in data.model.properties) {  %>
-            Me.te<%= key %> = New DevExpress.XtraEditors.TextEdit()
-            Me.lc<%= key %> = New DevExpress.XtraLayout.LayoutControlItem()
-        <% } %>
+            if(data.model.properties[key][subkey] === "string") { %>
+                   Me.te<%= key %> = New DevExpress.XtraEditors.TextEdit() 
+            <% }  
+            if(data.model.properties[key][subkey] === "date") { %>
+                   Me.te<%= key %> = New DevExpress.XtraEditors.DateEdit()  
+            <% }  
+           } %>  
+         Me.lc<%= key %> = New DevExpress.XtraLayout.LayoutControlItem()
+    <% } %>  
+
+       
 
 
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,8 +135,16 @@ Partial Class ucEdit<%=data.model.title%>
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
 
 
-    <% for (var key in data.model.properties) {  %>
-         Friend WithEvents te<%= key %> As DevExpress.XtraEditors.TextEdit
+    <% for (var key in data.model.properties) {  
+         for (var subkey in data.model.properties[key]) {
+
+            if(data.model.properties[key][subkey] === "string") { %>
+                 Friend WithEvents te<%= key %> As DevExpress.XtraEditors.TextEdit    
+            <% }  
+            if(data.model.properties[key][subkey] === "date") { %>
+                 Friend WithEvents te<%= key %> As DevExpress.XtraEditors.DateEdit    
+            <% }  
+           } %>  
          Friend WithEvents lc<%= key %> As DevExpress.XtraLayout.LayoutControlItem
     <% } %>  
 

@@ -8,6 +8,9 @@
         "lastName": {
             "type": "string"
         },
+        "regDate": {
+            "type": "date"
+        },
         "address": {
             "type": "string"
         },
