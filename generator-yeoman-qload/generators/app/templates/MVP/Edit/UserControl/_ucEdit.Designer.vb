@@ -24,27 +24,33 @@ Partial Class ucEdit<%=data.model.title%>
         
         
 
-         <%for (var key in data.model.properties) {  %>
+        <% 
+        for (var key in data.model.properties) {  %>
             Me.te<%= key %> = New DevExpress.XtraEditors.TextEdit()
-             Me.lc<%= key %> = New DevExpress.XtraLayout.LayoutControlItem()
+            Me.lc<%= key %> = New DevExpress.XtraLayout.LayoutControlItem()
         <% } %>
 
-
-     
 
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teFirstName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.lcFirstName, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.lcLastName, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teLastName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+
+
+        <% 
+        for (var key in data.model.properties) {  %>
+             CType(Me.te<%= key %>.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+             CType(Me.lc<%= key %>, System.ComponentModel.ISupportInitialize).BeginInit()
+        <% } %>
+       
+
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
-        Me.LayoutControl1.Controls.Add(Me.teLastName)
-        Me.LayoutControl1.Controls.Add(Me.teFirstName)
+        <% for (var key in data.model.properties) {  %>
+             Me.LayoutControl1.Controls.Add(Me.te<%= key %>)
+        <% } %>
+       
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Name = "LayoutControl1"
@@ -57,45 +63,44 @@ Partial Class ucEdit<%=data.model.title%>
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.lcFirstName, Me.lcLastName})
+
+
+
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() { <%=data.commaSeperatedLayoutControlList %>})
+ 
+
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(251, 111)
         Me.LayoutControlGroup1.TextVisible = False
+        
+
+       
+
+        <% for (var key in data.model.properties) {  %>
+            'lc<%= key %>
+            '
+            Me.lc<%= key %>.Control = Me.te<%= key %>
+            Me.lc<%= key %>.Location = New System.Drawing.Point(0, 0)
+            Me.lc<%= key %>.Name = "lc<%= key %>"
+            Me.lc<%= key %>.Size = New System.Drawing.Size(231, 24)
+            Me.lc<%= key %>.Text = "<%= key %>"
+            Me.lc<%= key %>.TextSize = New System.Drawing.Size(51, 13)
+
+            'te<%= key %>
+            '
+            Me.te<%= key %>.Location = New System.Drawing.Point(67, 12)
+            Me.te<%= key %>.Name = "te<%= key %>"
+            Me.te<%= key %>.Size = New System.Drawing.Size(172, 20)
+            Me.te<%= key %>.StyleController = Me.LayoutControl1
+            Me.te<%= key %>.TabIndex = 4
+            '
+            
+
+        <% } %>
+       
         '
-        'teFirstName
-        '
-        Me.teFirstName.Location = New System.Drawing.Point(67, 12)
-        Me.teFirstName.Name = "teFirstName"
-        Me.teFirstName.Size = New System.Drawing.Size(172, 20)
-        Me.teFirstName.StyleController = Me.LayoutControl1
-        Me.teFirstName.TabIndex = 4
-        '
-        'lcFirstName
-        '
-        Me.lcFirstName.Control = Me.teFirstName
-        Me.lcFirstName.Location = New System.Drawing.Point(0, 0)
-        Me.lcFirstName.Name = "lcFirstName"
-        Me.lcFirstName.Size = New System.Drawing.Size(231, 24)
-        Me.lcFirstName.Text = "First Name"
-        Me.lcFirstName.TextSize = New System.Drawing.Size(51, 13)
-        '
-        'lcLastName
-        '
-        Me.lcLastName.Control = Me.teLastName
-        Me.lcLastName.Location = New System.Drawing.Point(0, 24)
-        Me.lcLastName.Name = "lcLastName"
-        Me.lcLastName.Size = New System.Drawing.Size(231, 67)
-        Me.lcLastName.Text = "Last Name"
-        Me.lcLastName.TextSize = New System.Drawing.Size(51, 13)
-        '
-        'teLastName
-        '
-        Me.teLastName.Location = New System.Drawing.Point(67, 36)
-        Me.teLastName.Name = "teLastName"
-        Me.teLastName.Size = New System.Drawing.Size(172, 20)
-        Me.teLastName.StyleController = Me.LayoutControl1
-        Me.teLastName.TabIndex = 5
+     
         '
         'XtraUserControl1
         '
@@ -107,18 +112,25 @@ Partial Class ucEdit<%=data.model.title%>
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teFirstName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.lcFirstName, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.lcLastName, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teLastName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+
+
+        <% for (var key in data.model.properties) {  %>
+            CType(Me.te<%= key %>.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.lc<%= key %>, System.ComponentModel.ISupportInitialize).EndInit()
+        <% } %>
+
+
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
-    Friend WithEvents teLastName As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents teFirstName As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents lcFirstName As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents lcLastName As DevExpress.XtraLayout.LayoutControlItem
+
+
+    <% for (var key in data.model.properties) {  %>
+         Friend WithEvents te<%= key %> As DevExpress.XtraEditors.TextEdit
+         Friend WithEvents lc<%= key %> As DevExpress.XtraLayout.LayoutControlItem
+    <% } %>  
+
 End Class

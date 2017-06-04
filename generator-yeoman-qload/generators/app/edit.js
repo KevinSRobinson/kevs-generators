@@ -12,15 +12,22 @@ module.exports.generate = function(runner, basepath) {
   var presenterName = runner.props.featureName + 'sEditPresenter';
   var userControlName = 'uc' + runner.props.featureName + 'sEdit';
   var ttt = _.kebabCase;
-
   var model = require('./data.json')
+  var commaSeperatedLayoutControlList = "";
+  for (var key in model.properties) { 
+    commaSeperatedLayoutControlList += "Me.lc" + key + ",";          
+  }
+    commaSeperatedLayoutControlList = commaSeperatedLayoutControlList.replace(/,(\s+)?$/, '');
+  
 
     var data = {
         featureName: runner.props.featureName,
         featureNamePlural: runner.props.featureName + 's',
-        model: model
+        model: model,
+        commaSeperatedLayoutControlList: commaSeperatedLayoutControlList
       }
 
+       
 
   ///////////////////////////////
   //UserControl - Code Behind
