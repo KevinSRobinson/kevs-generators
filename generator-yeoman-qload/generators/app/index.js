@@ -9,6 +9,7 @@ const mvpEdit = require("./edit.js");
 const mvpList = require("./list.js");
 const mvpDetails = require("./details.js");
 const mvpMasterDetails = require("./masterDetails.js");
+const viewModel = require("./viewModel.js");
 
 module.exports = class extends Generator {
   // The name `constructor` is important here
@@ -66,7 +67,7 @@ module.exports = class extends Generator {
 
     var basepath = "C:/Source/Webapis/QloadWinForms/QloadWinForms/"
 
-     
+      viewModel.generate(this, basepath);
 
       if(_.includes(this.props.features, 'List') ) {
             mvpList.generate(this, basepath);

@@ -26,10 +26,10 @@ Partial Class uc<%=data.model.title%>Details
          for (var subkey in data.model.properties[key]) {
 
             if(data.model.properties[key][subkey] === "string") { %>
-                   Me.te<%= data._.startCase(key).replace(" ", "") %> = New DevExpress.XtraEditors.LabelControl() 
+                   Me.te<%= data._.startCase(key) %> = New DevExpress.XtraEditors.LabelControl() 
             <% }  
             if(data.model.properties[key][subkey] === "date") { %>
-                   Me.te<%= data._.startCase(key).replace(" ", "") %> = New DevExpress.XtraEditors.LabelControl()  
+                   Me.te<%= data._.startCase(key) %> = New DevExpress.XtraEditors.LabelControl()  
             <% }  
            } %>  
          Me.lc<%= key %> = New DevExpress.XtraLayout.LayoutControlItem()
