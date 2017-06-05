@@ -26,10 +26,10 @@ Partial Class ucEdit<%=data.model.title%>
          for (var subkey in data.model.properties[key]) {
 
             if(data.model.properties[key][subkey] === "string") { %>
-                   Me.te<%= key %> = New DevExpress.XtraEditors.TextEdit() 
+                   Me.te<%= data._.startCase(key).replace(" ", "") %> = New DevExpress.XtraEditors.TextEdit() 
             <% }  
             if(data.model.properties[key][subkey] === "date") { %>
-                   Me.te<%= key %> = New DevExpress.XtraEditors.DateEdit()  
+                   Me.te<%= data._.startCase(key).replace(" ", "") %> = New DevExpress.XtraEditors.DateEdit()  
             <% }  
            } %>  
          Me.lc<%= key %> = New DevExpress.XtraLayout.LayoutControlItem()
@@ -45,7 +45,7 @@ Partial Class ucEdit<%=data.model.title%>
 
         <% 
         for (var key in data.model.properties) {  %>
-             CType(Me.te<%= key %>.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+             CType(Me.te<%= data._.startCase(key).replace(" ", "") %>.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
              CType(Me.lc<%= key %>, System.ComponentModel.ISupportInitialize).BeginInit()
         <% } %>
        
@@ -55,7 +55,7 @@ Partial Class ucEdit<%=data.model.title%>
         'LayoutControl1
         '
         <% for (var key in data.model.properties) {  %>
-             Me.LayoutControl1.Controls.Add(Me.te<%= key %>)
+             Me.LayoutControl1.Controls.Add(Me.te<%= data._.startCase(key).replace(" ", "") %>)
         <% } %>
        
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -87,20 +87,20 @@ Partial Class ucEdit<%=data.model.title%>
         <% for (var key in data.model.properties) {  %>
             'lc<%= key %>
             '
-            Me.lc<%= key %>.Control = Me.te<%= key %>
-            Me.lc<%= key %>.Location = New System.Drawing.Point(0, 0)
-            Me.lc<%= key %>.Name = "lc<%= key %>"
-            Me.lc<%= key %>.Size = New System.Drawing.Size(231, 24)
-            Me.lc<%= key %>.Text = "<%= key %>"
-            Me.lc<%= key %>.TextSize = New System.Drawing.Size(51, 13)
+            Me.lc<%= data._.startCase(key).replace(" ", "") %>.Control = Me.te<%= key %>
+            Me.lc<%= data._.startCase(key).replace(" ", "") %>.Location = New System.Drawing.Point(0, 0)
+            Me.lc<%= data._.startCase(key).replace(" ", "") %>.Name = "lc<%= key %>"
+            Me.lc<%= data._.startCase(key).replace(" ", "") %>.Size = New System.Drawing.Size(231, 24)
+            Me.lc<%= data._.startCase(key).replace(" ", "") %>.Text = "<%= data._.startCase(key) %>"
+            Me.lc<%= data._.startCase(key).replace(" ", "") %>.TextSize = New System.Drawing.Size(51, 13)
 
             'te<%= key %>
             '
-            Me.te<%= key %>.Location = New System.Drawing.Point(67, 12)
-            Me.te<%= key %>.Name = "te<%= key %>"
-            Me.te<%= key %>.Size = New System.Drawing.Size(172, 20)
-            Me.te<%= key %>.StyleController = Me.LayoutControl1
-            Me.te<%= key %>.TabIndex = 4
+            Me.te<%= data._.startCase(key).replace(" ", "") %>.Location = New System.Drawing.Point(67, 12)
+            Me.te<%= data._.startCase(key).replace(" ", "") %>.Name = "te<%= data._.startCase(key) %>"
+            Me.te<%= data._.startCase(key).replace(" ", "") %>.Size = New System.Drawing.Size(172, 20)
+            Me.te<%= data._.startCase(key).replace(" ", "") %>.StyleController = Me.LayoutControl1
+            Me.te<%= data._.startCase(key).replace(" ", "") %>.TabIndex = 4
             '
             
 
@@ -122,7 +122,7 @@ Partial Class ucEdit<%=data.model.title%>
 
 
         <% for (var key in data.model.properties) {  %>
-            CType(Me.te<%= key %>.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.te<%= data._.startCase(key).replace(" ", "") %>.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.lc<%= key %>, System.ComponentModel.ISupportInitialize).EndInit()
         <% } %>
 
@@ -139,10 +139,10 @@ Partial Class ucEdit<%=data.model.title%>
          for (var subkey in data.model.properties[key]) {
 
             if(data.model.properties[key][subkey] === "string") { %>
-                 Friend WithEvents te<%= key %> As DevExpress.XtraEditors.TextEdit    
+                 Friend WithEvents te<%= data._.startCase(key).replace(" ", "") %> As DevExpress.XtraEditors.TextEdit    
             <% }  
             if(data.model.properties[key][subkey] === "date") { %>
-                 Friend WithEvents te<%= key %> As DevExpress.XtraEditors.DateEdit    
+                 Friend WithEvents te<%= data._.startCase(key).replace(" ", "") %> As DevExpress.XtraEditors.DateEdit    
             <% }  
            } %>  
          Friend WithEvents lc<%= key %> As DevExpress.XtraLayout.LayoutControlItem
