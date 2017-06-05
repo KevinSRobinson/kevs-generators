@@ -37,6 +37,7 @@ module.exports.generate = function (runner, basepath) {
     featureName: runner.props.featureName,
     featureNamePlural: runner.props.featureName + 's',
     model: model,
+     _: _,
     commaSeperatedLayoutControlList: commaSeperatedLayoutControlList
   }
 

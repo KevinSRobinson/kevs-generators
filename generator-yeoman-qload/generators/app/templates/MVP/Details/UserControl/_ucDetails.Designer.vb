@@ -26,10 +26,10 @@ Partial Class uc<%=data.model.title%>Details
          for (var subkey in data.model.properties[key]) {
 
             if(data.model.properties[key][subkey] === "string") { %>
-                   Me.te<%= key %> = New DevExpress.XtraEditors.LabelControl() 
+                   Me.te<%= data._.startCase(key).replace(" ", "") %> = New DevExpress.XtraEditors.LabelControl() 
             <% }  
             if(data.model.properties[key][subkey] === "date") { %>
-                   Me.te<%= key %> = New DevExpress.XtraEditors.LabelControl()  
+                   Me.te<%= data._.startCase(key).replace(" ", "") %> = New DevExpress.XtraEditors.LabelControl()  
             <% }  
            } %>  
          Me.lc<%= key %> = New DevExpress.XtraLayout.LayoutControlItem()
@@ -44,8 +44,7 @@ Partial Class uc<%=data.model.title%>Details
 
 
         <% 
-        for (var key in data.model.properties) {  %>
-             CType(Me.te<%= key %>.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        for (var key in data.model.properties) {  %>          
              CType(Me.lc<%= key %>, System.ComponentModel.ISupportInitialize).BeginInit()
         <% } %>
        
@@ -55,7 +54,7 @@ Partial Class uc<%=data.model.title%>Details
         'LayoutControl1
         '
         <% for (var key in data.model.properties) {  %>
-             Me.LayoutControl1.Controls.Add(Me.te<%= key %>)
+             Me.LayoutControl1.Controls.Add(Me.te<%=data._.startCase(key).replace(" ", "") %>)
         <% } %>
        
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -91,7 +90,7 @@ Partial Class uc<%=data.model.title%>Details
             Me.lc<%= key %>.Location = New System.Drawing.Point(0, 0)
             Me.lc<%= key %>.Name = "lc<%= key %>"
             Me.lc<%= key %>.Size = New System.Drawing.Size(231, 24)
-            Me.lc<%= key %>.Text = "<%= key %>"
+            Me.lc<%= key %>.Text = "<%= data._.startCase(key) %>"
             Me.lc<%= key %>.TextSize = New System.Drawing.Size(51, 13)
 
             'te<%= key %>
@@ -121,8 +120,7 @@ Partial Class uc<%=data.model.title%>Details
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
 
 
-        <% for (var key in data.model.properties) {  %>
-            CType(Me.te<%= key %>.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        <% for (var key in data.model.properties) {  %>           
             CType(Me.lc<%= key %>, System.ComponentModel.ISupportInitialize).EndInit()
         <% } %>
 
@@ -139,10 +137,10 @@ Partial Class uc<%=data.model.title%>Details
          for (var subkey in data.model.properties[key]) {
 
             if(data.model.properties[key][subkey] === "string") { %>
-                 Friend WithEvents te<%= key %> As DevExpress.XtraEditors.LabelControl    
+                 Friend WithEvents te<%= data._.startCase(key).replace(" ", "") %> As DevExpress.XtraEditors.LabelControl    
             <% }  
             if(data.model.properties[key][subkey] === "date") { %>
-                 Friend WithEvents te<%= key %> As DevExpress.XtraEditors.LabelControl    
+                 Friend WithEvents te<%= data._.startCase(key).replace(" ", "") %> As DevExpress.XtraEditors.LabelControl    
             <% }  
            } %>  
          Friend WithEvents lc<%= key %> As DevExpress.XtraLayout.LayoutControlItem
