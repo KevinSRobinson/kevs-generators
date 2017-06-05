@@ -69,7 +69,7 @@ module.exports = class extends Generator {
      
 
       if(_.includes(this.props.features, 'List') ) {
-            mvpList.generateList(this, basepath);
+            mvpList.generate(this, basepath);
       }
 
       if(_.includes(this.props.features, 'Details') ) {
