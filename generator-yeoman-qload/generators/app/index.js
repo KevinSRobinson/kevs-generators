@@ -65,7 +65,7 @@ module.exports = class extends Generator {
 
   writing() {
 
-    var basepath = "C:/Source/Webapis/QloadWinForms/QloadWinForms/"
+    var basepath = "C:/Source/Webapis/QloadWinForms/QloadWinForms/";
 
       viewModel.generate(this, basepath);
 
