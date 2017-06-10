@@ -7,6 +7,7 @@ const core = require('./core.js');
 const components = require('./components.js');
 const modals = require('./modals.js');
 const gulp = require('./gulp.js');
+const packagemanagers = require('./package-managers.js');
 
 _.mixin(require('lodash-inflection'));
 module.exports = class extends Generator {
@@ -33,8 +34,8 @@ module.exports = class extends Generator {
 
     components.generate(data, this, basepath + "/Features/" + model.title + "/");
     modals.generate(this, basepath + "/Features/" + model.title + "/Modals/");
-
     gulp.generate(data, this, basepath + "/GulpTasks/");
+    packagemanagers.generate(data, this, basepath + "/GulpTasks/");
   }
 
   install() {

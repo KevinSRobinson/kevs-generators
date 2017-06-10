@@ -1,6 +1,4 @@
-﻿
-<#+  void Generate_PackageJson(){	#>
-{
+﻿{
   "devDependencies": {
     "@types/angular": "^1.5.16",
     "@types/angular-mocks": "^1.5.5",
@@ -89,9 +87,3 @@
   }
 }
 
-
-		
-<#+ CreateDirectoryFullPath(basePath);
-	  CreateFile(basePath + "package.json");
-	}	
-#>

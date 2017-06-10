@@ -1,8 +1,4 @@
-﻿
-<#+  void GenerateBowerFile(){  #>
-		
-
-{
+﻿{
   "name": "Pluralsight-Gulp",
   "version": "0.1.0",
   "description": "Starter Code for Pluralsight Course JavaScript Build Automation with Gulp.js",
@@ -37,10 +33,3 @@
   }
 }
 
-
-		
-		<#+
-
-	  CreateFile(basePath + "bower.json");
-	}	
-#>
