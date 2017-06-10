@@ -8,6 +8,12 @@
         "lastName": {
             "type": "string"
         },
+        "model": {
+            "active": "bool"
+        },
+        "options": {
+            "active": "lookup"
+        },
         "age": {
             "description": "Age in years",
             "type": "integer",
