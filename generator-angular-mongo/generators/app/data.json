@@ -8,11 +8,8 @@
         "lastName": {
             "type": "string"
         },
-        "model": {
-            "active": "bool"
-        },
         "options": {
-            "active": "lookup"
+            "type": "lookup"
         },
         "age": {
             "description": "Age in years",

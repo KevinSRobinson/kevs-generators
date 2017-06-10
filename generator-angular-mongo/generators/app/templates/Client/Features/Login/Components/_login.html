@@ -1,0 +1,10 @@
+﻿<h1>Login</h1>
+
+  <div ng-if="!vm.isAuthenticated">
+    <div class="btn btn-primary" ng-click="vm.login()">Log In Now</div>
+  </div>
+
+  <div ng-if="vm.isAuthenticated">
+    <p>Thank you for logging in!</p>
+    <div class="btn btn-primary" ng-click="vm.logout()">Log Out</div>
+  </div>
