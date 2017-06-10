@@ -11,15 +11,13 @@ module.exports.generate = function (runner, basepath) {
   var data = {
     name: model.title,
     plural: _.pluralize(model.title),
+    camelCase: _.camelCase(model.title),
     serviceName: _.pluralize(model.title) + 'DataService',
     listComponentTemplateUrl: _.pluralize(model.title) + 'ListTemplate',
     model: model,
     _: _,
   };
 
- 
-
-  // _listComponentTemplate.html
 
  var copier = function (source, destinationPath, data) {
     runner.fs.copyTpl(runner.templatePath(source), runner.destinationPath(destinationPath), {
@@ -28,13 +26,10 @@ module.exports.generate = function (runner, basepath) {
   };
 
   copier('./Features/Components/_listComponent.js', basepath + '/listComponent.js', data)
-  copier('./Features/Components/_listComponentTemplate.html', basepath +  '/listComponentTemplate.html', basepath, data)
+  copier('./Features/Components/_listComponentTemplate.html', basepath +  '/listComponentTemplate.html',  data)
 
-  // runner.fs.copyTpl(
-  //   runner.templatePath('./Features/Components/_listComponent.js'),
-  //   runner.destinationPath(basepath + '/_listComponent.js'), {
-  //     data: data
-  //   }
-  // );
+
+  copier('./Features/Views/_detailsView.html', basepath +  '/_detailsView.html',  data)
+
   
 };

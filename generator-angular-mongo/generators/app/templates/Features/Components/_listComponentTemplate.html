@@ -5,10 +5,20 @@
 <table class="table table-striped">
    <thead>
         <tr>
-             
+             <% for (var key in data.model.properties) {  %>
+               <th> <%= data._.startCase(key) %> </th>
+             <% } %>
         </tr>
     </thead>
 
+    <tr dir-paginate='<%= data.camelCase %> in vm.<%= data.plural %> | filter:vm.contactFilters.textFilter   |itemsPerPage: vm.pageSize  track by $index'>
+
+        <% for (var key in data.model.properties) {  %>
+             <td>{{ <%= data.camelCase %>.<%= data._.camelCase(key) %>  }}</td>
+        <% } %>
+
+       
+    </tr>
 </table>
 
 
