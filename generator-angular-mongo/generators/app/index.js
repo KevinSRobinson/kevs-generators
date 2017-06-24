@@ -3,24 +3,28 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const _ = require('lodash');
-const core = require('./core.js');
-const components = require('./components.js');
-const modals = require('./modals.js');
-const gulp = require('./gulp.js');
-const packagemanagers = require('./package-managers.js');
-const server = require('./server.js');
-const home = require('./home.js');
-const login = require('./login.js');
-const styles = require('./styles.js');
-const navigation = require('./navigation.js');
+const core = require('./helpers/client/core.js');
+const components = require('./helpers/client/components.js');
+const modals = require('./helpers/client/modals.js');
+const gulp = require('./helpers/client/gulp.js');
+const packagemanagers = require('./helpers/client/package-managers.js');
+const server = require('./helpers/Server/server.js');
+const home = require('./helpers/client/home.js');
+const login = require('./helpers/client/login.js');
+const styles = require('./helpers/client/styles.js');
+const navigation = require('./helpers/client/navigation.js');
 
 _.mixin(require('lodash-inflection'));
 module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the world-class ' + chalk.red('generator-yeoman-qload') + ' generator!'
-    ));
+    this.log(
+      yosay(
+        'Welcome to the world-class ' +
+        chalk.red('generator-yeoman-qload') +
+        ' generator!'
+      )
+    );
 
     const prompts = [{
       type: 'input',
@@ -31,18 +35,18 @@ module.exports = class extends Generator {
 
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
-      this.log(props)
+      this.log(props);
       this.props = props;
     });
   }
   writing() {
 
-
     var destPath = 'C:/Repos/Generated/';
-    var model = require('./data.json');
-    //core.generate(this, basepath);
+    var destClientPath = destPath + '/Src/Client/';
+    var destServerPath = destPath + '/Src/Server/';
 
     var model = require('./data.json');
+    // Core.generate(this, basepath);
 
     var data = {
       appName: this.props.appName,
@@ -53,28 +57,41 @@ module.exports = class extends Generator {
       serviceName: _.pluralize(model.title) + 'DataService',
       listComponentTemplateUrl: _.pluralize(model.title) + 'ListTemplate',
       model: model,
-      _: _,
+      _: _
     };
 
     var srcClientPath = './Client/';
+    var srcPackageManagersPath = srcClientPath + 'PackageManagers/';
     var srcGulpPath = srcClientPath + 'Gulp/';
     var srcFeaturesPath = srcClientPath + 'Features/';
     var srcLoginPath = srcFeaturesPath + 'Login/';
-     var srcStylesPath = srcClientPath + 'Styles/';
-  var srcNavigationPath = srcFeaturesPath + 'Navigation/';  
+    var srcStylesPath = srcClientPath + 'Styles/';
+    var srcNavigationPath = srcFeaturesPath + 'Navigation/';
 
-     components.generate(data, this, destPath + "/Features/" + model.title + "/");
-     modals.generate(data, this, destPath + "/Features/" + model.title + "/Modals/");
-     home.generate(data, this, destPath + "/Features/Home/");
-     login.generate(data, this, srcLoginPath , destPath + "Features/Login/");
-     gulp.generate(data, this, srcGulpPath, destPath + "/GulpTasks/");
-     styles.generate(data, this, srcStylesPath, destPath + "/Styles/");
-      navigation.generate(data, this, srcNavigationPath, destPath + "/Navigation/");
-    // packagemanagers.generate(data, this, basepath + "/GulpTasks/");
-    // server.generate(data, this, basepath + "/Server/");
+    var srcServerPath = './Server/';
+
+    // Client
+    packagemanagers.generate(data, this, srcPackageManagersPath, destPath);
+
+    gulp.generate(data, this, srcGulpPath, destPath);
+
+    components.generate(data, this, destClientPath + 'Features/' + model.title + '/');
+
+    modals.generate(data, this, destClientPath + 'Features/' + model.title + '/Modals/');
+
+    home.generate(data, this, destClientPath + 'Features/Home/');
+
+    login.generate(data, this, srcLoginPath, destClientPath + 'Features/Login/');
+
+
+    styles.generate(data, this, srcStylesPath, destClientPath + '/Styles/');
+
+    navigation.generate(data, this, srcNavigationPath, destClientPath + '/Navigation/');
+
+
+    // Server
+    server.generate(data, this, srcServerPath, destServerPath);
   }
 
-  install() {
-
-  }
+  install() {}
 };
