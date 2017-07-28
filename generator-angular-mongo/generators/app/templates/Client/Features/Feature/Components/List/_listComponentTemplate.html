@@ -1,0 +1,24 @@
+﻿<my-panel title="Tags" show-add-button="true" add="vm.create()" style="success" icon="tags" icon-size="2">
+
+<my-filter-textbox  ng-model="filter"></my-filter-textbox>
+
+<table class="table table-striped">
+   <thead>
+        <tr>
+             <% for (var key in data.model.properties) {  %>
+               <th> <%= data._.startCase(key) %> </th>
+             <% } %>
+        </tr>
+    </thead>
+
+    <tr dir-paginate='<%= data.camelCase %> in vm.<%= data.plural %> | filter:vm.contactFilters.textFilter   |itemsPerPage: vm.pageSize  track by $index'>
+
+        <% for (var key in data.model.properties) {  %>
+             <td>{{ <%= data.camelCase %>.<%= data._.startCase(key).replace(' ', '') %> %>  }}</td>
+        <% } %>
+
+       
+    </tr>
+</table>
+
+<dir-pagination-controls  boundary-links="true"></dir-pagination-controls>

@@ -1,19 +1,16 @@
-const copier = require('../templateCopier.js')
+const copier = require('../templateCopier.js');
 
-module.exports.generate = function (data, runner, destPath) {
+module.exports.generate = function (data, runner, _srcPath, destPath) {
+  var _srcHomePath = _srcPath;
+  var _srcHomeComponentPath = _srcHomePath + '/Components/Main/';
 
-  var srcHomePath = 'Client/Features/Home/';
-  var srcHomeComponentPath = srcHomePath + 'Components/Home/';
+  var destHomePath = destPath;
+  var destHomeComponentPath = destHomePath + 'Components/Main/';
 
-  var destHomePath = destPath + '/Features/Home/';
-  var destHomeComponentPath = destHomePath + '/Components/Home/';
+  // Routes
+  copier.copyTpl(runner, _srcHomePath + '_routes.js', destHomePath + 'routes.js', data);
 
-  // routes
-  copier.copyTpl(runner, srcHomePath + '_routes.js', destHomePath + 'routes.js', data);
-
-  // home component
-  copier.copyTpl(runner, srcHomeComponentPath + '_home.js', destHomeComponentPath + 'home.js', data);
-  copier.copyTpl(runner, srcHomeComponentPath + '_homeTemplate.html', destHomeComponentPath + 'homeTemplate.html', data);
-
-
+  // Home component
+  copier.copyTpl(runner, _srcHomeComponentPath + '_main.js', destHomeComponentPath + 'main.js', data);
+  copier.copyTpl(runner, _srcHomeComponentPath + '_mainTemplate.html', destHomeComponentPath + 'homeTemplate.html', data);
 };

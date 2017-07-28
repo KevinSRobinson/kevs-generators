@@ -1,9 +1,0 @@
-﻿<modal-header title="<%= data.camelCase %> Details"></modal-header>
-	<% for (var key in data.model.properties) {  %>
-	<my-display-field field-label='<%= data._.startCase(key)%>' 
-			   		ng-model='vm.<%= data.camelCase %>.<%= data._.camelCase(key)%>'>
-	</my-display-field>
-	<% } %>
-<modal-buttons close="vm.close()" save="vm.save()"></modal-buttons>
-
-

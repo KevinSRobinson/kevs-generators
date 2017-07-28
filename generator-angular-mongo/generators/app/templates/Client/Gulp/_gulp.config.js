@@ -1,7 +1,7 @@
 module.exports = function () {
 
     var client = './src/client/';
-    var port = 7265;
+    var port = 7266;
     var temp = './.tmp/';
     var server = './src/server/';
     var report = './report/';

@@ -10,7 +10,7 @@ module.exports.generate = function (data, runner, _srcPath, destPath) {
   var apisPath = serverBasePath + 'Apis/';
   var controllersPath = serverBasePath + 'Controllers/';
   var modelsPath = serverBasePath + 'Models/';
-  var routesPath = serverBasePath + 'Routes/';
+  var routesPath = serverBasePath + 'Routes/Utils/';
 
   var _srcApisPath = _srcPath + 'Apis/';
   var _srcControllersPath = _srcPath + 'Controllers/';

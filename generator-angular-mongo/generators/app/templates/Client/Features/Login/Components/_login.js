@@ -2,7 +2,7 @@
     controllerAs: 'vm',
     controller: function ($rootScope, authService) {
         var vm = this;
-        
+
         authService.registerAuthenticationListener();
 
         vm.login = function () {
@@ -16,7 +16,7 @@
         vm.isAuthenticated = $rootScope.isAuthenticated;
 
     },
-    templateUrl: 'src/client/Features/Login/Components/login.Html'
+    templateUrl: './src/client/Features/Login/Components/login.html'
 };
 
 login.$inject = ['$rootScope', 'authService'];

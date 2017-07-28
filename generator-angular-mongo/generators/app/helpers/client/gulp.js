@@ -1,9 +1,7 @@
 const copier = require('../templateCopier.js');
 module.exports.generate = function (data, runner, srcPath, destPath) {
 
-
   var gulpTasksDestPath = destPath + 'GulpTasks/';
-  
 
   copier.copyTpl(runner, srcPath + '_gulpfile.js', destPath + 'gulpfile.js', data);
   copier.copyTpl(runner, srcPath + '_gulp.test.js', destPath + 'gulp.test.js', data);

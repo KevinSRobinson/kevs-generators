@@ -2,9 +2,9 @@
 
   'use strict';
 
-  var app = angular.module('<%=data.appName%>', ['ui.router', 'ui.bootstrap', 'my-angular-components', 'auth0.lock', 'angular-jwt']);
+  var app = angular.module('<%=data.appName%>', ['ui.router', 'ui.bootstrap', 'angularUtils.directives.dirPagination', 'my-angular-components', 'auth0.lock', 'angular-jwt']);
 
-  app.constant('apiBase', 'http://localhost:7000/');
+  app.constant('apiBase', 'http://localhost:7266/api');
 
   var config = function (lockProvider, jwtOptionsProvider) {
 
@@ -17,8 +17,8 @@
     });
 
     lockProvider.init({
-      clientID: 'UY5BHrujRwp7y1TZQl1Bif88aeeVRkrU',
-      domain: 'volunteernow.auth0.com'
+      clientID: 'Mt36cExkDIsVqQXjquyQWsIKKEMLE4KJ',
+      domain: 'app72812756.auth0.com'
     });
 
   };

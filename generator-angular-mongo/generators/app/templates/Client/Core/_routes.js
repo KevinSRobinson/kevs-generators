@@ -8,7 +8,7 @@
             var vm = this;
             vm.isAuthenticated = $rootScope.isAuthenticated;
         },
-        template: '<h1>Home</h1><h3>{{vm.isAuthenticated}}</h3>'
+       template: '<main></main>' 
     };
 
     var aboutState = {
