@@ -12,6 +12,17 @@ return $uibModal.open({
 };
 	
 
+var del = function(<%= data.camelCase %>) { 
+return $uibModal.open({ 
+    templateUrl: './src/Client/Features/<%= data.name %>/Modals/Delete/delete<%= data.name %>ModalModalTempalte.html', 
+controller: 'delete<%= data.name %>Controller', 
+  controllerAs: 'vm', 
+  resolve: { 
+  <%= data.camelCase %>: function () { 
+    return <%= data.camelCase %>; 
+  }}}); 
+}; 
+
 var modify = function(<%= data.camelCase %>) {
 return $uibModal.open({
 		templateUrl: './src/Client/Features/<%= data.name %>/Modals/CreateUpdate/createUpdate<%= data.name %>ModalTemplate.html',
@@ -26,7 +37,8 @@ controller: 'createUpdate<%=data.name%>ModalController',
 
 return {
 	add: add,
-	modify: modify
+	modify: modify,
+	Delete: del
 }
  }
 angular.module('app').factory('<%=data.modalServiceName%>', <%=data.modalServiceName%>);

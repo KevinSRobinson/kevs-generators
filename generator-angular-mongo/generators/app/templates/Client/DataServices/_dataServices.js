@@ -1,6 +1,6 @@
 ﻿var <%=data.plural%>DataService = function($http, apiBase) {
 	
-    apiBase += "/<%=data.plural%>";
+    apiBase += "/<%=data.plural%>/";
 
     var getAll = function(){
 		return $http.get(apiBase);
@@ -25,7 +25,7 @@
 
   
     var del = function(<%=data.camelCase%>) {
-		return $http.delete(apiBase, <%=data.camelCase%>);
+		return $http.delete(apiBase + <%=data.camelCase%>.<%=data.camelCase%>._id, <%=data.camelCase%>);
 	};
 
     return {

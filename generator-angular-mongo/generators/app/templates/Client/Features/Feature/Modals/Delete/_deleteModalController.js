@@ -1,19 +1,19 @@
-function deleteContactController($uibModalInstance, contactsDataService, contact, type) {
-	var vm = this;
-	vm.contact = contact;
+function delete<%=data.name%>Controller($uibModalInstance, <%=data.plural%>DataService, <%=data.camelCase%>) {
+  var vm = this;
+  vm.<%=data.camelCase%> = <%=data.camelCase%>;
 
-	vm.save = function () {
-		var contactPromise = contactsDataService.Delete(vm.contact, type);
-		contactPromise.then(function (response) {
-			$uibModalInstance.close(vm.contact);
-		}).catch(function (error) {
-			$uibModalInstance.close(vm.error);
-		});
-	};
+  vm.save = function () {
 
-	vm.close = function () {
-		$uibModalInstance.close(0);
-	};
+    var <%=data.camelCase%>Promise = peopleDataService.Delete(vm.<%=data.camelCase%>);
+    <%=data.camelCase%>Promise.then(function (response) {
+      $uibModalInstance.close(vm.<%=data.camelCase%>);
+    });
+
+  };
+
+  vm.close = function () {
+    $uibModalInstance.close(0);
+  };
 }
 
-angular.module("app").controller("deleteContactController", deleteContactController);
+angular.module("app").controller("delete<%=data.name%>Controller", delete<%=data.name%>Controller);

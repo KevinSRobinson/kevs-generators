@@ -8,6 +8,8 @@ controller: function (<%=data.serviceName%>, <%=data.modalServiceName%>) {
     var vm = this;
     vm.error = {};
     vm.pageSize = 10;
+      vm.editMode = true; 
+    vm.showButtons = true; 
     vm.<%=data.plural%> = [];
 
     vm.init = function(){
@@ -40,6 +42,10 @@ controller: function (<%=data.serviceName%>, <%=data.modalServiceName%>) {
     vm.view = function(<%=data.plural%>){
 		<%=data.modalServiceName%>.View(<%=data.name%>);
 	};
+
+    vm.delete = function(person){ 
+        peopleModelService.Delete(person); 
+    }; 
 
     vm.init();
 
