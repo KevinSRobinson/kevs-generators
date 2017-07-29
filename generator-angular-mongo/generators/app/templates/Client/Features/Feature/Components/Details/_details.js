@@ -4,7 +4,7 @@ var <%=data.camelCase%>Details = {
     },
     controllerAs: "vm",
     templateUrl: './src/Client/Features/<%=data.name%>/Components/Details/<%=data.camelCase%>DetailsTemplate.Html',
-    controller: function (__AppConfig,  $stateParams) {
+    controller: function (<%=data.serviceName%>, __AppConfig,  $stateParams) {
         var vm = this;
         vm.id = $stateParams.id;
 
@@ -18,10 +18,10 @@ var <%=data.camelCase%>Details = {
         // vm.attachedVolunteers = [];
 
 
-        // vm.$onInit = function () {
-        //     vm.loadLookuplists()
-        //     vm.loadVolunteerDetails();
-        // };
+        vm.$onInit = function () {
+            //vm.loadLookuplists()
+            vm.load<%=data.name%>Details();
+        };
 
         // vm.loadVolunteerDetails = function () {
         //     var promise = contactsDataService.GetById($stateParams.id, "Volunteer");
@@ -29,6 +29,14 @@ var <%=data.camelCase%>Details = {
         //         vm.<%=data.camelCase%> = response.data;
         //     });
         // };
+
+
+        vm.load<%=data.name%>Details = function () {
+            var promise = <%=data.serviceName%>.GetById($stateParams.id);
+            promise.then(function (response) {
+                vm.<%=data.camelCase%> = response.data;
+            });
+        };
 
 
         // vm.save = function () {

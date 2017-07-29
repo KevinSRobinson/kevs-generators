@@ -1,129 +1,19 @@
 <div class="detailsContainer">
-    <my-page-title>Volunteer Details</my-page-title>
+    <my-page-title><%= data.name %> Details</my-page-title>
     <!-------------->
     <!--Header bar-->
     <!-------------->
-    <control-bar contact="vm.contact" save="vm.save()">
-    </control-bar>
-    <my-status-alert message="vm.status.message" is-error="vm.status.isError"></my-status-alert>
-    <uib-tabset active="activeForm">
-        <!-------------->
-        <!--- Summary -->
-        <!-------------->
-        <uib-tab>
-            <uib-tab-heading>
-                <i class="glyphicon glyphicon-bell"></i>
-                <h4>Summary</h4>
-            </uib-tab-heading>
-            <div class="row">
-                <div class="col-md-6">
-                    <my-panel title="Summary">
-                        <display-name ng-model="vm.volunteer"></display-name>
-                        <display-address ng-model="vm.volunteer"></display-address>
-                        <display-contact-details ng-model="vm.volunteer"></display-contact-details>
-                        <display-tags ng-model="vm.volunteer.Tags"></display-tags>
-                    </my-panel>
-                </div>
-                <div class="col-md-6">
-                    <my-panel title="Clients" icon="users">
-                        <contacts-list attach-mode="true" show-buttons="true" parent-type="Client" attach-mode="false"></contacts-list>
-                    </my-panel>
-                    <my-panel title="Car Details" icon="car">
-                        <h4>Make/Model:  {{vm.volunteer.CarMakeModel}}</h4>
-                        <h4>Registration: {{vm.volunteer.CarRegistrationNo}}</h4>
-                        <h4>No Of Doors: {{vm.volunteer.CarNoOfDoors}}</h4>
-                    </my-panel>
-                </div>
-            </div>
-            <notes-list owner="{{vm.id}}" owner-type="volunteer"></notes-list>
+           
+    <% for (var key in data.model.properties) {  %>
+    <td>
+      <my-input-field read-only='true'  field-label='<%=key%>' ng-model='vm.<%=data.camelCase %>.<%= data._.startCase(key).replace(' ', '') %>'  <% if (data.model.properties[key].type==='date'
+        ){ %> input-type='datepopup' <% } %>
+          <% if (data.model.properties[key].type === 'lookup' ){ %>
+            input-type='select'
+            <% } %>></my-input-field>
+    </td>
+    <% } %>
         </uib-tab>
-        <!-------------->
-        <!--- Car -->
-        <!-------------->
-        <uib-tab>
-            <uib-tab-heading>
-                <i class="fa fa-car"></i>
-                <h4>Car</h4>
-            </uib-tab-heading>
-            <my-panel title="Volunteer's Car Details">
-                <my-input-field field-label='Make Model' ng-model='vm.volunteer.CarMakeModel'></my-input-field>
-                <my-input-field field-label='Registration No' ng-model='vm.volunteer.CarRegistrationNo'></my-input-field>
-                <my-input-field field-label='No Of Doors' ng-model='vm.volunteer.CarNoOfDoors'></my-input-field>
-            </my-panel>
-        </uib-tab>
-        <!------------------------>
-        <!--- Volunteer Details -->
-        <!------------------------>
-        <uib-tab>
-            <uib-tab-heading>
-                <i class="fa fa-user"></i>
-                <h4>Volunteer Details</h4>
-            </uib-tab-heading>
-            <div class="row">
-                <div class="col-md-6">
-                    <my-panel title="Name">                        
-                        <my-input-field field-label='Title' ng-model='vm.volunteer.Title'></my-input-field>
-                        <my-input-field field-label='FirstName' ng-model='vm.volunteer.FirstName'></my-input-field>
-                        <my-input-field field-label='LastName' ng-model='vm.volunteer.LastName'></my-input-field>
-                        <my-input-field input-type='datepopup' field-label='Dob' ng-model='vm.volunteer.Dob'></my-input-field>
-                        <my-input-field input-type='checkbox' field-label='IsActive' ng-model='vm.volunteer.IsActive'></my-input-field>
-                    </my-panel>
-                    <my-panel title="Contact Details">
-                        <my-input-field field-label='Tel' ng-model='vm.volunteer.Tel'></my-input-field>
-                        <my-input-field field-label='Mobile' ng-model='vm.volunteer.Mobile'></my-input-field>
-                        <my-input-field field-label='Email' ng-model='vm.volunteer.Email'></my-input-field>
-                    </my-panel>
-                    <my-panel title="Next Of Kin">
-                        <my-input-field field-label='Name' ng-model='vm.volunteer.NextOfKin'></my-input-field>
-                        <my-input-field field-label='Contact' ng-model='vm.volunteer.NextOfKinContact'></my-input-field>
-                    </my-panel>
-                    <my-panel title="Tags">
-                        <my-simple-tags-field field-label='' items="vm.volunteerTags" ng-model='vm.volunteer.Tags'></my-input-field>
-                    </my-panel>
-                </div>
-                <div class="col-md-6">
-                    <my-panel title="Address">
-                        <my-input-field field-label='Address1' ng-model='vm.volunteer.Address1'></my-input-field>
-                        <my-input-field field-label='Address2' ng-model='vm.volunteer.Address2'></my-input-field>
-                        <my-input-field field-label='Address3' ng-model='vm.volunteer.Address3'></my-input-field>
-                        <my-input-field field-label='Town' ng-model='vm.volunteer.Town'></my-input-field>
-                        <my-input-field field-label='PostCode' ng-model='vm.volunteer.PostCode'></my-input-field>
-                        <my-input-field input-type="select" items="vm.areaOptions" field-label='Area' ng-model='vm.volunteer.Area'></my-input-field>
-                    </my-panel>
-                </div>
-            </div>
-        </uib-tab>
-        <!------------------------>
-        <!---      Dates        -->
-        <!------------------------>
-        <uib-tab>
-            <uib-tab-heading>
-                <i class="fa fa-calendar"></i>
-                <h4>Dates</h4>
-            </uib-tab-heading>
-            <my-panel title="Dates">
-                <my-input-field input-type='datepopup' field-label='Date Joined' ng-model='vm.volunteer.DateJoined'></my-input-field>
-                <my-input-field input-type='datepopup' field-label='Boundaries Training' ng-model='vm.volunteer.BoundariesTraining'></my-input-field>
-                <my-input-field input-type='datepopup' field-label='Basic FirstAid' ng-model='vm.volunteer.BasicFirstAid'></my-input-field>
-                <my-input-field input-type='datepopup' field-label='Sight Loss Awareness' ng-model='vm.volunteer.SightLossAwareness'></my-input-field>
-                <my-input-field input-type='datepopup' field-label='Hearing Loss Awareness' ng-model='vm.volunteer.HearingLossAwareness'></my-input-field>
-                <my-input-field input-type='datepopup' field-label='Dementia Awareness' ng-model='vm.volunteer.DementiaAwareness'></my-input-field>
-                <my-input-field input-type='datepopup' field-label='Manual Handling' ng-model='vm.volunteer.ManualHandling'></my-input-field>
-                <my-input-field input-type='datepopup' field-label='Driving Licence Expires' ng-model='vm.volunteer.DrivingLicenceExpires'></my-input-field>
-                <my-input-field input-type='datepopup' field-label='Vehicle Test Certificate Expires' ng-model='vm.volunteer.VehicleTestCertificateExpires'></my-input-field>
-                <my-input-field input-type='datepopup' field-label='Insurance Certificate Expires' ng-model='vm.volunteer.InsuranceCertificateExpires'></my-input-field>
-                <my-input-field input-type='datepopup' field-label='Safeguarding Training' ng-model='vm.volunteer.SafeguardingTraining'></my-input-field>
-                <my-input-field input-type='datepopup' field-label='Induction Training' ng-model='vm.volunteer.InductionTraining'></my-input-field>
-            </my-panel>
-        </uib-tab>
-        <!------------------------>
-        <!---      Clients      -->
-        <!------------------------>
-        <uib-tab>
-            <uib-tab-heading>
-                <i class="fa fa-users"></i>
-                <h4>Clients</h4>
-            </uib-tab-heading>
-            <contacts-list attach-mode="true" show-attached-button="true" show-buttons="true" parent-type="Client"></contacts-list>
-        </uib-tab>
+       
+    
     </uib-tabset>
