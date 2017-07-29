@@ -3,73 +3,73 @@ var <%=data.camelCase%>Details = {
         allowChanges: '@'
     },
     controllerAs: "vm",
-    templateUrl: "<%=data.camelCase%>Details.Html",
-    controller: function (__AppConfig, $interval, lookupListsDataService,  $stateParams) {
+    templateUrl: './src/Client/Features/<%=data.name%>/Components/Details/<%=data.camelCase%>DetailsTemplate.Html',
+    controller: function (__AppConfig,  $stateParams) {
         var vm = this;
         vm.id = $stateParams.id;
 
-        vm.<%=data.camelCase%> = {};
-        vm.status = {
-            isError: false,
-            message: ''
-        };
+        // vm.<%=data.camelCase%> = {};
+        // vm.status = {
+        //     isError: false,
+        //     message: ''
+        // };
 
-        vm.<%=data.camelCase%>Tags = [];
-        vm.attachedVolunteers = [];
-
-
-        vm.$onInit = function () {
-            vm.loadLookuplists()
-            vm.loadVolunteerDetails();
-        };
-
-        vm.loadVolunteerDetails = function () {
-            var promise = contactsDataService.GetById($stateParams.id, "Volunteer");
-            promise.then(function (response) {
-                vm.<%=data.camelCase%> = response.data;
-            });
-        };
+        // vm.<%=data.camelCase%>Tags = [];
+        // vm.attachedVolunteers = [];
 
 
-        vm.save = function () {
-            saveVolunteerDetails();
-        }
+        // vm.$onInit = function () {
+        //     vm.loadLookuplists()
+        //     vm.loadVolunteerDetails();
+        // };
 
-        var saveVolunteerDetails = function () {
-            var modifyPromise = contactsDataService.Modify(vm.<%=data.camelCase%>);
-            modifyPromise.then(function (response) {
-                vm.status.message = "Volunteer Saved";
-                vm.status.isError = false;
-            }).catch(function (error) {
-                vm.status.message = "Error";
-                vm.status.isError = true;
-            });
-        };
-
-        vm.loadLookuplists = function () {
-
-            var promise = lookupListsDataService.ReadAllByParent("Volunteer")
-            promise.then(function (response) {
-                vm.lookuplists = response.data;
-
-                //vm.tags = vm.lookuplists;
-               vm.<%=data.camelCase%>Tags = lookupListsDataService.FilterLookupList("Tag", vm.lookuplists);
-
-            })
+        // vm.loadVolunteerDetails = function () {
+        //     var promise = contactsDataService.GetById($stateParams.id, "Volunteer");
+        //     promise.then(function (response) {
+        //         vm.<%=data.camelCase%> = response.data;
+        //     });
+        // };
 
 
-            //Load Common LookupLists
-            var promise = lookupListsDataService.ReadAllByParent("Common")
-            promise.then(function (response) {
-                vm.commonLookuplists = response.data;
+        // vm.save = function () {
+        //     saveVolunteerDetails();
+        // }
 
-                //populate seperate lookuplists
-                vm.areaOptions = lookupListsDataService.FilterLookupList("Area", vm.commonLookuplists);
-            })
-        }
+        // var saveVolunteerDetails = function () {
+        //     var modifyPromise = contactsDataService.Modify(vm.<%=data.camelCase%>);
+        //     modifyPromise.then(function (response) {
+        //         vm.status.message = "Volunteer Saved";
+        //         vm.status.isError = false;
+        //     }).catch(function (error) {
+        //         vm.status.message = "Error";
+        //         vm.status.isError = true;
+        //     });
+        // };
 
-        //auto save
-        $interval(saveVolunteerDetails, __AppConfig.autoSaveTimeout);
+        // vm.loadLookuplists = function () {
+
+        //     var promise = lookupListsDataService.ReadAllByParent("Volunteer")
+        //     promise.then(function (response) {
+        //         vm.lookuplists = response.data;
+
+        //         //vm.tags = vm.lookuplists;
+        //        vm.<%=data.camelCase%>Tags = lookupListsDataService.FilterLookupList("Tag", vm.lookuplists);
+
+        //     })
+
+
+        //     //Load Common LookupLists
+        //     var promise = lookupListsDataService.ReadAllByParent("Common")
+        //     promise.then(function (response) {
+        //         vm.commonLookuplists = response.data;
+
+        //         //populate seperate lookuplists
+        //         vm.areaOptions = lookupListsDataService.FilterLookupList("Area", vm.commonLookuplists);
+        //     })
+        // }
+
+        // //auto save
+        // $interval(saveVolunteerDetails, __AppConfig.autoSaveTimeout);
     }
 };
 

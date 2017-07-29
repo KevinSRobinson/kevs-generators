@@ -25,7 +25,7 @@
 
   
     var del = function(<%=data.camelCase%>) {
-		return $http.delete(apiBase + <%=data.camelCase%>.<%=data.camelCase%>._id, <%=data.camelCase%>);
+		return $http.delete(apiBase + <%=data.camelCase%>.<%=data.camelCase%>._id, <%=data.camelCase%>.<%=data.camelCase%>);
 	};
 
     return {

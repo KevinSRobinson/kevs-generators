@@ -4,7 +4,7 @@ bindings: {
 },
 controllerAs: 'vm',
 templateUrl: './src/Client/Features/<%=data.name%>/Components/List/<%=data.plural%>ListTemplate.html',
-controller: function (<%=data.serviceName%>, <%=data.modalServiceName%>) {
+controller: function ($state, <%=data.serviceName%>, <%=data.modalServiceName%>) {
     var vm = this;
     vm.error = {};
     vm.pageSize = 10;
@@ -35,12 +35,14 @@ controller: function (<%=data.serviceName%>, <%=data.modalServiceName%>) {
         });
     };
 
-    vm.edit = function(<%=data.name%>){
-        <%=data.modalServiceName%>.Modify(<%=data.name%>);
+    vm.edit = function(<%=data.camelCase%>){
+        <%=data.modalServiceName%>.Modify(<%=data.camelCase%>);
     };
 
-    vm.view = function(<%=data.plural%>){
-		<%=data.modalServiceName%>.View(<%=data.name%>);
+    vm.details = function(response){
+		$state.go('<%=data.camelCase%>', {
+                    id: response.<%=data.camelCase%>._id
+                });
 	};
 
     vm.delete = function(person){ 
