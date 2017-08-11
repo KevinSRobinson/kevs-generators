@@ -9,6 +9,12 @@ Public Class <%=data.model.title%>ViewModel
             if(data.model.properties[key][subkey] === "date") { %>
                  Public Property  <%= data._.startCase(key).replace(" ", "") %> as Date
             <% }  
+             if(data.model.properties[key][subkey] === "number") { %>
+                 Public Property  <%= data._.startCase(key).replace(" ", "") %> as Integer
+            <% }  
+            if(data.model.properties[key][subkey] === "bool") { %>
+                 Public Property  <%= data._.startCase(key).replace(" ", "") %> as Boolean
+            <% }  
            } %>  
     <% } %>  
 

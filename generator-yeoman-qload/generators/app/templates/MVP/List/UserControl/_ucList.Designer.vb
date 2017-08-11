@@ -22,38 +22,38 @@ Partial Class uc<%=data.model.title%>List
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.gc<%=data.plural%> = New DevExpress.XtraGrid.GridControl()
+        Me.gv<%=data.plural%> = New DevExpress.XtraGrid.Views.Grid.GridView()
 
         <% for (var key in data.model.properties) {  %>
               Me.col<%= data._.startCase(key).replace(" ", "") %> = New DevExpress.XtraGrid.Columns.GridColumn()
         <% } %>
 
 
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gc<%=data.plural%>, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gv<%=data.plural%>, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'GridControl1
+        'gc<%=data.plural%>
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(504, 284)
-        Me.GridControl1.TabIndex = 0
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.gc<%=data.plural%>.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.gc<%=data.plural%>.Location = New System.Drawing.Point(0, 0)
+        Me.gc<%=data.plural%>.MainView = Me.gv<%=data.plural%>
+        Me.gc<%=data.plural%>.Name = "gc<%=data.plural%>"
+        Me.gc<%=data.plural%>.Size = New System.Drawing.Size(504, 284)
+        Me.gc<%=data.plural%>.TabIndex = 0
+        Me.gc<%=data.plural%>.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv<%=data.plural%>})
         '
-        'GridView1
+        'gv<%=data.plural%>
         '
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() { <%=data.commaSeperatedLayoutControlList %> })
-        Me.GridView1.Name = "GridView1"
+        Me.gv<%=data.plural%>.GridControl = Me.gc<%=data.plural%>
+        Me.gv<%=data.plural%>.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() { <%=data.commaSeperatedLayoutControlList %> })
+        Me.gv<%=data.plural%>.Name = "gv<%=data.plural%>"
         '
         
         <% for (var key in data.model.properties) {  %>
             Me.col<%= data._.startCase(key).replace(" ", "") %>.Caption = "<%= data._.startCase(key) %>"
-            Me.col<%= data._.startCase(key).replace(" ", "") %>.FieldName = "col<%= data._.startCase(key).replace(" ", "") %>"
+            Me.col<%= data._.startCase(key).replace(" ", "") %>.FieldName = "<%= data._.startCase(key).replace(" ", "") %>"
             Me.col<%= data._.startCase(key).replace(" ", "") %>.Name = "col<%= data._.startCase(key).replace(" ", "") %>"
             Me.col<%= data._.startCase(key).replace(" ", "") %>.Visible = True
             Me.col<%= data._.startCase(key).replace(" ", "") %>.VisibleIndex = 0
@@ -64,17 +64,17 @@ Partial Class uc<%=data.model.title%>List
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.GridControl1)
+        Me.Controls.Add(Me.gc<%=data.plural%>)
         Me.Name = "UserControl2"
         Me.Size = New System.Drawing.Size(504, 284)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gc<%=data.plural%>, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gv<%=data.plural%>, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents gc<%=data.plural%> As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gv<%=data.plural%> As DevExpress.XtraGrid.Views.Grid.GridView
 
     <% for (var key in data.model.properties) {  %>
          Friend WithEvents col<%= data._.startCase(key).replace(" ", "") %> As DevExpress.XtraGrid.Columns.GridColumn        

@@ -5,8 +5,17 @@ const _ = require('lodash');
 _.mixin(require("lodash-inflection"));
 
 
-module.exports.generate = function (runner, basepath) {
-  function js_traverse(o) {
+module.exports.generate = function (runner, basepath, data) {
+  
+
+  var featureFolderName = basepath + '/' + data.plural + '/';
+
+
+  data.userControlName = 'uc' + data.plural + 'List';
+  data.interfaceName = 'I' + data.plural  + 'ListView';
+  data.presenterName = data.plural + 'sListPresenter';
+
+ function js_traverse(o) {
   //if ( typeof o == "object") {
       for (var key in o) {       
          for (var subkey in o[key]) {
@@ -15,40 +24,30 @@ module.exports.generate = function (runner, basepath) {
       }
     //} 
   }
+    var commaSeperatedLayoutControlList = "";
 
-  var featureFolderName = basepath + 'Generated/MVP/' + runner.props.featureName + 's/';
-  var interfaceName = 'I' + runner.props.featureName + 'sList';
-  var presenterName = runner.props.featureName + 'sListPresenter';
-  var userControlName = 'uc' + runner.props.featureName + 'sList';
-  var ttt = _.kebabCase;
-  var model = require('./data.json')
-  var commaSeperatedLayoutControlList = "";
+  js_traverse(data.model.properties)
 
-  js_traverse(model.properties)
-
-
-
-  for (var key in model.properties) {   
-     commaSeperatedLayoutControlList += "col" + _.startCase(key).replace(" ", "") + ",";
+  for (var key in data.model.properties) {   
+     commaSeperatedLayoutControlList += "Me.col" + key + ",";
   }
 
-  commaSeperatedLayoutControlList = commaSeperatedLayoutControlList.replace(/,(\s+)?$/, '');
-  
-  var data = {
-    featureName: runner.props.featureName,
-    featureNamePlural: runner.props.featureName + 's',
-    model: model,
-    _: _,
-    commaSeperatedLayoutControlList: commaSeperatedLayoutControlList
-  }
+  data.commaSeperatedLayoutControlList = commaSeperatedLayoutControlList.replace(/,(\s+)?$/, '');
 
-
+  ///////////////////////////////
+  //UserControl - Interface
+  runner.fs.copyTpl(
+    runner.templatePath('MVP/List/_IListView.vb'),
+    runner.destinationPath(featureFolderName + '/List/' + data.interfaceName + '.vb'), {
+      data: data
+    }
+  );
 
   ///////////////////////////////
   //UserControl - Code Behind
   runner.fs.copyTpl(
     runner.templatePath('MVP/List/UserControl/_uCList.vb'),
-    runner.destinationPath(featureFolderName + '/List/' + userControlName + '.vb'), {
+    runner.destinationPath(featureFolderName + '/List/' + data.userControlName + '.vb'), {
       data: data
     }
   );
@@ -56,7 +55,7 @@ module.exports.generate = function (runner, basepath) {
   //UserControl - Designer
   runner.fs.copyTpl(
     runner.templatePath('MVP/List/UserControl/_uCList.Designer.vb'),
-    runner.destinationPath(featureFolderName + '/List/' + userControlName + '.Designer.vb'), {
+    runner.destinationPath(featureFolderName + '/List/' + data.userControlName + '.Designer.vb'), {
       data: data
     }
   );
@@ -64,9 +63,19 @@ module.exports.generate = function (runner, basepath) {
   //UserControl - Resources File
   runner.fs.copyTpl(
     runner.templatePath('MVP/List/UserControl/_uCList.resx'),
-    runner.destinationPath(featureFolderName + '/List/' + userControlName + '.resx'), {
+    runner.destinationPath(featureFolderName + '/List/' + data.userControlName + '.resx'), {
       data: data
     }
   );
 
+  //UserControl - Resources File
+  runner.fs.copyTpl(
+    runner.templatePath('MVP/List/_presenter.vb'),
+    runner.destinationPath(featureFolderName + '/List/' + data.presenterName + '.vb'), {
+      data: data
+    }
+  );
+
+
+  
 }

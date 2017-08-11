@@ -29,8 +29,14 @@ Partial Class ucEdit<%=data.model.title%>
                    Me.te<%= data._.startCase(key).replace(" ", "") %> = New DevExpress.XtraEditors.TextEdit() 
             <% }  
             if(data.model.properties[key][subkey] === "date") { %>
-                   Me.te<%= data._.startCase(key).replace(" ", "") %> = New DevExpress.XtraEditors.DateEdit()  
+                   Me.de<%= data._.startCase(key).replace(" ", "") %> = New DevExpress.XtraEditors.DateEdit()  
             <% }  
+             if(data.model.properties[key][subkey] === "bool") { %>
+                   Me.ce<%= data._.startCase(key).replace(" ", "") %> = New DevExpress.XtraEditors.CheckEdit()  
+            <% }  
+             if(data.model.properties[key][subkey] === "number") { %>
+                   Me.ne<%= data._.startCase(key).replace(" ", "") %> = New DevExpress.XtraEditors.TextEdit()  
+            <% } 
            } %>  
          Me.lc<%= key %> = New DevExpress.XtraLayout.LayoutControlItem()
     <% } %>  
@@ -122,7 +128,15 @@ Partial Class ucEdit<%=data.model.title%>
 
 
         <% for (var key in data.model.properties) {  %>
+
             CType(Me.te<%= data._.startCase(key).replace(" ", "") %>.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+
+
+
+
+
+
+            
             CType(Me.lc<%= key %>, System.ComponentModel.ISupportInitialize).EndInit()
         <% } %>
 
@@ -142,8 +156,14 @@ Partial Class ucEdit<%=data.model.title%>
                  Friend WithEvents te<%= data._.startCase(key).replace(" ", "") %> As DevExpress.XtraEditors.TextEdit    
             <% }  
             if(data.model.properties[key][subkey] === "date") { %>
-                 Friend WithEvents te<%= data._.startCase(key).replace(" ", "") %> As DevExpress.XtraEditors.DateEdit    
+                 Friend WithEvents de<%= data._.startCase(key).replace(" ", "") %> As DevExpress.XtraEditors.DateEdit    
             <% }  
+             if(data.model.properties[key][subkey] === "bool") { %>
+                 Friend WithEvents ce<%= data._.startCase(key).replace(" ", "") %> As DevExpress.XtraEditors.CheckEdit    
+            <% } 
+             if(data.model.properties[key][subkey] === "number") { %>
+                 Friend WithEvents ne<%= data._.startCase(key).replace(" ", "") %> As DevExpress.XtraEditors.TextEdit    
+            <% } 
            } %>  
          Friend WithEvents lc<%= key %> As DevExpress.XtraLayout.LayoutControlItem
     <% } %>  

@@ -1,0 +1,39 @@
+{
+    "title": "CustomerComplaint",
+    "type": "object",
+    "properties": {
+        "Id": {
+            "type": "number"
+        },
+        "Customer": {
+            "type": "string"
+        },
+        "Notes": {
+            "type": "number"
+        },
+        "Contact": {
+            "type": "number"
+        },
+        "Attendees": {
+            "type": "number"
+        },
+        "Value": {
+           "type": "number"
+        },
+        "DateOfEvent": {
+           "type": "date"
+        },
+        "EnteredBy": {
+           "type": "string"
+        },
+        "EnteredDate": {
+           "type": "date"
+        },
+        "ModifiedDate": {
+           "type": "date"
+        },
+        "ModifiedBy": {
+           "type": "string"
+        }
+    }
+}

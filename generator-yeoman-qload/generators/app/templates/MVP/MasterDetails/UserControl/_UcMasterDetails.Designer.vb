@@ -1,9 +1,9 @@
 ﻿
 
-Namespace CRM.Contacts.MasterDetails
+Namespace CRM.<%=data.plural%>.MasterDetails
 
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-    Partial Class UcContactsMasterDetails
+    Partial Class Uc<%=data.plural%>MasterDetails
         Inherits System.Windows.Forms.UserControl
 
         'UserControl overrides dispose to clean up the component list.
@@ -26,7 +26,7 @@ Namespace CRM.Contacts.MasterDetails
         'Do not modify it using the code editor.
         <System.Diagnostics.DebuggerStepThrough()>
         Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UcContactsMasterDetails))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Uc<%=data.plural%>MasterDetails))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
@@ -67,7 +67,7 @@ Namespace CRM.Contacts.MasterDetails
             Me.GroupControl1.Name = "GroupControl1"
             Me.GroupControl1.Size = New System.Drawing.Size(1294, 451)
             Me.GroupControl1.TabIndex = 0
-            Me.GroupControl1.Text = "Contacts"
+            Me.GroupControl1.Text = "<%=data.plural%>"
             '
             'LayoutControl1
             '
@@ -118,7 +118,7 @@ Namespace CRM.Contacts.MasterDetails
             Me.grpList.Name = "grpList"
             Me.grpList.Size = New System.Drawing.Size(902, 360)
             Me.grpList.TabIndex = 4
-            Me.grpList.Text = "Contacts"
+            Me.grpList.Text = "<%=data.plural%>"
             '
             'Root
             '
@@ -183,12 +183,12 @@ Namespace CRM.Contacts.MasterDetails
             Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
             Me.LayoutControlItem1.TextVisible = False
             '
-            'UcContactsMasterDetails
+            'Uc<%=data.plural%>MasterDetails
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.Controls.Add(Me.GroupControl1)
-            Me.Name = "UcContactsMasterDetails"
+            Me.Name = "Uc<%=data.plural%>MasterDetails"
             Me.Size = New System.Drawing.Size(1294, 451)
             CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
             Me.GroupControl1.ResumeLayout(False)

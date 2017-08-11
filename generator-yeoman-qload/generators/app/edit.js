@@ -5,7 +5,7 @@ const _ = require('lodash');
 _.mixin(require("lodash-inflection"));
 
 
-module.exports.generate = function (runner, basepath) {
+module.exports.generate = function (runner, basepath, data)  {
   function js_traverse(o) {
   //if ( typeof o == "object") {
       for (var key in o) {       
@@ -16,30 +16,21 @@ module.exports.generate = function (runner, basepath) {
     //} 
   }
 
-  var featureFolderName = basepath + 'Generated/MVP/' + runner.props.featureName + 's/';
+  var featureFolderName = basepath + '/' + data.plural + '/';
   var interfaceName = 'I' + runner.props.featureName + 'sEdit';
   var presenterName = runner.props.featureName + 'sEditPresenter';
-  var userControlName = 'uc' + runner.props.featureName + 'sEdit';
+  var userControlName = 'uc' + data.name + 'Edit';
   var ttt = _.kebabCase;
-  var model = require('./data.json')
+  
   var commaSeperatedLayoutControlList = "";
 
-  js_traverse(model.properties)
+  js_traverse(data.model.properties)
 
-  for (var key in model.properties) {   
+  for (var key in data.model.properties) {   
      commaSeperatedLayoutControlList += "Me.lc" + key + ",";
   }
 
   commaSeperatedLayoutControlList = commaSeperatedLayoutControlList.replace(/,(\s+)?$/, '');
-
-
-  var data = {
-    featureName: runner.props.featureName,
-    featureNamePlural: runner.props.featureName + 's',
-    model: model,
-    _: _,
-    commaSeperatedLayoutControlList: commaSeperatedLayoutControlList
-  }
 
 
 

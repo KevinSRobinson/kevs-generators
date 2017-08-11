@@ -16,7 +16,7 @@ module.exports.generate = function (runner, basepath) {
     //} 
   }
 
-  var featureFolderName = basepath + 'Generated/MVP/' + runner.props.featureName + 's/';
+  var featureFolderName = basepath + '/' + runner.props.featureName + 's/';
   var interfaceName = 'I' + runner.props.featureName + 'sDetails';
   var presenterName = runner.props.featureName + 'sDetailsPresenter';
   var userControlName = 'uc' + runner.props.featureName + 'sDetails';

@@ -3,45 +3,31 @@ const yosay = require('yosay');
 const chalk = require('chalk');
 const _ = require('lodash');
 _.mixin(require("lodash-inflection"));
+const copier = require('./templateCopier.js');
+
+module.exports.generate = function(runner, basepath, data) {
+
+  var featureFolderName = basepath + data.name + 's/';
+  var interfaceName = 'I' + data.plural + 'smasterDetailsView';
+  var presenterName = data.name  + 'smasterDetailsPresenter';
+  var userControlName = 'uc' + data.name  + 'smasterDetailsView';
+  
+  var _srcCodebehindFile = 'MVP/masterDetails/UserControl/_UcMasterDetails.vb'
+  var _destCodebehindFile = featureFolderName + '/MasterDetails/' + userControlName + '.vb'
+
+  var _srcDesignerFile = 'MVP/masterDetails/UserControl/_UcMasterDetails.Designer.vb'
+  var _destDesignerFile = featureFolderName + '/MasterDetails/' + userControlName + '.Designer.vb'
+  
+  var _srcInterfaceFile = 'MVP/masterDetails/_IMasterDetailsView.vb'
+  var _destInterfaceFile = featureFolderName + '/MasterDetails/' + interfaceName + '.vb'
+
+  //copy the user control
+  copier.copyTpl(runner,_srcCodebehindFile, _destCodebehindFile, data);
+  copier.copyTpl(runner,_srcDesignerFile, _destDesignerFile, data);
+
+  //copy the interface
+  copier.copyTpl(runner,_srcInterfaceFile, _destInterfaceFile, data);
 
 
-module.exports.generate = function(runner, basepath) {
-
-  var featureFolderName = basepath + 'Generated/MVP/' + runner.props.featureName + 's/';
-  var interfaceName = 'I' + runner.props.featureName + 'smasterDetailsView';
-  var presenterName = runner.props.featureName + 'smasterDetailsPresenter';
-  var userControlName = 'uc' + runner.props.featureName + 'smasterDetailsView';
-  var ttt = _.kebabCase;
-
-
-
-
-  ///////////////////////////////
-  //UserControl - Code Behind
-  runner.fs.copyTpl(
-    runner.templatePath('MVP/masterDetails/UserControl/UcMasterDetails.vb'),
-    runner.destinationPath(featureFolderName + '/MasterDetails/' + userControlName + '.vb'), {
-      DtoName: runner.options.classname + 'Dto',
-      ClassName: runner.options.classname
-    }
-  );
-
-  //UserControl - Designer
-  runner.fs.copyTpl(
-    runner.templatePath('MVP/masterDetails/UserControl/UcMasterDetails.Designer.vb'),
-    runner.destinationPath(featureFolderName + '/MasterDetails/' + userControlName + '.Designer.vb'), {
-      DtoName: runner.options.classname + 'Dto',
-      ClassName: runner.options.classname
-    }
-  );
-
-  //UserControl - Resources File
-  runner.fs.copyTpl(
-    runner.templatePath('MVP/masterDetails/UserControl/UcMasterDetails.resx'),
-    runner.destinationPath(featureFolderName + '/MasterDetails/' + userControlName + '.resx'), {
-      DtoName: runner.options.classname + 'Dto',
-      ClassName: runner.options.classname
-    }
-  );
 
 }

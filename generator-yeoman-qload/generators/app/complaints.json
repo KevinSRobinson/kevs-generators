@@ -1,0 +1,27 @@
+{
+    "title": "CustomerComplaint",
+    "type": "object",
+    "properties": {
+        "Id": {
+            "type": "number"
+        },
+        "MarketSector": {
+            "type": "number"
+        },
+        "Opportunity": {
+            "type": "number"
+        },
+        "Location": {
+            "type": "string"
+        },
+        "ComplaintDate": {
+            "type": "date"
+        },
+        "Contact": {
+           "type": "number"
+        },
+        "ComplaintReceivedBy": {
+           "type": "number"
+        }
+    }
+}

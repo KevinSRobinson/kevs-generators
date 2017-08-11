@@ -38,9 +38,7 @@ module.exports = class extends Generator {
   writing() {
 
 
-    var destPath = 'C:/Repos/Generated/';
-    var model = require('./data.json');
-    //core.generate(this, basepath);
+    var destPath = 'C:/Repos/Generated/';   
 
     var model = require('./data.json');
 
