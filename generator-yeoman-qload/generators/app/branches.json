@@ -9,7 +9,7 @@
             "type": "number"
         },
         "Name": {
-            "type": "Name"
+            "type": "string"
         },
         "Address1": {
             "type": "string"
