@@ -16,7 +16,7 @@
 
     var modify = function(<%=data.camelCase%>) {
 		     if (<%=data.camelCase%> != null  && <%=data.camelCase%>._id != null) { 
-              return $http.post(apiBase + <%=data.camelCase%>._id, <%=data.camelCase%>); 
+              return $http.put(apiBase + <%=data.camelCase%>._id, <%=data.camelCase%>); 
           } 
           else { 
               return $http.post(apiBase, <%=data.camelCase%>); 

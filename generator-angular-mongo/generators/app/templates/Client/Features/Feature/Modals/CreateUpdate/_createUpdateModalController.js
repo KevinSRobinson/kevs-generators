@@ -4,7 +4,7 @@ var createUpdate<%=data.name%>ModalController = function ($uibModalInstance, <%=
 
     vm.init = function () {
        if (<%=data.camelCase%> != null) {
-           vm.<%=data.camelCase%> = <%=data.camelCase%>;
+           vm.<%=data.camelCase%> = <%=data.camelCase%>.<%=data.camelCase%>;
        };
     };
 

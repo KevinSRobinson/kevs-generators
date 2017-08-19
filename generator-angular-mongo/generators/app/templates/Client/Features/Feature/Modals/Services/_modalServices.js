@@ -37,7 +37,7 @@ controller: 'createUpdate<%=data.name%>ModalController',
 
 return {
 	add: add,
-	modify: modify,
+	Modify: modify,
 	Delete: del
 }
  }
