@@ -1,0 +1,13 @@
+{
+    "title": "Organisation",
+    "type": "object",
+    "properties": {
+        "Name": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        }        
+    },
+    "required": ["firstName", "lastName"]
+}

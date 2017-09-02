@@ -15,6 +15,7 @@ const styles = require('./helpers/client/styles.js');
 const navigation = require('./helpers/client/navigation.js');
 const featureRoutes = require('./helpers/client/Feature/routes.js');
 const dataServices = require('./helpers/client/Feature/dataServices.js');
+var requireDir = require('require-dir');
 //const lookuplists = require('./helpers/client/lookuplists.js');
 
 _.mixin(require('lodash-inflection'));
@@ -45,24 +46,24 @@ module.exports = class extends Generator {
   writing() {
 
   
-    var model = require('./data.json');
+      var person = require('./models/person.json');
+      var organisation = require('./models/organisation.json');
+
+    var models=  [];
+
+    models.push(person);
+    models.push(organisation);
+   
+
     var features = require('./features.json');
     // Core.generate(this, basepath);
 
-    var data = {
-      appName: this.props.appName,
-      name: model.title,
-      plural: _.pluralize(model.title),
-      camelCase: _.camelCase(model.title),
-      camelCasePlural: _.pluralize(_.camelCase(model.title)),
-      modalServiceName: _.pluralize(model.title) + 'ModelService',
-      serviceName: _.pluralize(model.title) + 'DataService',
-      listComponentTemplateUrl: _.pluralize(model.title) + 'ListTemplate',
-      model: model,
-      features: features,
-      _: _
-    };
+    var appDetails = {
+       appName: this.props.appName,
+       appTitle: 'Generated App'
+    }
 
+    
     var destPath = 'C:/Repos/Generated/';
     var destClientPath = destPath + 'Src/Client/';
     var destStylesPath = destClientPath + 'Styles/';
@@ -100,20 +101,46 @@ module.exports = class extends Generator {
     // Client
     
 
-    core.generate(data, this, srcCorePath, destClientPath);
-    packagemanagers.generate(data, this, srcPackageManagersPath, destClientPath);
-    gulp.generate(data, this, srcGulpPath, destPath);
-    styles.generate(data, this, srcStylesPath, srcStylesPath + '/Styles/');
+    core.generate(appDetails, this, srcCorePath, destClientPath);
+    packagemanagers.generate(appDetails, this, srcPackageManagersPath, destClientPath);
+    gulp.generate(appDetails, this, srcGulpPath, destPath);
+    styles.generate(appDetails, this, srcStylesPath, srcStylesPath + '/Styles/');
 
-    // Core Features
-    home.generate(data, this, srcHomePath, destHomePath);
-    login.generate(data, this, srcLoginPath, destLoginPath);
-    navigation.generate(data, this, srcNavigationPath, destNavigationPath);
+    // // Core Features
+    home.generate(appDetails, this, srcHomePath, destHomePath);
+    login.generate(appDetails, this, srcLoginPath, destLoginPath);
+   // navigation.generate(data, this, srcNavigationPath, destNavigationPath);
 
     var featurePath = destFeaturesPath;
-    var destFeaturePath = featurePath + data.name + '/';
-    var destComponentsPath = featurePath + data.name + '/Components/';
-    var destModalsPath = featurePath + data.name + '/Modals/';
+
+     //console.log(models);
+
+for (let i = 0; i < models.length; i++) 
+ {
+   console.log('----------------------------');
+   console.log(models[i]);
+    console.log('----------------------------');
+// console.log(model.title);
+  let model = models[i];
+
+  var data = {
+      appName: this.props.appName,
+      name: model.title,
+     plural: _.pluralize(model.title),
+      camelCase: _.camelCase(model.title),
+     camelCasePlural: _.pluralize(_.camelCase(model.title)),
+     modalServiceName: _.pluralize(model.title) + 'ModelService',
+     serviceName: _.pluralize(model.title) + 'DataService',
+     listComponentTemplateUrl: _.pluralize(model.title) + 'ListTemplate',
+     model: model,
+     features: features,
+     _: _
+    };
+
+
+   var destFeaturePath = featurePath + data.name + '/';
+   var destComponentsPath = featurePath + data.name + '/Components/';
+   var destModalsPath = featurePath + data.name + '/Modals/';
 
     // // Model Features
     dataServices.generate(data, this, srcDataServicesPath, destDataServicesPath);
@@ -123,14 +150,16 @@ module.exports = class extends Generator {
     modals.generate(data, this, srcModalsPath, destModalsPath);
 
 
-    //copier.copyTpl(runner, _srcPath + '_dataServices.js', destPath + data.plural + 'dataService.js', data);
-this.fs.copy(
+      this.fs.copy(
             this.templatePath(srcLookupListsPath),
             this.destinationRoot(destLookupListsPath)
         );
 
-    // Server
-   // server.generate(data, this, srcServerPath, destFeaturesPath + '/Person/Components');
+     // Server
+    server.generate(data, this, srcServerPath, destFeaturesPath + '/Person/Components');
+ }
+
+
   }
 
   install() {}
