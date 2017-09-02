@@ -1,10 +1,18 @@
 ﻿(function () {
 
   'use strict';
+  var env = {};
+
+  // Import variables if present (from env.js)
+  if (window) {
+    Object.assign(env, window.__env);
+  }
 
   var app = angular.module('<%=data.appName%>', ['ui.router', 'ui.bootstrap', 'angularUtils.directives.dirPagination', 'my-angular-components', 'auth0.lock', 'angular-jwt']);
 
-  app.constant('apiBase', 'http://localhost:7266/api');
+  //add the enviornment as a constant
+  app.constant('__env', env);
+  app.constant('apiBase', 'http://localhost:7265/api');
 
   var config = function (lockProvider, jwtOptionsProvider) {
 
@@ -17,8 +25,8 @@
     });
 
     lockProvider.init({
-      clientID: 'Mt36cExkDIsVqQXjquyQWsIKKEMLE4KJ',
-      domain: 'app72812756.auth0.com'
+      clientID: '9rAOq84sR3s6GhMI2cwZq0rNNOdVAlJB',
+      domain: 'volunteernow.auth0.com'
     });
 
   };

@@ -15,6 +15,7 @@ const styles = require('./helpers/client/styles.js');
 const navigation = require('./helpers/client/navigation.js');
 const featureRoutes = require('./helpers/client/Feature/routes.js');
 const dataServices = require('./helpers/client/Feature/dataServices.js');
+//const lookuplists = require('./helpers/client/lookuplists.js');
 
 _.mixin(require('lodash-inflection'));
 module.exports = class extends Generator {
@@ -72,6 +73,8 @@ module.exports = class extends Generator {
   
     var destNavigationPath = destFeaturesPath + 'Navigation/';
     var destLoginPath = destFeaturesPath + 'Login/';
+    var destLookupListsPath = destFeaturesPath + 'LookupLists/';
+
 
     var srcClientPath = './Client/';
   
@@ -84,6 +87,7 @@ module.exports = class extends Generator {
 
     var srcFeaturePath = srcClientPath + 'Features/Feature/';   
     var srcModalsPath = srcFeaturePath + 'Modals/';
+    var srcLookupListsPath = srcClientPath + '/Features/LookupLists/';
 
     var srcComponentsPath = srcFeaturePath + 'Components/';
     var srcLoginPath = srcFeaturesPath + 'Login/';
@@ -117,6 +121,13 @@ module.exports = class extends Generator {
     components.generate(data, this, srcComponentsPath, destComponentsPath);
     styles.generate(data, this, srcStylesPath, destStylesPath);
     modals.generate(data, this, srcModalsPath, destModalsPath);
+
+
+    //copier.copyTpl(runner, _srcPath + '_dataServices.js', destPath + data.plural + 'dataService.js', data);
+this.fs.copy(
+            this.templatePath(srcLookupListsPath),
+            this.destinationRoot(destLookupListsPath)
+        );
 
     // Server
    // server.generate(data, this, srcServerPath, destFeaturesPath + '/Person/Components');
