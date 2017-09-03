@@ -8,7 +8,8 @@ const components = require('./helpers/client/Feature/components.js');
 const modals = require('./helpers/client/modals.js');
 const gulp = require('./helpers/client/gulp.js');
 const packagemanagers = require('./helpers/client/package-managers.js');
-const server = require('./helpers/Server/server.js');
+const serverCore = require('./helpers/Server/serverCore.js');
+const serverFeatures = require('./helpers/Server/serverFeatures.js');
 const home = require('./helpers/client/home.js');
 const login = require('./helpers/client/login.js');
 const styles = require('./helpers/client/styles.js');
@@ -113,7 +114,9 @@ module.exports = class extends Generator {
 
     var featurePath = destFeaturesPath;
 
-     //console.log(models);
+    serverCore.generate(data, this, srcServerPath, destServerPath + '/');
+     
+    //console.log(models);
 
 for (let i = 0; i < models.length; i++) 
  {
@@ -142,6 +145,8 @@ for (let i = 0; i < models.length; i++)
    var destComponentsPath = featurePath + data.name + '/Components/';
    var destModalsPath = featurePath + data.name + '/Modals/';
 
+    console.log(destFeaturePath);
+
     // // Model Features
     dataServices.generate(data, this, srcDataServicesPath, destDataServicesPath);
     featureRoutes.generate(data, this, srcFeaturePath, destFeaturePath);
@@ -149,14 +154,14 @@ for (let i = 0; i < models.length; i++)
     styles.generate(data, this, srcStylesPath, destStylesPath);
     modals.generate(data, this, srcModalsPath, destModalsPath);
 
-
-      this.fs.copy(
+    //lookups
+         this.fs.copy(
             this.templatePath(srcLookupListsPath),
             this.destinationRoot(destLookupListsPath)
         );
 
      // Server
-    server.generate(data, this, srcServerPath, destFeaturesPath + '/Person/Components');
+    serverFeatures.generate(data, this, srcServerPath, destServerPath);
  }
 
 
