@@ -1,4 +1,4 @@
-﻿var <%=data.plural%>List = {
+﻿var <%=data.camelCasePlural%>List = {
 bindings: {
 	allowChanges: '@'
 },
@@ -53,4 +53,4 @@ controller: function ($state, <%=data.serviceName%>, <%=data.modalServiceName%>)
 
     }
 };
-angular.module('app').component('<%=data.plural%>List', <%=data.plural%>List);
+angular.module('app').component('<%=data.camelCasePlural%>List', <%=data.camelCasePlural%>List);

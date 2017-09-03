@@ -1,5 +1,5 @@
 {
-    "title": "organisation",
+    "title": "Organisation",
     "type": "object",
     "properties": {
         "Name": {

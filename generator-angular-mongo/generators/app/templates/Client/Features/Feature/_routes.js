@@ -2,8 +2,8 @@
     
 $stateProvider
     .state('<%=data.plural%>', {
-        url: '/<%=data.plural%>',
-        template: '<<%=data.plural%>-list></<%=data.plural%>-list>'
+        url: '/<%=data.camelCasePlural%>',
+        template: '<<%=data.camelCasePlural%>-list></<%=data.camelCasePlural%>-list>'
     }) 
     .state('<%=data.camelCase%>', {
         url: '/<%=data.camelCase%>/:id',

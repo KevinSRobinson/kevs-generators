@@ -111,8 +111,20 @@ module.exports = class extends Generator {
     home.generate(appDetails, this, srcHomePath, destHomePath);
     login.generate(appDetails, this, srcLoginPath, destLoginPath);
    // navigation.generate(data, this, srcNavigationPath, destNavigationPath);
+   //lookups
+         this.fs.copy(
+            this.templatePath(srcLookupListsPath),
+            this.destinationRoot(destLookupListsPath)
+        );
 
     var featurePath = destFeaturesPath;
+
+        
+    var data = {
+     appName: this.props.appName,
+     models: models,
+     _: _
+    };
 
     serverCore.generate(data, this, srcServerPath, destServerPath + '/');
      
@@ -154,12 +166,7 @@ for (let i = 0; i < models.length; i++)
     styles.generate(data, this, srcStylesPath, destStylesPath);
     modals.generate(data, this, srcModalsPath, destModalsPath);
 
-    //lookups
-         this.fs.copy(
-            this.templatePath(srcLookupListsPath),
-            this.destinationRoot(destLookupListsPath)
-        );
-
+ 
      // Server
     serverFeatures.generate(data, this, srcServerPath, destServerPath);
  }

@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-var ClientController = require('../controllers/<%= data.plural%>.Server.Controller');
+var <%= data.plural%>Controller = require('../controllers/<%= data.plural%>.Server.Controller');
 var mongoose = require('mongoose');
 var express = require('express');
 var router = express.Router();

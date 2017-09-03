@@ -12,7 +12,7 @@
 
   //add the enviornment as a constant
   app.constant('__env', env);
-  app.constant('apiBase', 'http://localhost:7265/api');
+  app.constant('apiBase', 'http://localhost:7266/api');
 
   var config = function (lockProvider, jwtOptionsProvider) {
 
