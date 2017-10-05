@@ -19,16 +19,10 @@
             
             <td ng-if="vm.showButtons"> 
             <span ng-if="vm.editMode"> 
-                <my-button preset="edit" click="vm.edit({person: person})"></my-button> 
-                <my-button preset="details" click="vm.details({person: person})"></my-button> 
-                <my-button preset="delete" click="vm.delete({person: person})"></my-button> 
-            </span> 
-            <span ng-if="vm.attachMode" ng-click="vm.detachClick({person: person})" class="btn btn-primary"> 
-                Detach 
-            </span> 
-            <span ng-if="vm.selectMode" ng-click="vm.selectClick({person: person})" class="btn btn-primary"> 
-               Select 
-            </span> 
+                <my-button preset="edit" click="vm.edit({<%= data.camelCase %>: <%= data.camelCase %>})"></my-button> 
+                <my-button preset="details" click="vm.details({<%= data.camelCase %>: <%= data.camelCase %>})"></my-button> 
+                <my-button preset="delete" click="vm.delete({<%= data.camelCase %>: <%= data.camelCase %>})"></my-button> 
+            </span>            
         </td> 
     </tr>
 </table>
