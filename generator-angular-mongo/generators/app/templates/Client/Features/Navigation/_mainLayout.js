@@ -10,10 +10,16 @@
 	vm.userName = 'Test Username';
 
 	vm.sideMenuItems = [
-		   <% for (var key in data.features.features) {  %>  
+		{          
+			state: 'login',
+			linkText: 'Login',
+			icon: 'cogs',
+			requiresLogin: false
+			},
+		   <% for (let i = 0; i < data.features.length; i++)  { %>  
 				{          
-		state: '<%=key%>',
-		linkText: '<%=key%>',
+		state: '<%=data.features[i].plural%>',
+		linkText: '<%=data.features[i].title%>',
 		icon: 'cogs',
 		requiresLogin: true
 		},

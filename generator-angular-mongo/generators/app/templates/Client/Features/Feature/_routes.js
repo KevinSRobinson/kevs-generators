@@ -1,7 +1,7 @@
 ﻿var config = function ($stateProvider) {
     
 $stateProvider
-    .state('<%=data.plural%>', {
+    .state('<%=data.camelCasePlural%>', {
         url: '/<%=data.camelCasePlural%>',
         template: '<<%=data.camelCasePlural%>-list></<%=data.camelCasePlural%>-list>'
     }) 

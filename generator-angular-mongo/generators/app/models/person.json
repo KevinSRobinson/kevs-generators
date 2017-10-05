@@ -1,5 +1,6 @@
 {
     "title": "Person",
+    "plural": "people",
     "type": "object",
     "properties": {
         "firstName": {

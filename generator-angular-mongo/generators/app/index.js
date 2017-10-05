@@ -58,7 +58,8 @@ module.exports = class extends Generator {
 
     var features = require('./features.json');
     // Core.generate(this, basepath);
-
+console.log(features.features);
+console.log("-=------------------------------");
     var appDetails = {
        appName: this.props.appName,
        appTitle: 'Generated App'
@@ -110,7 +111,7 @@ module.exports = class extends Generator {
     // // Core Features
     home.generate(appDetails, this, srcHomePath, destHomePath);
     login.generate(appDetails, this, srcLoginPath, destLoginPath);
-   // navigation.generate(data, this, srcNavigationPath, destNavigationPath);
+    
    //lookups
          this.fs.copy(
             this.templatePath(srcLookupListsPath),
@@ -123,6 +124,7 @@ module.exports = class extends Generator {
     var data = {
      appName: this.props.appName,
      models: models,
+     features:features.features,
      _: _
     };
 
@@ -133,9 +135,9 @@ module.exports = class extends Generator {
 for (let i = 0; i < models.length; i++) 
  {
    console.log('----------------------------');
-   console.log(models[i]);
+   console.log("Model=" + models[i].title);
     console.log('----------------------------');
-// console.log(model.title);
+
   let model = models[i];
 
   var data = {
@@ -148,7 +150,7 @@ for (let i = 0; i < models.length; i++)
      serviceName: _.pluralize(model.title) + 'DataService',
      listComponentTemplateUrl: _.pluralize(model.title) + 'ListTemplate',
      model: model,
-     features: features,
+     features: models,
      _: _
     };
 
@@ -160,6 +162,7 @@ for (let i = 0; i < models.length; i++)
     console.log(destFeaturePath);
 
     // // Model Features
+    navigation.generate(data, this, srcNavigationPath, destNavigationPath);
     dataServices.generate(data, this, srcDataServicesPath, destDataServicesPath);
     featureRoutes.generate(data, this, srcFeaturePath, destFeaturePath);
     components.generate(data, this, srcComponentsPath, destComponentsPath);
@@ -176,3 +179,4 @@ for (let i = 0; i < models.length; i++)
 
   install() {}
 };
+
