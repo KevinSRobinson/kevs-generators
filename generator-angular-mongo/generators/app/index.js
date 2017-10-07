@@ -3,6 +3,7 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const _ = require('lodash');
+const configHelper = require('../helpers/configHelpers');
 const core = require('./helpers/client/core.js');
 const gulp = require('./helpers/client/gulp.js');
 const packagemanagers = require('./helpers/client/package-managers.js');
@@ -27,7 +28,15 @@ module.exports = class extends Generator {
       type: 'input',
       name: 'appName',
       message: 'Enter a name for the app',
-      default: 'app'
+      default: 'app',
+      store: true
+    },
+    {
+      type: 'input',
+      name: 'destPath',
+      message: 'Enter a Location for the app : ',
+      default: 'C:/Repos/Generated1/',
+      store: true
     }];
 
     return this.prompt(prompts).then(props => {
@@ -52,7 +61,11 @@ module.exports = class extends Generator {
       appTitle: 'Generated App'
     };
 
-    var destPath = 'C:/Repos/Generated/';
+    this.config.set('destPath', this.props.destPath);
+
+    console.log("Saved destPath = " + this.config.get('destPath'));
+
+    var destPath = this.props.destPath;
     var destClientPath = destPath + 'Src/Client/';
     var destServerPath = destPath + '/Src/Server/';
     var destFeaturesPath = destClientPath + 'Features/';

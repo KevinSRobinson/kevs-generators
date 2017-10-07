@@ -5,5 +5,12 @@
       "authorEmail": "kevin.robinson@outlook.com",
       "authorUrl": ""
     }
+  },
+  "generator-angular-mongo": {
+    "promptValues": {
+      "appName": "app",
+      "destPath": "C:/Repos/Generated1/"
+    },
+    "destPath": "C:/Repos/Generated1/"
   }
 }
