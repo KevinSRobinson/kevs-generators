@@ -4,5 +4,5 @@ module.exports.generate = function (data, runner, _srcPath, destPath) {
 
   console.log(_srcModel);
   console.log(destModel);
-  data.copier.copyTpl(runner, _srcModel, destModel, data);
+ // data.copier.copyTpl(runner, _srcModel, destModel, data);
 };
