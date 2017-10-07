@@ -1,4 +1,6 @@
 module.exports.generate = function (data, runner, _srcPath, destPath) {
+  let _srcDataServices = _srcPath + 'DataServices/_dataServices.js';
+  let destDataServices = destPath + data.plural + 'dataService.js';
 
-  data.copier.copyTpl(runner, _srcPath + '_dataServices.js', destPath + data.plural + 'dataService.js', data);
+  data.copier.copyTpl(runner, _srcDataServices, destDataServices, data);
 };

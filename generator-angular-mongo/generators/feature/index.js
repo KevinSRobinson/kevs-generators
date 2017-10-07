@@ -1,6 +1,8 @@
 'use strict';
 const Generator = require('yeoman-generator');
 const _ = require('lodash');
+
+// Client
 const components = require('./helpers/Client/components.js');
 const featureRoutes = require('./helpers/Client/routes.js');
 const dataServices = require('./helpers/Client/dataServices.js');
@@ -29,24 +31,21 @@ module.exports = class extends Generator {
   writing() {
     var feature = require('../models/' + this.props.feature + '.json');
 
+    // Main Output Path
+    var destPath = 'C:/Repos/Generated/';
+
+    // Client Source Paths
     var srcClientPath = './Client/';
-    var srcDataServicesPath = srcClientPath + 'DataServices/';
-    var srcComponentsPath = srcClientPath + 'Components/';
+
+    // Client Destination Paths
+    var destClientPath = destPath + 'Src/Client/';
+    var destFeaturesPath = destClientPath + 'Features/';
 
     // Server Source Paths
     var srcServerPath = './Server/';
-    var srcServerRoutesPath = srcServerPath + 'Routes/';
-
-    // Client Destination Paths
-    var destPath = 'C:/Repos/Generated/';
-    var destClientPath = destPath + 'Src/Client/';
-    var destFeaturesPath = destClientPath + 'Features/';
-    var destComponentsPath = destFeaturesPath + feature.plural + '/Components/';
-    var destDataServicesPath = destClientPath + 'DataServices/';
 
     // Server Destination Paths
     var destServerPath = destPath + 'Src/Server/';
-    var destServerRoutesPath = destServerPath + 'Routes/';
 
     var data = {
       appName: this.props.appName,
@@ -63,16 +62,14 @@ module.exports = class extends Generator {
     };
 
     // Client
-    dataServices.generate(data, this, srcDataServicesPath, destDataServicesPath);
+    dataServices.generate(data, this, srcClientPath, destFeaturesPath);
     featureRoutes.generate(data, this, srcClientPath, destFeaturesPath);
-    components.generate(data, this, srcComponentsPath, destComponentsPath);
+    components.generate(data, this, srcClientPath, destFeaturesPath);
 
     // Server
-    serverRoutes.generate(data, this, srcServerRoutesPath, destServerRoutesPath);
+    serverRoutes.generate(data, this, srcServerPath, destServerPath);
     serverModel.generate(data, this, srcServerPath, destServerPath);
-    serverApi.generate(data, this, srcServerPath, destServerPath);   
-    serverController.generate(data, this, srcServerPath, destServerPath);   
+    serverApi.generate(data, this, srcServerPath, destServerPath);
+    serverController.generate(data, this, srcServerPath, destServerPath);
   }
-
-  install() {}
 };
