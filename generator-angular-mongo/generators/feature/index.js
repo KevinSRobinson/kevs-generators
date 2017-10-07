@@ -6,7 +6,8 @@ const featureRoutes = require('./helpers/Client/routes.js');
 const dataServices = require('./helpers/Client/dataServices.js');
 
 const serverRoutes = require('./helpers/Server/routes.js');
-const serverModel = require('./helpers/Server/Models/models.js');
+const serverModel = require('./helpers/Server/Models/model.js');
+const serverApi = require('./helpers/Server/Apis/api.js');
 
 _.mixin(require('lodash-inflection'));
 
@@ -67,6 +68,7 @@ module.exports = class extends Generator {
     // Server
     serverRoutes.generate(data, this, srcServerRoutesPath, destServerRoutesPath);
     serverModel.generate(data, this, srcServerPath, destServerPath);
+    serverApi.generate(data, this, srcServerPath, destServerPath);   
   }
 
   install() {}
