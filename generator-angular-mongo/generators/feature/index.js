@@ -7,6 +7,9 @@ const _ = require('lodash');
 const components = require('./helpers/components.js');
 const featureRoutes = require('./helpers/routes.js');
 const dataServices = require('./helpers/dataServices.js');
+
+const serverRoutes = require('./helpers/Server/routes.js');
+
 var requireDir = require('require-dir');
 
 _.mixin(require('lodash-inflection'));
@@ -73,7 +76,7 @@ module.exports = class extends Generator {
     var srcModalsPath = srcFeaturePath + 'Modals/';
     var srcComponentsPath = srcFeaturePath + 'Components/';
     var srcNavigationPath = srcFeaturesPath + 'Navigation/';
-    
+    var destServerPath = destPath + '/Src/Server/';
 
     var featurePath = destFeaturesPath;
 
@@ -110,11 +113,21 @@ module.exports = class extends Generator {
    var destComponentsPath = featurePath + data.name + '/Components/';
    var destModalsPath = featurePath + data.name + '/Modals/';
 
-    console.log(destFeaturePath);
+   var destServerRoutesPath = destServerPath + '/Routes/';
+   var srcServerPath = './Server/';
+   var srcRoutesPath = srcServerPath + '/Routes/';
+
    
+    //Client
     dataServices.generate(data, this, srcDataServicesPath, destDataServicesPath);
-    featureRoutes.generate(data, this, srcFeaturePath, destFeaturePath);
+    //featureRoutes.generate(data, this, srcFeaturePath, destFeaturePath);
     components.generate(data, this, srcComponentsPath, destComponentsPath);
+
+    console.log("srcServerPath =" + srcServerPath);
+    console.log("destServerPath =" + destServerPath);
+    //Server
+    serverRoutes.generate(data, this, srcServerPath, destServerRoutesPath);
+
   }
 
   install() {}

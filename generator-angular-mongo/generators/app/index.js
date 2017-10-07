@@ -169,7 +169,7 @@ for (let i = 0; i < models.length; i++)
     styles.generate(data, this, srcStylesPath, destStylesPath);
     modals.generate(data, this, srcModalsPath, destModalsPath);
 
- 
+    console.log(srcServerPath);
      // Server
     serverFeatures.generate(data, this, srcServerPath, destServerPath);
  }
