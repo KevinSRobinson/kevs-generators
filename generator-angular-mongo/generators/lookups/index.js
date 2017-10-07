@@ -36,6 +36,7 @@ module.exports = class extends Generator {
   }
   writing() {
 
+    console.log('Saved Output ==== = ' + configHelper.getOutputPath(this));
 
     var srcClientPath = './';
     var destPath = 'C:/Repos/Generated/';
@@ -47,6 +48,7 @@ module.exports = class extends Generator {
       this.templatePath(srcClientPath),
       this.destinationRoot(destLookupListsPath)
     );
+    
     //serverCore.generate(data, this, srcServerPath, destServerPath + '/');
   }
   install() {}

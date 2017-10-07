@@ -3,7 +3,7 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const _ = require('lodash');
-const configHelper = require('../helpers/configHelpers');
+const configHelper = require('../helpers/configHelper');
 const core = require('./helpers/client/core.js');
 const gulp = require('./helpers/client/gulp.js');
 const packagemanagers = require('./helpers/client/package-managers.js');
@@ -62,8 +62,8 @@ module.exports = class extends Generator {
     };
 
     this.config.set('destPath', this.props.destPath);
-
-    console.log("Saved destPath = " + this.config.get('destPath'));
+    configHelper.saveOutputPath(this, this.props.destPath);
+    console.log('Saved destPath = ' + configHelper.getOutputPath(this));
 
     var destPath = this.props.destPath;
     var destClientPath = destPath + 'Src/Client/';

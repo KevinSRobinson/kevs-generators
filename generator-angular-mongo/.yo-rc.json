@@ -9,8 +9,8 @@
   "generator-angular-mongo": {
     "promptValues": {
       "appName": "app",
-      "destPath": "C:/Repos/Generated1/"
+      "destPath": "c:/generate/"
     },
-    "destPath": "C:/Repos/Generated1/"
+    "destPath": "c:/generate/"
   }
 }
