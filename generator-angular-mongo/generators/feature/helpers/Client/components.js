@@ -1,5 +1,4 @@
 module.exports.generate = function (data, runner, _srcPath, destPath) {
-
   var _srcComponentsPath = _srcPath + '/';
   var _srcListComponentsPath = _srcComponentsPath + '/List/';
   var _srcDetailsPath = _srcComponentsPath + '/Details/';
@@ -26,5 +25,4 @@ module.exports.generate = function (data, runner, _srcPath, destPath) {
   // Feilds
   data.copier.copyTpl(runner, _srcFieldsPath + '_fields.js', destFieldsComponentsPath + data.camelCasePlural + 'Fields.js', data);
   data.copier.copyTpl(runner, _srcFieldsPath + '_fieldsTemplate.html', destFieldsComponentsPath + data.camelCasePlural + 'FieldsTemplate.html', data);
-
 };
