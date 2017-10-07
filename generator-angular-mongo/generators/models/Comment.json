@@ -1,6 +1,6 @@
 {
     "title": "Comment",
-    "plural": "comment",
+    "plural": "comments",
     "type": "object",
     "properties": {
         "Title": {

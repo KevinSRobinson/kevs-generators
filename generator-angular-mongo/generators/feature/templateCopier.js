@@ -3,5 +3,4 @@
       data: data
     });
   };
-
-  module.exports.copyTpl = copier
+module.exports.copyTpl = copier
