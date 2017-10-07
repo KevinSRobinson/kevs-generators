@@ -112,7 +112,7 @@ console.log("-=------------------------------");
     home.generate(appDetails, this, srcHomePath, destHomePath);
     login.generate(appDetails, this, srcLoginPath, destLoginPath);
     
-   //lookups
+     //lookups
          this.fs.copy(
             this.templatePath(srcLookupListsPath),
             this.destinationRoot(destLookupListsPath)
@@ -130,48 +130,7 @@ console.log("-=------------------------------");
 
     serverCore.generate(data, this, srcServerPath, destServerPath + '/');
      
-    //console.log(models);
-
-for (let i = 0; i < models.length; i++) 
- {
-   console.log('----------------------------');
-   console.log("Model=" + models[i].title);
-    console.log('----------------------------');
-
-  let model = models[i];
-
-  var data = {
-      appName: this.props.appName,
-      name: model.title,
-     plural: _.pluralize(model.title),
-      camelCase: _.camelCase(model.title),
-     camelCasePlural: _.pluralize(_.camelCase(model.title)),
-     modalServiceName: _.pluralize(model.title) + 'ModelService',
-     serviceName: _.pluralize(model.title) + 'DataService',
-     listComponentTemplateUrl: _.pluralize(model.title) + 'ListTemplate',
-     model: model,
-     features: models,
-     _: _
-    };
-
-
-   var destFeaturePath = featurePath + data.name + '/';
-   var destComponentsPath = featurePath + data.name + '/Components/';
-   var destModalsPath = featurePath + data.name + '/Modals/';
-
-    console.log(destFeaturePath);
-
-    // // Model Features
-    navigation.generate(data, this, srcNavigationPath, destNavigationPath);
-    dataServices.generate(data, this, srcDataServicesPath, destDataServicesPath);
-    featureRoutes.generate(data, this, srcFeaturePath, destFeaturePath);
-    components.generate(data, this, srcComponentsPath, destComponentsPath);
-    styles.generate(data, this, srcStylesPath, destStylesPath);
-    modals.generate(data, this, srcModalsPath, destModalsPath);
-
-    console.log(srcServerPath);
-     // Server
-    serverFeatures.generate(data, this, srcServerPath, destServerPath);
+   
  }
 
 
