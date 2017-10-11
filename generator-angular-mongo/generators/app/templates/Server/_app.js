@@ -41,14 +41,14 @@ console.log('NODE_ENV=' + environment);
 
 
 
-<% for (let i = 0; i < data.models.length; i++) { %>   
+// <% for (let i = 0; i < data.models.length; i++) { %>   
 
-    <% let model = data.models[i];%>
+//     <% let model = data.models[i];%>
 
-    app.use('/api/<%= data._.pluralize(model.title) %>', require('./Apis/<%= data._.pluralize(model.title) %>Api'));
+//     app.use('/api/<%= data._.pluralize(model.title) %>', require('./Apis/<%= data._.pluralize(model.title) %>Api'));
 
 
-<% } %>
+// <% } %>
 // 
 // app.use('/api/clients/', require('./Apis/clientsApi'));
 // app.use('/api/notes/', require('./Apis/notesApi'));

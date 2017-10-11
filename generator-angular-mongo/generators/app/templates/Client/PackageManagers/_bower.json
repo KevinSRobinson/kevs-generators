@@ -17,8 +17,8 @@
     "sinon": "http://sinonjs.org/releases/sinon-1.12.1.js",
     "bardjs": "~0.0.3"
   },
-   "dependencies": {
-        "jquery": "~2.1.1",
+  "dependencies": {
+    "jquery": "~2.1.1",
     "angular-sanitize": "^1.6.0",
     "bootstrap": "~3.3.1",
     "extras.angular.plus": "~0.9.2",
@@ -35,6 +35,11 @@
     "angular-jwt": "0.1.9",
     "a0-angular-storage": "^0.0.15",
     "angular-messages": "1.5.9"
+  },
+  "resolutions": {
+    "font-awesome": "^4.7.0",
+    "angular-sanitize": "1.5.9",
+    "angular": "1.5.9",
+    "angular-animate": "1.5.9"
   }
 }
-

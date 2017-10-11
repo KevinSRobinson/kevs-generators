@@ -1,79 +1,67 @@
 ﻿var mainLayout = {
-	bindings: {
-	allowChanges: '@'
-	},
-	controllerAs: 'vm',
-	templateUrl: './src/Client/Features/Navigation/Components/mainLayoutTemplate.html',
-	controller: function () {
-	var vm = this;
+  bindings: {
+    allowChanges: '@'
+  },
+  controllerAs: 'vm',
+  templateUrl: './src/Client/Features/Navigation/Components/mainLayoutTemplate.html',
+  controller: function () {
+    var vm = this;
 
-	vm.userName = 'Test Username';
+    vm.userName = 'Test Username';
 
-	vm.sideMenuItems = [
-		{          
-			state: 'login',
-			linkText: 'Login',
-			icon: 'cogs',
-			requiresLogin: false
-			},
-		   <% for (let i = 0; i < data.features.length; i++)  { %>  
-				{          
-		state: '<%=data.features[i].plural%>',
-		linkText: '<%=data.features[i].title%>',
-		icon: 'cogs',
-		requiresLogin: true
-		},
-        <% } %>
-		
-				{
-		state: 'lookupLists',
-		linkText: 'Lookup Lists',
-		icon: 'cogs',
-		requiresLogin: true
-		}
-	];
+    vm.sideMenuItems = [{
+      state: 'login',
+      linkText: 'Login',
+      icon: 'cogs',
+      requiresLogin: false
+    }, {
+      state: 'lookupLists',
+      linkText: 'Lookup Lists',
+      icon: 'cogs',
+      requiresLogin: true
+    }];
 
 
-	vm.userMenuItems = [{
-		state: 'userprofile',
-		linkText: 'User Profile',
-		icon: 'user'
-	}, {
-		state: 'useroptions',
-		linkText: 'User Options',
-		icon: 'cogs'
-	}, {
-		state: 'logout',
-		linkText: 'Logout',
-		icon: 'cogs'
-	}, {
-		state: 'login',
-		linkText: 'Login',
-		icon: 'check'
-	}];
+    vm.userMenuItems = [{
+      state: 'userprofile',
+      linkText: 'User Profile',
+      icon: 'user'
+    }, {
+      state: 'useroptions',
+      linkText: 'User Options',
+      icon: 'cogs'
+    }, {
+      state: 'logout',
+      linkText: 'Logout',
+      icon: 'cogs'
+    }, {
+      state: 'login',
+      linkText: 'Login',
+      icon: 'check'
+    }];
 
-	vm.alertMenuItems = [{
-		state: 'alert1',
-		linkText: 'Alert 1',
-		icon: 'bell'
-	}, {
-		state: 'alert2',
-		linkText: 'Alert 3',
-		icon: 'bell'
-	}];
+    vm.alertMenuItems = [{
+      state: 'alert1',
+      linkText: 'Alert 1',
+      icon: 'bell'
+    }, {
+      state: 'alert2',
+      linkText: 'Alert 3',
+      icon: 'bell'
+    }];
 
-	// vm.footerLinks = [{
-	// 		state: 'link1',
-	// 		linkText: 'Link 1'
-	// 	}, {
-	// 		state: 'link2',
-	// 		linkText: 'Link 2'
-	// 	}, {
-	// 		state: 'link3',
-	// 		linkText: 'Link 3'
-	// 	},
+    // vm.footerLinks = [{
+    // 		state: 'link1',
+    // 		linkText: 'Link 1'
+    // 	}, {
+    // 		state: 'link2',
+    // 		linkText: 'Link 2'
+    // 	}, {
+    // 		state: 'link3',
+    // 		linkText: 'Link 3'
+    // 	},
 
 
-	},
+  },
 }
 angular.module('app').component('mainLayout', mainLayout);

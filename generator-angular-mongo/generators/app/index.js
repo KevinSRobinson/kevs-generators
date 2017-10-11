@@ -11,6 +11,7 @@ const serverCore = require('./helpers/Server/serverCore.js');
 const home = require('./helpers/client/home.js');
 const login = require('./helpers/client/login.js');
 const styles = require('./helpers/client/styles.js');
+const navigation = require('./helpers/client/navigation.js');
 
 _.mixin(require('lodash-inflection'));
 module.exports = class extends Generator {
@@ -35,7 +36,7 @@ module.exports = class extends Generator {
       type: 'input',
       name: 'destPath',
       message: 'Enter a Location for the app : ',
-      default: 'C:/Repos/Generated1/',
+      default: 'C/Source/GeneratedTest/',
       store: true
     }];
 
@@ -77,6 +78,7 @@ module.exports = class extends Generator {
     var srcPackageManagersPath = srcClientPath + 'PackageManagers/';
     var srcGulpPath = srcClientPath + 'Gulp/';
     var srcFeaturesPath = srcClientPath + 'Features/';
+    var srcNavigationPath = srcFeaturesPath + 'Navigation/';
     var srcHomePath = srcFeaturesPath + 'Home/';
 
     var srcLoginPath = srcFeaturesPath + 'Login/';
@@ -84,17 +86,18 @@ module.exports = class extends Generator {
 
 
     var srcServerPath = './Server/';
-
+    packagemanagers.generate(appDetails, this, srcPackageManagersPath, destPath);
     // Client
     core.generate(appDetails, this, srcCorePath, destClientPath);
-    packagemanagers.generate(appDetails, this, srcPackageManagersPath, destClientPath);
+    
     gulp.generate(appDetails, this, srcGulpPath, destPath);
     styles.generate(appDetails, this, srcStylesPath, srcStylesPath + '/Styles/');
 
     // // Core Features
     home.generate(appDetails, this, srcHomePath, destHomePath);
     login.generate(appDetails, this, srcLoginPath, destLoginPath);
-
+    navigation.generate(appDetails, this, srcNavigationPath, destLoginPath);
+    
     var data = {
       appName: this.props.appName,
       models: models,
