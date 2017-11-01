@@ -2,14 +2,14 @@ var config = function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $locationProvider.html5Mode(false);
 
-    var homeState = {
-        name: 'home',
+    var homeMainState = {
+        name: 'homeMainState',
         url: '/',
         controllerAs: "vm",
         template: '<home></home>'
     };
 
-    $stateProvider.state(homeState);
+    $stateProvider.state(homeMainState);
 
     $urlRouterProvider.otherwise('/');
 };

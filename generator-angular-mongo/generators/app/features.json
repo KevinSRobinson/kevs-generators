@@ -1,6 +1,6 @@
 {
   "features": {
-    "contact": {
+    "people": {
       "type": "string"
     },
     "orgainisation": {

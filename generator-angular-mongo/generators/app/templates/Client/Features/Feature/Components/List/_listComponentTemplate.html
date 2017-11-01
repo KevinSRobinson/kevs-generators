@@ -1,0 +1,36 @@
+﻿<my-panel title="Tags" show-add-button="true" add="vm.create()" style="success" icon="tags" icon-size="2">
+
+<my-filter-textbox  ng-model="filter"></my-filter-textbox>
+
+<table class="table table-striped">
+   <thead>
+        <tr>
+             <% for (var key in data.model.properties) {  %>
+               <th> <%= data._.startCase(key) %> </th>
+             <% } %>
+        </tr>
+    </thead>
+
+    <tr dir-paginate='<%= data.camelCase %> in vm.<%= data.plural %> | filter:vm.contactFilters.textFilter   |itemsPerPage: vm.pageSize  track by $index'>
+
+        <% for (var key in data.model.properties) {  %>
+             <td>{{ <%= data.camelCase %>.<%= data._.startCase(key).replace(' ', '') %> %>  }}</td>
+        <% } %>
+            
+            <td ng-if="vm.showButtons"> 
+            <span ng-if="vm.editMode"> 
+                <my-button preset="edit" click="vm.edit({person: person})"></my-button> 
+                <my-button preset="details" click="vm.details({person: person})"></my-button> 
+                <my-button preset="delete" click="vm.delete({person: person})"></my-button> 
+            </span> 
+            <span ng-if="vm.attachMode" ng-click="vm.detachClick({person: person})" class="btn btn-primary"> 
+                Detach 
+            </span> 
+            <span ng-if="vm.selectMode" ng-click="vm.selectClick({person: person})" class="btn btn-primary"> 
+               Select 
+            </span> 
+        </td> 
+    </tr>
+</table>
+
+<dir-pagination-controls  boundary-links="true"></dir-pagination-controls>

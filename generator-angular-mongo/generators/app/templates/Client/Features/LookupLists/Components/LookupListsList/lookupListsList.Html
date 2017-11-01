@@ -1,0 +1,23 @@
+<my-panel title="LookupLists" show-add-button="true" add="vm.create()" style="success" icon="tags" icon-size="2">
+    
+
+    <my-filter-textbox ng-model="filter"></my-filter-textbox>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Item</td>
+                <td>List</td>
+                <td>Parent</td>
+            </tr>
+        </thead>
+        <tr ng-repeat='lookuplist in vm.lookupLists | filter:filter '>
+            <td>{{ lookuplist.Item }}</td>
+            <td>{{ lookuplist.List }}</td>
+            <td>{{ lookuplist.Parent }}</td>
+            <td>
+                <div class="btn btn-success" ng-click='vm.edit(lookuplist)'>Edit</div>
+                <div class="btn btn-danger" ng-click='vm.delete(lookuplist)'>Delete</div>
+            </td>
+        </tr>
+    </table>
+</my-panel>

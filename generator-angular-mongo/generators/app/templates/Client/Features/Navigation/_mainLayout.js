@@ -3,40 +3,28 @@
 	allowChanges: '@'
 	},
 	controllerAs: 'vm',
-	templateUrl: 'src/client/Features//Navigation/Navigation.Html',
+	templateUrl: './src/Client/Features/Navigation/Components/mainLayoutTemplate.html',
 	controller: function () {
 	var vm = this;
 
 	vm.userName = 'Test Username';
 
-	vm.sideMenuItems = [{
-		state: 'login',
-		linkText: 'Login',
-		icon: 'key'
-		}, {
-		state: 'volunteers',
-		linkText: 'Volunteers',
+	vm.sideMenuItems = [
+		   <% for (var key in data.features.features) {  %>  
+				{          
+		state: '<%=key%>',
+		linkText: '<%=key%>',
 		icon: 'cogs',
 		requiresLogin: true
 		},
-		{
-		state: 'clients',
-		linkText: 'Clients',
-		icon: 'cogs',
-		requiresLogin: true
-		},
-		{
-		state: 'notes',
-		linkText: 'Notes',
-		icon: 'cogs',
-		requiresLogin: true
-		},
-		{
+        <% } %>
+		
+				{
 		state: 'lookupLists',
 		linkText: 'Lookup Lists',
 		icon: 'cogs',
 		requiresLogin: true
-		},
+		}
 	];
 
 
