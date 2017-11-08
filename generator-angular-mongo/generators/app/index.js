@@ -150,7 +150,7 @@ module.exports = class extends Generator {
       modals.generate(data, this, srcFeaturesPath, destFeaturesPath);      
  
 
-     // serverCore.generate(data, this, srcServerPath, destServerPath + '/');
+      //serverCore.generate(data, this, srcServerPath, destServerPath + '/');
 
 
   }
