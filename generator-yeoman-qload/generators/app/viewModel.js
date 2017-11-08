@@ -7,12 +7,14 @@ _.mixin(require("lodash-inflection"));
 
 
 module.exports.generate = function (runner, basepath, data) {
-  
+
+
 
   var featureFolderName = basepath + '/' + data.plural + '/';
 
   // var name = basepath + '/Data/' + data.plural + '/';
-  
+  var viewModelName = data.name + "ViewModel";
+
 
   ///////////////////////////////
   //UserControl - Code Behind
@@ -23,5 +25,5 @@ module.exports.generate = function (runner, basepath, data) {
     }
   );
 
-  
+
 };

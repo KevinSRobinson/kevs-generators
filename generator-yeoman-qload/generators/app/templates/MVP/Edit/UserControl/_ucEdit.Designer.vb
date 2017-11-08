@@ -61,7 +61,7 @@ Partial Class ucEdit<%=data.model.title%>
                 '
                  <% for (var key in data.model.properties) {  
              for (var subkey in data.model.properties[key]) { %>               
-                    <%= data.AddTolayoutControl(key, subkey) %>  
+                    <%= data.AddTolayoutControl(data, key, subkey) %>  
              <% } %>
         <% } %>
                
@@ -112,12 +112,12 @@ Partial Class ucEdit<%=data.model.title%>
                            <%=  data.SetLayoutControl(key, subkey) %>
 
 
-                            Me.lci<%= data._.startCase(key).replace(" ", "") %>.CustomizationFormText = "<%= data._.startCase(key).replace(" ", "") %>"
-                            Me.lci<%= data._.startCase(key).replace(" ", "") %>.Location = New System.Drawing.Point(0, 68)
-                            Me.lci<%= data._.startCase(key).replace(" ", "") %>.Name = "lci<%= data._.startCase(key).replace(" ", "") %>"
-                            Me.lci<%= data._.startCase(key).replace(" ", "") %>.Size = New System.Drawing.Size(274, 17)
-                            Me.lci<%= data._.startCase(key).replace(" ", "") %>.Text = "<%= data._.startCase(key).replace(" ", "") %>"
-                            Me.lci<%= data._.startCase(key).replace(" ", "") %>.TextSize = New System.Drawing.Size(94, 13)
+                            Me.lci<%= data.getNameFromKey(key) %>.CustomizationFormText = "<%= data.getNameFromKey(key) %>"
+                            Me.lci<%= data.getNameFromKey(key) %>.Location = New System.Drawing.Point(0, 68)
+                            Me.lci<%= data.getNameFromKey(key) %>.Name = "lci<%= data.getNameFromKey(key) %>"
+                            Me.lci<%= data.getNameFromKey(key) %>.Size = New System.Drawing.Size(274, 17)
+                            Me.lci<%= data.getNameFromKey(key) %>.Text = "<%= data.getNameFromKey(key) %>"
+                            Me.lci<%= data.getNameFromKey(key) %>.TextSize = New System.Drawing.Size(94, 13)
                     <% } %>
                 <% } %>    
         
@@ -135,7 +135,7 @@ Partial Class ucEdit<%=data.model.title%>
                  
                  <% for (var key in data.model.properties) {  
                         for (var subkey in data.model.properties[key]) { %>     
-                             CType(Me.lci<%= data._.startCase(key).replace(" ", "") %>, System.ComponentModel.ISupportInitialize).EndInit() 
+                             CType(Me.lci<%= data.getNameFromKey(key) %>, System.ComponentModel.ISupportInitialize).EndInit() 
                     <% } %>
                 <% } %>      
 

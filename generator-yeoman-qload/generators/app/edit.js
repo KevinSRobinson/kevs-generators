@@ -3,6 +3,7 @@ const yosay = require('yosay');
 const chalk = require('chalk');
 const _ = require('lodash');
 _.mixin(require("lodash-inflection"));
+var fieldsDesignerHelperHelper = require('./helpers/Fields/fieldsDesignerHelperHelper');
 
 
 module.exports.generate = function (runner, basepath, data) {
@@ -15,7 +16,7 @@ module.exports.generate = function (runner, basepath, data) {
     }
     //} 
   }
- var commaSeperatedLayoutControlList = "";
+  var commaSeperatedLayoutControlList = "";
 
   js_traverse(data.model.properties)
 
@@ -25,76 +26,69 @@ module.exports.generate = function (runner, basepath, data) {
 
   commaSeperatedLayoutControlList = commaSeperatedLayoutControlList.replace(/,(\s+)?$/, '');
 
-
   var featureFolderName = basepath + '/' + data.plural + '/';
-  var interfaceName = 'I' + runner.props.featureName + 'sEdit';
+  var interfaceName = 'IEdit' + data.name + 'View';
   var presenterName = runner.props.featureName + 'sEditPresenter';
   var userControlName = 'uc' + data.name + 'Edit';
   var ttt = _.kebabCase;
+  var viewModelName = data.name + 'ViewModel';
+
 
   var InstantiateControl = function (key, subkey) {
-
     switch (data.model.properties[key][subkey]) {
       case "string":
-        return GetInstantiateControl('te', key, 'TextEdit');
+        return GetInstantiateControl('te', key, 'string');
       case "date":
-        return GetInstantiateControl('de', key, 'DateEdit');
+        return GetInstantiateControl('de', key, 'date');
       case "bool":
-        return GetInstantiateControl('ce', key, 'CheckEdit');
+        return GetInstantiateControl('ce', key, 'bool');
       case "number":
-        return GetInstantiateControl('ne', key, 'TextEdit');
+        return GetInstantiateControl('ne', key, 'number');
+      case "lookup":
+        return GetInstantiateControl('lue', key, 'lookup');
+      case "memo":
+        return GetInstantiateControl('me', key, 'memo');
     }
   }
 
   var BeginInitEditor = function (key, subkey) {
-     return getBeginInitEditor('lci', key);
+    return getBeginInitEditor('lci', key);
   }
-
   var BeginInitLabel = function (key, subkey) {
-       return 'CType(Me.lc' + key + ', System.ComponentModel.ISupportInitialize).BeginInit()';
+    return 'CType(Me.lc' + key + ', System.ComponentModel.ISupportInitialize).BeginInit()';
   }
-
   var getBeginInitLabel = function (prefix, key) {
     return 'CType(Me.' + prefix + key + ', System.ComponentModel.ISupportInitialize).BeginInit()';
   }
-
   var getBeginInitEditor = function (prefix, key) {
-    return 'CType(Me.' + prefix + data._.startCase(key).replace(" ", "") + '.Properties, System.ComponentModel.ISupportInitialize).BeginInit()';
+    return 'CType(Me.' + prefix + data.getNameFromKey(key) + '.Properties, System.ComponentModel.ISupportInitialize).BeginInit()';
   }
-
   var SetFieldProperties = function (key, subkey) {
-
     switch (data.model.properties[key][subkey]) {
       case "string":
         Getlabel(key)
     }
   };
 
-  var GetLayoutControlItem = function (key) {
-    return 'Me.lci' + data._.startCase(key).replace(" ", "") + '.Control = Me.te' + data._.startCase(key).replace(" ", "") + '\r' +
-
-
-      'Me.lci' + data._.startCase(key).replace(" ", "") + '.Location = New System.Drawing.Point(0, 0)' +  '\r' +
-      'Me.lci' + data._.startCase(key).replace(" ", "") + '.Size = New System.Drawing.Size(231, 24)' +  '\r' +
-      `Me.lci` + data._.startCase(key).replace(" ", "") + `.Text = "` + data._.startCase(key).replace(" ", "") +  `" \r` +
-      'Me.lci' + data._.startCase(key).replace(" ", "") + '.TextSize = New System.Drawing.Size(51, 13)' +  '\r';
-  };
-
 
   var ControlFields = function (key, subkey) {
     switch (data.model.properties[key][subkey]) {
       case "string":
-        return GetControLField('te', key, 'TextEdit');
+        return GetControLField('te', key, 'string');
       case "date":
-        return GetControLField('de', key, 'DateEdit');
+        return GetControLField('de', key, 'date');
       case "bool":
-        return GetControLField('ce', key, 'CheckEdit');
+        return GetControLField('ce', key, 'bool');
       case "number":
-        return GetControLField('ne', key, 'TextEdit');
+        return GetControLField('ne', key, 'number');
+      case "lookup":
+        return GetControLField('lue', key, 'lookup');
+      case "memo":
+        return GetControLField('me', key, 'memo');
     }
   };
 
-   var SetLayoutControl = function (key, subkey) {
+  var SetLayoutControl = function (key, subkey) {
     switch (data.model.properties[key][subkey]) {
       case "string":
         return getLayoutControlControl('te', key);
@@ -104,51 +98,166 @@ module.exports.generate = function (runner, basepath, data) {
         return getLayoutControlControl('ce', key);
       case "number":
         return getLayoutControlControl('ne', key);
+       case "lookup":
+        return  getLayoutControlControl('lue', key);
+      case "memo":
+        return  getLayoutControlControl('me', key);
     }
   };
-  
 
-  var AddTolayoutControl = function (key, subkey) {
-    switch (data.model.properties[key][subkey]) {
+
+  var getLayoutControlControl = function (prefix, key) {
+    return 'Me.lci' + data.getNameFromKey(key) + '.Control = Me.' + prefix + data.getNameFromKey(key);
+  };
+
+  var getControlFromType  = function(type){
+     switch (type) {
       case "string":
-        return getAddTolayoutControl('te', key);
+        return 'Qload.CustomControls.Editors.QloadLabel'
+      case "lookup":
+        return 'Qload.CustomControls.Lookups.QloadLookupEdit'
       case "date":
-        return getAddTolayoutControl('de', key);
+        return 'DevExpress.XtraEditors.DateEdit'
       case "bool":
-        return getAddTolayoutControl('ce', key);
+        return 'DevExpress.XtraEditors.CheckEdit'
       case "number":
-        return getAddTolayoutControl('ne', key);
+        return 'DevExpress.XtraEditors.SpinEdit'
+      case "memo":
+        return 'DevExpress.XtraEditors.MemoEdit'
     }
-  };
-
-  var getLayoutControlControl  = function (prefix, key) {
-    return 'Me.lci' + data._.startCase(key).replace(" ", "") + '.Control = Me.' + prefix + data._.startCase(key).replace(" ", "") ;
-  };
-
-  var getAddTolayoutControl = function (prefix, key) {
-    return 'Me.LayoutControl1.Controls.Add(Me.' + prefix + data._.startCase(key).replace(" ", "") + ')';
-  };
+  }
 
   var GetInstantiateControl = function (prefix, key, editorType) {
-    return 'Me.' + prefix + data._.startCase(key).replace(" ", "") + ' = New DevExpress.XtraEditors.' + editorType + '()';
+    return 'Me.' + prefix + data.getNameFromKey(key) + ' = New ' +  getControlFromType(editorType) + '()';
   }
 
   var GetControLField = function (prefix, key, editorType) {
-    return 'Friend WithEvents ' + prefix + data._.startCase(key).replace(" ", "") + ' As DevExpress.XtraEditors.' + editorType;
+    return 'Friend WithEvents ' + prefix + data.getNameFromKey(key)  + ' as ' + getControlFromType(editorType);
   }
 
 
+  // Editor
+  
 
+ 
+
+  
+
+ 
+
+
+
+
+  //////////////////////////////////////////////////////////////////////
+  ///////////Returns the Setting Mappings for a property ///////////////
+  //////////////////////////////////////////////////////////////////////
+  //  Public Property Branch As BranchViewModel Implements IEditBranchView.Branch
+  //  Set
+  //    Me.teID.EditValue = Value.Id       <<   creates these lines
+  //    Me.teName.EditValue = Value.Name   <<
+  //    Me.teAddress1.EditValue = Value.Address1 <<                   
+  //  End Set
+  /////////////////////////////////////////////////////
+  var getViewModelPropertyFields = function () {
+    var returnValue = "";
+    for (var key in data.model.properties) {
+      for (var subkey in data.model.properties[key]) {         
+           returnValue += SetFieldPropertyMapping(key, subkey)  + '\n';
+      }
+    }
+    return returnValue;
+  }
+  
+
+  var SetFieldPropertyMapping = function (key, subkey) {
+    switch (data.model.properties[key][subkey]) {
+      case "string":
+        return getFieldProperty('te', key, 'EditValue');
+      case "date":
+        return getFieldProperty('de', key, 'EditValue');
+      case "bool":
+        return getFieldProperty('ce', key, 'EditValue');
+      case "number":
+        return getFieldProperty('ne', key, 'EditValue');
+    }
+  };
+   var setFieldProperty = function (prefix, key, valueProperty) {
+    return '.' + data.getNameFromKey(key) + ' = Me.' + prefix + data.getNameFromKey(key) + '.' + valueProperty + ',';
+  }
+  /////////////////////////////////////////////////////
+
+
+  //////////////////////////////////////////////////////////////////////
+  ///////////Returns the Setting Mappings for a property ///////////////
+  //////////////////////////////////////////////////////////////////////
+  //  Public Property Branch As BranchViewModel Implements IEditBranchView.Branch
+  //  Get
+  //   Return New BranchViewModel() With {
+  //      .ID = Me.teID.EditValue,  
+  //      .CustomerId = Me.neCustomerId.EditValue,  
+  //      .Name = Me.teName.EditValue,  
+  //      .Address1 = Me.teAddress1.EditValue,                 
+  //  End Get
+  /////////////////////////////////////////////////////
+  var getViewModelPropertyGetFields = function () {
+    var returnValue = "";
+    for (var key in data.model.properties) {
+      for (var subkey in data.model.properties[key]) {         
+           returnValue += GetFieldPropertyMapping(key, subkey)  + '\n';
+      }
+    }
+    // remove last commma and add closing curley braces
+    returnValue = returnValue.replace(/,\s*$/, "") + '}';
+
+    return returnValue;
+  }
+  
+   var GetFieldPropertyMapping = function (key, subkey) {
+    switch (data.model.properties[key][subkey]) {
+      case "string":
+        return setFieldProperty('te', key, 'EditValue');
+      case "date":
+        return setFieldProperty('de', key, 'EditValue');
+      case "bool":
+        return setFieldProperty('ce', key, 'EditValue');
+      case "number":
+        return setFieldProperty('ne', key, 'EditValue');
+    }
+  };
+var getFieldProperty = function (prefix, key, valueProperty) {
+    return ' Me.' + prefix + data.getNameFromKey(key) + '.' + valueProperty + '= Value.' + data.getNameFromKey(key);
+  }
+ /////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+  //Add Edit Specific Functions 
   data.InstantiateControl = InstantiateControl;
   data.ControlFields = ControlFields;
   data.BeginInitLabel = BeginInitLabel;
   data.BeginInitEditor = BeginInitEditor;
-  data.AddTolayoutControl = AddTolayoutControl;
-  data.GetLayoutControlItem = GetLayoutControlItem;
-data.commaSeperatedLayoutControlList =commaSeperatedLayoutControlList;
- data.SetLayoutControl = SetLayoutControl;
 
 
+  data.AddTolayoutControl = fieldsDesignerHelperHelper.AddTolayoutControl;
+  data.GetLayoutControlItem = fieldsDesignerHelperHelper.GetLayoutControlItem;
+
+  data.commaSeperatedLayoutControlList = commaSeperatedLayoutControlList;
+  data.SetLayoutControl = SetLayoutControl;
+  data.SetFieldPropertyMapping = SetFieldPropertyMapping;
+  data.GetFieldPropertyMapping = GetFieldPropertyMapping;
+  data.getViewModelPropertyFields = getViewModelPropertyFields;
+  data.getViewModelPropertyGetFields = getViewModelPropertyGetFields;
+
+
+
+
+  data.interfaceName = interfaceName;
+  data.viewModelName = viewModelName;
 
   ///////////////////////////////
   //UserControl - Code Behind
@@ -171,6 +280,14 @@ data.commaSeperatedLayoutControlList =commaSeperatedLayoutControlList;
   runner.fs.copyTpl(
     runner.templatePath('MVP/Edit/UserControl/_uCEdit.resx'),
     runner.destinationPath(featureFolderName + '/Edit/' + userControlName + '.resx'), {
+      data: data
+    }
+  );
+
+  //UserControl - Resources File
+  runner.fs.copyTpl(
+    runner.templatePath('MVP/Edit/_iEditView.vb'),
+    runner.destinationPath(featureFolderName + '/Edit/' + interfaceName + '.vb'), {
       data: data
     }
   );

@@ -11,8 +11,40 @@ module.exports.generate = function (runner, basepath, data) {
   // var userControlName = runner.props.featureName + 'Repo';
   // var featureFolderName = basepath + '/Repos/';
   var featureFolderName = basepath + '/' + data.plural + '/';
-  data.interfaceName = 'I' + data.plural  + 'Repo';
-  data.repositoryName =  data.plural  + 'Repo';
+  data.interfaceName = 'I' + data.plural + 'Repo';
+  data.repositoryName = data.plural + 'Repo';
+
+
+
+
+
+  var getViewModelPropertyGetFields = function () {
+    var returnValue = "";
+    for (var key in data.model.properties) {
+      for (var subkey in data.model.properties[key]) {
+        returnValue += '.' + data.getNameFromKey(key) + '= ' + data.camelCase + '.' + data.getNameFromKey(key) + ',\n';
+      }
+    }
+    // remove last commma and add closing curley braces
+    returnValue = returnValue.replace(/,\s*$/, "") + '';
+
+    return returnValue;
+  }
+
+  var getObjectToViewModelFieldMappings = function () {
+    var returnValue = "";
+    for (var key in data.model.properties) {
+      for (var subkey in data.model.properties[key]) {
+        returnValue += data.camelCase + '.' + data.getNameFromKey(key) + '.' + data.getNameFromKey(key) + '\n';
+      }
+    }
+ 
+     return returnValue;
+  }
+
+
+  data.GetViewModelFieldMappings = getViewModelPropertyGetFields;
+  data.GetObjectToViewModelFieldMappings = getObjectToViewModelFieldMappings;
 
   ///////////////////////////////
   //Repository
@@ -23,5 +55,5 @@ module.exports.generate = function (runner, basepath, data) {
     }
   );
 
-  
+
 };

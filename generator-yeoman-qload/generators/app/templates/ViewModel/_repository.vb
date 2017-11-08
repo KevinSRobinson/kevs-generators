@@ -6,8 +6,8 @@ Imports Qload.BusinessObjects.Classes
 
 Namespace Repos
     Public Interface I<%=data.plural%>Repo
-        Function Get<%=data.plural%>ByCustomerId(customerId As Integer) As IEnumerable(Of <%=data.viewModelName%>)
-
+        Function GetById(customerId As Integer)  As  <%=data.viewModelName%>
+        Sub GetAll()  As IEnumerable(Of <%=data.viewModelName%>)
 
     End Interface
 
@@ -27,13 +27,26 @@ Namespace Repos
 
 
 #Region "Queries"
+        
 
-        Private Function Get<%=data.plural%>ByCustomerId(customerId As Integer) As IEnumerable(Of <%=data.viewModelName%>) Implements <%=data.interface%>.Get<%=data.plural%>ByCustomerId
+        Public Function GetById(id As Integer) As <%=data.viewModelName%> Implements I<%= data.name %>Repo.GetById
 
-            Dim enquiry As IEnumerable(Of <%=data.viewModelName%>)
+            Dim <%= data.camelCase %>  As <%= data.name %>  = MyBase.UnitOfWork.GetObjectByKey(Of  <%= data.name %>)(id)
+
+            Return New <%=data.viewModelName%>() With
+                {
+                    <%= data.GetViewModelFieldMappings() %>               
+                }
+
+
+        End Function
+
+        Private Function GetAll() As IEnumerable(Of <%=data.viewModelName%>) Implements I<%=data.plural%>Repo.GetAll
+
+            Dim <%= data.camelCase %> As IEnumerable(Of <%=data.viewModelName%>)
 
             Try
-                enquiry = MyBase.UnitOfWork.GetObjectsFromSproc(Of <%=data.viewModelName%>)("p_fp_GetCRM<%=data.plural%>ListByCustomerId", New OperandValue(customerId))
+                <%= data.camelCase %> = MyBase.UnitOfWork.GetObjectsFromSproc(Of <%=data.viewModelName%>)("p_fp_GetCRM<%=data.plural%>ListByCustomerId", New OperandValue(customerId))
 
             Catch ex As InvalidCastException
                 Throw New Exception("Failed to Load <%=data.plural%>", ex)
@@ -41,12 +54,37 @@ Namespace Repos
                 Throw New Exception("Failed to Load <%=data.plural%>", ex)
             End Try
 
-            Return enquiry
+            Return <%= data.camelCase %>
 
         End Function
 
+
+
 #End Region
 
+
+#Region "Commands"
+
+
+        Public Sub CreateUpdate<%=data.name%>(<%=data.viewModelName%> As <%=data.viewModelName%>) Implements I<%=data.plural%>Repo.CreateUpdate<%=data.viewModelName%>
+
+            Dim <%= data.camelCase %> As <%= data.name %> = UnitOfWork.GetObjectByKey(Of <%= data.name %>)(<%=data.viewModelName%>.Id)
+
+            If IsNothing( <%=data.camelCase%> ) Then
+                <%=data.camelCase%> = New  <%=data.name%> (MyBase.UnitOfWork)
+            End If
+
+            With  <%=data.camelCase%> 
+                 <%= data.GetObjectToViewModelFieldMappings() %>       
+                .Save()
+            End With
+
+            MyBase.UnitOfWork.CommitChanges()
+
+        End Sub
+
+
+#End Region
 
 
 

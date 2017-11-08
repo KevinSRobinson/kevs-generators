@@ -1,0 +1,46 @@
+Imports System.Net
+Imports System.Web.Http
+Imports System.Web.Http.Cors
+Imports Data.Repos
+Imports Data.Repos.ViewModels
+Imports DevExpress.Xpo
+Imports DevExpress.Xpo.DB
+Imports Qload.Data
+Imports Qload.Data.Manager
+Imports Qload.Data.Repos.ViewModels
+
+Public Class <%=data.model.title%>Controller
+    Inherits BaseApiController
+
+    Private _<%=data.plural%>Repo As I<%=data.model.plural%>Repo
+
+    Public Sub New()
+        MyBase.New()
+    
+        _<%=data.model.plural%>Repo = New <%=data.model.plural%>Repo(XpoDefault.Session)
+    End Sub
+
+   
+    <HttpGet>
+    <Route("api/<%=data.plural%>")>
+    <EnableCors("*", "*", "*")>
+    Public Function Get<%=data.model.title%>() As IEnumerable<of <%=data.model.title%>) 
+         Return <%=data.plural%>Repo.ExecGetList()
+    End Function
+
+    <HttpPost>
+    <Route("api/<%=data.plural%>")>
+    <EnableCors("*", "*", "*")>
+    Public Function Create<%=data.model.title%>(<%=data.model.title%> as <%=data.model.title%>) As IEnumerable<of <%=data.model.title%>) 
+          _<%=data.plural%>Repo.Create(<%=data.model.title%>)
+    End Function
+
+    <HttpPut>
+    <Route("api/<%=data.plural%>")>
+    <EnableCors("*", "*", "*")>
+    Public Function Modify<%=data.model.title%>(<%=data.model.title%> as <%=data.model.title%>) As IEnumerable<of <%=data.model.title%>) 
+         _<%=data.plural%>Repo.Modify(<%=data.model.title%>)
+    End Function
+
+    
+End Class
