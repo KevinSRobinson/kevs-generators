@@ -19,7 +19,7 @@
             
             <td ng-if="vm.showButtons"> 
             <span ng-if="vm.editMode"> 
-                <my-button preset="details" click="vm.details({<%= data.camelCase %>: <%= data.camelCase %>})"></my-button> 
+                <my-button preset="edit" click="vm.edit({<%= data.camelCase %>: <%= data.camelCase %>})"></my-button> 
                 <my-button preset="details" click="vm.details({<%= data.camelCase %>: <%= data.camelCase %>})"></my-button> 
                 <my-button preset="delete" click="vm.delete({<%= data.camelCase %>: <%= data.camelCase %>})"></my-button> 
             </span>            

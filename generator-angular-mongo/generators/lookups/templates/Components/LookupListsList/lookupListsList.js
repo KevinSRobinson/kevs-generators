@@ -18,7 +18,7 @@ var lookupListsList = {
         vm.loadLookupLists = function () {
             var lookupListsPromise = lookupListsDataService.GetAll();
             lookupListsPromise.then(function (response) {
-                vm.lookupLists = response.data;
+                vm.lookupLists = response.data.data;;
             }).catch(function (error) {
                 vm.error = error;
             })

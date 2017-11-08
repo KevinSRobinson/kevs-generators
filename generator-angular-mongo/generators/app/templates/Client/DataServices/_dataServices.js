@@ -1,6 +1,6 @@
 ﻿var <%=data.plural%>DataService = function($http, apiBase) {
 	
-    apiBase += "/<%=data.plural%>/";
+    apiBase += "/<%=data.plural%>";
 
     var getAll = function(){
 		return $http.get(apiBase);

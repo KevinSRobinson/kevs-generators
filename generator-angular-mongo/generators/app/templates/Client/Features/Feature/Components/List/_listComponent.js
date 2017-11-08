@@ -19,7 +19,7 @@ controller: function ($state, <%=data.serviceName%>, <%=data.modalServiceName%>)
     vm.load<%=data.plural%>s = function(){
         var <%=data.plural%>Promise= <%=data.serviceName%>.GetAll();
         <%=data.plural%>Promise.then(function(response){
-	     vm.<%=data.plural%> = response.data;
+	     vm.<%=data.plural%> = response.data.data;;
         }).catch(function(error){
 	        vm.error = error;
         })
