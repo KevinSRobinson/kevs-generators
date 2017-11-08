@@ -1,8 +1,12 @@
 ﻿var <%=data.modalServiceName%> = function($uibModal){
 	 
+	let modifyTemplate = require('raw-loader!../CreateUpdate/createUpdatePersonModalTemplate.html');
+	let deleteTemplate = require('raw-loader!../Delete/deletePersonModalModalTempalte.html');
+
+
 var add = function() {
 return $uibModal.open({
-	template: require('raw-loader!./createUpdate<%= data.name %>ModalTemplate.html'),	
+template: modifyTemplate,
 	controller: 'createUpdate<%=data.name%>ModalController',
 	controllerAs: 'vm',
 	resolve: {
@@ -14,7 +18,7 @@ return $uibModal.open({
 
 var del = function(<%= data.camelCase %>) { 
 return $uibModal.open({ 
-    templateUrl: './src/Client/Features/<%= data.name %>/Modals/Delete/delete<%= data.name %>ModalModalTempalte.html', 
+	template: modifyTemplate,
 controller: 'delete<%= data.name %>Controller', 
   controllerAs: 'vm', 
   resolve: { 
@@ -25,7 +29,7 @@ controller: 'delete<%= data.name %>Controller',
 
 var modify = function(<%= data.camelCase %>) {
 return $uibModal.open({
-	template: require('raw-loader!./createUpdate<%= data.name %>ModalTemplate.html'),		
+	template: deleteTemplate,
 controller: 'createUpdate<%=data.name%>ModalController',
 	controllerAs: 'vm',
 	resolve: {
