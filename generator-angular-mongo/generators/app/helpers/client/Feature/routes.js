@@ -2,6 +2,9 @@ const copier = require('../../templateCopier.js');
 const _ = require('lodash');
 module.exports.generate = function (data, runner, _srcPath, destPath) {
 
-  copier.copyTpl(runner, _srcPath + '_routes.js', destPath + _.pluralize(_.camelCase(data.name)) + 'routes.js', data);
+
+  console.log(_srcPath);
+  
+  copier.copyTpl(runner, _srcPath +  '/feature/_routes.js', destPath + _.camelCase(data.name) + '/routes.js', data);
 
 };

@@ -83,7 +83,7 @@ module.exports = class extends Generator {
       _: _,
     };
 
-    var basepath = "C:/NewWorkingFolder/FPM-Qload/CrmTraining/Qload.Winforms/CRM/";
+    var basepath = "C:/DevBranch/Qload.Winforms/Entertainment/";
 
     
       if(_.includes(this.props.features, 'List') ) {

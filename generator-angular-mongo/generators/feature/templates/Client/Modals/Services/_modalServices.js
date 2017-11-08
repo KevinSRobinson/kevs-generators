@@ -2,7 +2,7 @@
 	 
 var add = function() {
 return $uibModal.open({
-	templateUrl: './src/Client/Features/<%= data.name %>/Modals/CreateUpdate/createUpdate<%= data.name %>ModalTemplate.html',
+	template: require('raw-loader!./createUpdate<%= data.name %>ModalTemplate.html'),	
 	controller: 'createUpdate<%=data.name%>ModalController',
 	controllerAs: 'vm',
 	resolve: {
@@ -25,6 +25,7 @@ controller: 'delete<%= data.name %>Controller',
 
 var modify = function(<%= data.camelCase %>) {
 return $uibModal.open({
+	template: require('raw-loader!./createUpdate<%= data.name %>ModalTemplate.html'),
 		templateUrl: './src/Client/Features/<%= data.name %>/Modals/CreateUpdate/createUpdate<%= data.name %>ModalTemplate.html',
 controller: 'createUpdate<%=data.name%>ModalController',
 	controllerAs: 'vm',

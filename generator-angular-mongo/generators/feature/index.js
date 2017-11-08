@@ -22,7 +22,14 @@ module.exports = class extends Generator {
       name: 'feature',
       message: 'Enter a name for the Feature',
       default: 'Comment'
-    }];
+    },
+    {
+      type: 'input',
+      name: 'useAuth0',
+      message: 'Use Auth0',
+      default: 'false'
+    }
+  ];
 
     return this.prompt(prompts).then(props => {
       this.props = props;
@@ -50,6 +57,7 @@ module.exports = class extends Generator {
     var data = {
       appName: this.props.appName,
       name: feature.title,
+      useAuth0: this.props.useAuth0,
       plural: _.pluralize(feature.title),
       camelCase: _.camelCase(feature.title),
       camelCasePlural: _.pluralize(_.camelCase(feature.title)),

@@ -3,7 +3,7 @@ var <%=data.camelCase%>Details = {
         allowChanges: '@'
     },
     controllerAs: "vm",
-    templateUrl: './src/Client/Features/<%=data.name%>/Components/Details/<%=data.camelCase%>DetailsTemplate.Html',
+    template: require('raw-loader!./<%=data.camelCase%>DetailsTemplate.Html'),    
     controller: function (<%=data.serviceName%>, __AppConfig,  $stateParams) {
         var vm = this;
         vm.id = $stateParams.id;

@@ -1,3 +1,13 @@
 {
-    "eslint.enable": true
+    "eslint.enable": true,
+    "files.exclude": {
+        "node_modules/": true,
+        "generator-angular-mongo/__tests__": true,
+        "generator-angular-mongo/.travis.yml": true,
+        "generator-angular-mongo/LICENSE": true,
+        "generator-angular-mongo/.yo-rc.json": true,
+        "generator-angular-mongo/.gitattributes": true,
+        "generator-angular-mongo/.editorconfig": true,
+        "generator-angular-mongo/.eslintignore": true       
+    }
 }

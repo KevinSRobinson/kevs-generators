@@ -11,6 +11,12 @@
         "Notes": {
             "type": "number"
         },
+        "FirstName": {
+            "type": "string"
+        },
+        "LastName": {
+            "type": "string"
+        },
         "Contact": {
             "type": "number"
         },

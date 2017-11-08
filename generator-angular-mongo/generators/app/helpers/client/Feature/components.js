@@ -2,18 +2,20 @@ const copier = require('../../templateCopier.js');
 const _ = require('lodash');
 module.exports.generate = function (data, runner, _srcPath, destPath) {
 
-  var _srcComponentsPath = _srcPath + '/';
+  var _srcComponentsPath = _srcPath + 'Feature/Components/';
   var _srcListComponentsPath = _srcComponentsPath + '/List/';
   var _srcDetailsPath = _srcComponentsPath + '/Details/';
   var _srcHomePath = _srcComponentsPath + '/Home/';
   var _srcFieldsPath = _srcComponentsPath + '/Fields/';
 
 
-  var descComponentsPath = destPath + '/';
+  var descComponentsPath = destPath + '/' +  data.model.title +'/';
   var destListComponentsPath = descComponentsPath + 'List/';
   var destDetailsComponentsPath = descComponentsPath + 'Details/';
   var destHomeComponentsPath = descComponentsPath + 'Home/';
   var destFieldsComponentsPath = descComponentsPath + 'Fields/';
+
+  console.log(destPath);
 
   copier.copyTpl(runner, _srcListComponentsPath + '_listComponent.js', destListComponentsPath + _.pluralize(_.camelCase(data.name)) + 'List.js', data);
   copier.copyTpl(runner, _srcListComponentsPath + '_listComponentTemplate.html', destListComponentsPath + _.pluralize(_.camelCase(data.name)) + 'ListTemplate.html', data);

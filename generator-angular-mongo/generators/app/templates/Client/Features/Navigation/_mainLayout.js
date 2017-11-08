@@ -3,11 +3,13 @@
     allowChanges: '@'
   },
   controllerAs: 'vm',
-  templateUrl: './src/Client/Features/Navigation/Components/mainLayoutTemplate.html',
+  template: require('raw-loader!./mainLayoutTemplate.html'),  
   controller: function () {
     var vm = this;
 
     vm.userName = 'Test Username';
+
+    
 
     vm.sideMenuItems = [{
       state: 'login',
@@ -18,8 +20,15 @@
       state: 'lookupLists',
       linkText: 'Lookup Lists',
       icon: 'cogs',
-      requiresLogin: true
-    }];
+      requiresLogin: false
+    },
+    {
+      state: 'people',
+      linkText: 'People',
+      icon: 'cogs',
+      requiresLogin: false
+    }
+  ];
 
 
     vm.userMenuItems = [{

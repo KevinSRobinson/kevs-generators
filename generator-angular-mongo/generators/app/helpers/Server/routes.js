@@ -7,11 +7,13 @@ const copier = require('../templateCopier.js');
 
 module.exports.generate = function (data, runner, _srcPath, destPath) {
 
-//   var _srcRoutePath = _srcPath + 'Routes/';
+  var _srcRoutePath = _srcPath + '/Feature/';
 //   var destRoutePath = destPath + 'Routes/';
 
+  console.log('_srcRoutePath = ' + _srcRoutePath);
 
   //Core Files
-  copier.copyTpl(runner, _srcPath + '_routes.js', destPath + 'routes.js', data);
+  copier.copyTpl(runner, '_srcRoutePath' + '_routes.js', destPath + 'routes.js', data);
 
+  
 };

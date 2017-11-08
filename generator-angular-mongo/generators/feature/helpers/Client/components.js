@@ -6,11 +6,13 @@ module.exports.generate = function (data, runner, _srcPath, destPath) {
   var _srcHomePath = _srcComponentsPath + '/Home/';
   var _srcFieldsPath = _srcComponentsPath + '/Fields/';
 
-  var destComponentsPath = destPath + data.plural + '/Components/';
+  var destPathBase = destPath + '/' + data.camelCasePlural + '/';
+  var destComponentsPath = destPath + data.camelCasePlural + '/Components/';
   var destListComponentsPath = destComponentsPath + 'List/';
   var destDetailsComponentsPath = destComponentsPath + 'Details/';
   var destHomeComponentsPath = destComponentsPath + 'Home/';
   var destFieldsComponentsPath = destComponentsPath + 'Fields/';
+
 
   data.copier.copyTpl(runner, `${_srcListComponentsPath}_listComponent.js`, `${destListComponentsPath}${data.camelCasePlural}List.js`, data);
   data.copier.copyTpl(runner, `${_srcListComponentsPath}_listComponentTemplate.html`, destListComponentsPath + data.camelCasePlural + 'ListTemplate.html', data);
@@ -26,4 +28,7 @@ module.exports.generate = function (data, runner, _srcPath, destPath) {
   // Feilds
   data.copier.copyTpl(runner, _srcFieldsPath + '_fields.js', destFieldsComponentsPath + data.camelCasePlural + 'Fields.js', data);
   data.copier.copyTpl(runner, _srcFieldsPath + '_fieldsTemplate.html', destFieldsComponentsPath + data.camelCasePlural + 'FieldsTemplate.html', data);
+   
+
+  data.copier.copyTpl(runner, _srcRoute, destPathBase, data);
 };
