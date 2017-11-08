@@ -1,0 +1,15 @@
+{
+    "title": "Widget",
+    "type": "object",
+    "properties": {
+        "widgetId": {
+            "type": "number"
+        },
+        "widgetName": {
+            "type": "string"
+        },
+        "controlName": {
+            "type": "string"
+        }   
+    }
+}

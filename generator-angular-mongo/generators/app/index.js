@@ -12,6 +12,12 @@ const home = require('./helpers/client/home.js');
 const login = require('./helpers/client/login.js');
 const styles = require('./helpers/client/styles.js');
 const navigation = require('./helpers/client/navigation.js');
+const webpack = require('./helpers/client/webpack.js');
+const publicpath = require('./helpers/client/public.js');
+const components = require('./helpers/client/Feature/components.js');
+const routes = require('./helpers/client/Feature/routes.js');
+const modals = require('./helpers/client/Feature/modals.js');
+const dataServices = require('./helpers/client/Feature/dataServices.js');
 
 _.mixin(require('lodash-inflection'));
 module.exports = class extends Generator {
@@ -36,7 +42,7 @@ module.exports = class extends Generator {
       type: 'input',
       name: 'destPath',
       message: 'Enter a Location for the app : ',
-      default: 'C/Source/GeneratedTest/',
+      default: 'C:/Source/GeneratedTest/',
       store: true
     }];
 
@@ -47,19 +53,28 @@ module.exports = class extends Generator {
     });
   }
   writing() {
-    var person = require('./models/person.json');
-    var organisation = require('./models/organisation.json');
+    var person = require('../../../models/person.json');
+    var organisation = require('../../../models/organisation.json');
 
     var models = [];
 
     models.push(person);
     models.push(organisation);
 
+
+
+    var destPath = 'C:/Repos/Generated/';   
+
+
+    //var model = require('./data.json');
+
     var features = require('./features.json');
 
     var appDetails = {
       appName: this.props.appName,
-      appTitle: 'Generated App'
+      appTitle: 'Generated App',
+      data: null,
+      _: _      
     };
 
     this.config.set('destPath', this.props.destPath);
@@ -67,7 +82,7 @@ module.exports = class extends Generator {
     console.log('Saved destPath = ' + configHelper.getOutputPath(this));
 
     var destPath = this.props.destPath;
-    var destClientPath = destPath + 'Src/Client/';
+    var destClientPath = destPath + '/js/client/';
     var destServerPath = destPath + '/Src/Server/';
     var destFeaturesPath = destClientPath + 'Features/';
     var destHomePath = destFeaturesPath + '/Home/';
@@ -75,9 +90,12 @@ module.exports = class extends Generator {
 
     var srcClientPath = './Client/';
     var srcCorePath = srcClientPath + 'Core/';
+    var srcdataServicesorePath = srcClientPath + 'Core/';
+    var srcWebpackPath = srcClientPath + 'Webpack/';
     var srcPackageManagersPath = srcClientPath + 'PackageManagers/';
     var srcGulpPath = srcClientPath + 'Gulp/';
     var srcFeaturesPath = srcClientPath + 'Features/';
+    var srcDataServicesPath = srcClientPath + 'DataServices/';
     var srcNavigationPath = srcFeaturesPath + 'Navigation/';
     var srcHomePath = srcFeaturesPath + 'Home/';
 
@@ -86,26 +104,53 @@ module.exports = class extends Generator {
 
 
     var srcServerPath = './Server/';
+
+    
     packagemanagers.generate(appDetails, this, srcPackageManagersPath, destPath);
     // Client
     core.generate(appDetails, this, srcCorePath, destClientPath);
-    
-    gulp.generate(appDetails, this, srcGulpPath, destPath);
-    styles.generate(appDetails, this, srcStylesPath, srcStylesPath + '/Styles/');
-
+    //styles.generate(appDetails, this, srcStylesPath, srcStylesPath + '/Styles/');
     // // Core Features
     home.generate(appDetails, this, srcHomePath, destHomePath);
-    login.generate(appDetails, this, srcLoginPath, destLoginPath);
-    navigation.generate(appDetails, this, srcNavigationPath, destLoginPath);
-    
+    //login.generate(appDetails, this, srcLoginPath, destLoginPath);
+
+
+
+    navigation.generate(appDetails, this, srcNavigationPath, destHomePath);
+
+    publicpath.generate(appDetails, this, srcClientPath, destPath);
+
+    webpack.generate(appDetails, this, srcWebpackPath, destPath);
+
+
+   
     var data = {
       appName: this.props.appName,
-      models: models,
-      features: features.features,
+      name: models[0].title,
+      useAuth0: false,
+      plural: _.pluralize(models[0].title),
+      camelCase: _.camelCase(models[0].title),
+      camelCasePlural: _.pluralize(_.camelCase(models[0].title)),
+      modalServiceName: _.pluralize(models[0].title) + 'ModelService',
+      serviceName: _.pluralize(models[0].title) + 'DataService',
+      listComponentTemplateUrl: _.pluralize(models[0].title) + 'ListTemplate', 
+      model: models[0],   
+      features: features,
       _: _
     };
 
-    serverCore.generate(data, this, srcServerPath, destServerPath + '/');
+        
+
+
+      //features
+      components.generate(data, this, srcFeaturesPath, destFeaturesPath);
+      dataServices.generate(data, this, srcDataServicesPath, destFeaturesPath);
+      routes.generate(data, this, srcFeaturesPath, destFeaturesPath);
+
+      modals.generate(data, this, srcFeaturesPath, destFeaturesPath);      
+ 
+
+     // serverCore.generate(data, this, srcServerPath, destServerPath + '/');
 
 
   }

@@ -1,0 +1,10 @@
+{
+  "features": {
+    "contact": {
+      "type": "string"
+    },
+    "orgainisation": {
+      "type": "string"
+    }
+  }
+}

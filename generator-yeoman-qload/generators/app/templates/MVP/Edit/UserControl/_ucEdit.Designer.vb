@@ -21,50 +21,69 @@ Partial Class ucEdit<%=data.model.title%>
     Private Sub InitializeComponent()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        
-         <% for (var key in data.model.properties) {  
-         for (var subkey in data.model.properties[key]) {
+        '''''''''''''''''''''''''''''''''''''''''''''''''
+        ''''''''''''    Instantiate    '''''''''''''''''         
+        '''''''''''''''''''''''''''''''''''''''''''''''''
+        <% for (var key in data.model.properties) {  
+           for (var subkey in data.model.properties[key]) { %>
+                <%=data.InstantiateControl(key, subkey)%>
+            <% } %>  
+            Me.lc<%= key %> = New  CustomControls.Editors.QloadLabel()
+            Me.lci<%= key %> = New DevExpress.XtraLayout.LayoutControlItem()
+       <% } %>  
 
-            if(data.model.properties[key][subkey] === "string") { %>
-                   Me.te<%= data._.startCase(key).replace(" ", "") %> = New DevExpress.XtraEditors.TextEdit() 
-            <% }  
-            if(data.model.properties[key][subkey] === "date") { %>
-                   Me.te<%= data._.startCase(key).replace(" ", "") %> = New DevExpress.XtraEditors.DateEdit()  
-            <% }  
-           } %>  
-         Me.lc<%= key %> = New DevExpress.XtraLayout.LayoutControlItem()
-    <% } %>  
-
-       
-
-
+        '''''''''''''''''''''''''''''''''''''''''''''''''
+        '''''''''''''''''''''''''''''''''''''''''''''''''
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
 
 
-        <% 
-        for (var key in data.model.properties) {  %>
-             CType(Me.te<%= data._.startCase(key).replace(" ", "") %>.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-             CType(Me.lc<%= key %>, System.ComponentModel.ISupportInitialize).BeginInit()
-        <% } %>
-       
 
-        Me.SuspendLayout()
-        '
-        'LayoutControl1
-        '
-        <% for (var key in data.model.properties) {  %>
-             Me.LayoutControl1.Controls.Add(Me.te<%= data._.startCase(key).replace(" ", "") %>)
+        '''''''''''''''''''''''''''''''''''''''''''''''''
+        ''''''''''''    BeginInit    '''''''''''''''''         
+        '''''''''''''''''''''''''''''''''''''''''''''''''
+        <% for (var key in data.model.properties) {  
+             for (var subkey in data.model.properties[key]) { %>               
+                    CType(Me.lci<%= key%>, System.ComponentModel.ISupportInitialize).BeginInit()
+             <% } %>
         <% } %>
-       
-        Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControl1.Name = "LayoutControl1"
-        Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(251, 111)
-        Me.LayoutControl1.TabIndex = 0
-        Me.LayoutControl1.Text = "LayoutControl1"
+         Me.SuspendLayout()
+
+
+
+
+
+
+          ' '''''''''''''''''''''''''''''''''''''''''''''''''
+        ''''''''''''    Add to Layout Control   '''''''''''''''''         
+        '''''''''''''''''''''''''''''''''''''''''''''''''
+                '
+                 <% for (var key in data.model.properties) {  
+             for (var subkey in data.model.properties[key]) { %>               
+                    <%= data.AddTolayoutControl(key, subkey) %>  
+             <% } %>
+        <% } %>
+               
+               
+               
+
+
+
+
+
+                Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
+                Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
+                Me.LayoutControl1.Name = "LayoutControl1"
+                Me.LayoutControl1.Root = Me.LayoutControlGroup1
+                Me.LayoutControl1.Size = New System.Drawing.Size(274, 162)
+                Me.LayoutControl1.TabIndex = 0
+                Me.LayoutControl1.Text = "LayoutControl1"
+
+
+
+
+
         '
         'LayoutControlGroup1
         '
@@ -80,53 +99,50 @@ Partial Class ucEdit<%=data.model.title%>
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(251, 111)
         Me.LayoutControlGroup1.TextVisible = False
+
+
+
+                'lciFollowupDate
+                '
+               
+                 <% for (var key in data.model.properties) {  
+                        for (var subkey in data.model.properties[key]) { %>             
+
+
+                           <%=  data.SetLayoutControl(key, subkey) %>
+
+
+                            Me.lci<%= data._.startCase(key).replace(" ", "") %>.CustomizationFormText = "<%= data._.startCase(key).replace(" ", "") %>"
+                            Me.lci<%= data._.startCase(key).replace(" ", "") %>.Location = New System.Drawing.Point(0, 68)
+                            Me.lci<%= data._.startCase(key).replace(" ", "") %>.Name = "lci<%= data._.startCase(key).replace(" ", "") %>"
+                            Me.lci<%= data._.startCase(key).replace(" ", "") %>.Size = New System.Drawing.Size(274, 17)
+                            Me.lci<%= data._.startCase(key).replace(" ", "") %>.Text = "<%= data._.startCase(key).replace(" ", "") %>"
+                            Me.lci<%= data._.startCase(key).replace(" ", "") %>.TextSize = New System.Drawing.Size(94, 13)
+                    <% } %>
+                <% } %>    
         
+       Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+                Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+                Me.Controls.Add(Me.LayoutControl1)
+                Me.Margin = New System.Windows.Forms.Padding(0)
+                Me.Name = "ucEnquiryFields"
+                Me.Size = New System.Drawing.Size(274, 162)
+                CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
+                Me.LayoutControl1.ResumeLayout(False)
+                Me.LayoutControl1.PerformLayout()
 
-       
-
-        <% for (var key in data.model.properties) {  %>
-            'lc<%= key %>
-            '
-            Me.lc<%= data._.startCase(key).replace(" ", "") %>.Control = Me.te<%= key %>
-            Me.lc<%= data._.startCase(key).replace(" ", "") %>.Location = New System.Drawing.Point(0, 0)
-            Me.lc<%= data._.startCase(key).replace(" ", "") %>.Name = "lc<%= key %>"
-            Me.lc<%= data._.startCase(key).replace(" ", "") %>.Size = New System.Drawing.Size(231, 24)
-            Me.lc<%= data._.startCase(key).replace(" ", "") %>.Text = "<%= data._.startCase(key) %>"
-            Me.lc<%= data._.startCase(key).replace(" ", "") %>.TextSize = New System.Drawing.Size(51, 13)
-
-            'te<%= key %>
-            '
-            Me.te<%= data._.startCase(key).replace(" ", "") %>.Location = New System.Drawing.Point(67, 12)
-            Me.te<%= data._.startCase(key).replace(" ", "") %>.Name = "te<%= data._.startCase(key) %>"
-            Me.te<%= data._.startCase(key).replace(" ", "") %>.Size = New System.Drawing.Size(172, 20)
-            Me.te<%= data._.startCase(key).replace(" ", "") %>.StyleController = Me.LayoutControl1
-            Me.te<%= data._.startCase(key).replace(" ", "") %>.TabIndex = 4
-            '
-            
-
-        <% } %>
-       
-        '
-     
-        '
-        'XtraUserControl1
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.LayoutControl1)
-        Me.Name = "XtraUserControl1"
-        Me.Size = New System.Drawing.Size(251, 111)
-        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
+                  CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit() 
+                 
+                 <% for (var key in data.model.properties) {  
+                        for (var subkey in data.model.properties[key]) { %>     
+                             CType(Me.lci<%= data._.startCase(key).replace(" ", "") %>, System.ComponentModel.ISupportInitialize).EndInit() 
+                    <% } %>
+                <% } %>      
 
 
-        <% for (var key in data.model.properties) {  %>
-            CType(Me.te<%= data._.startCase(key).replace(" ", "") %>.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.lc<%= key %>, System.ComponentModel.ISupportInitialize).EndInit()
-        <% } %>
-
-
+               
+               
+         
         Me.ResumeLayout(False)
 
     End Sub
@@ -134,18 +150,11 @@ Partial Class ucEdit<%=data.model.title%>
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
 
-
-    <% for (var key in data.model.properties) {  
-         for (var subkey in data.model.properties[key]) {
-
-            if(data.model.properties[key][subkey] === "string") { %>
-                 Friend WithEvents te<%= data._.startCase(key).replace(" ", "") %> As DevExpress.XtraEditors.TextEdit    
-            <% }  
-            if(data.model.properties[key][subkey] === "date") { %>
-                 Friend WithEvents te<%= data._.startCase(key).replace(" ", "") %> As DevExpress.XtraEditors.DateEdit    
-            <% }  
-           } %>  
-         Friend WithEvents lc<%= key %> As DevExpress.XtraLayout.LayoutControlItem
+     <% for (var key in data.model.properties) {  
+         for (var subkey in data.model.properties[key]) {   %>
+             <%= data.ControlFields(key, subkey) %>  <% } %>  
+            Friend WithEvents lc<%= key %> As CustomControls.Editors.QloadLabel
+            Friend WithEvents lci<%= key %> As DevExpress.XtraLayout.LayoutControlItem
     <% } %>  
 
 End Class

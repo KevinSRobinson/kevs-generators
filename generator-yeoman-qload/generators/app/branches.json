@@ -1,0 +1,54 @@
+{
+    "title": "Branch",
+    "type": "object",
+    "properties": {
+        "ID": {
+            "type": "string"
+        },
+        "CustomerId": {
+            "type": "number"
+        },
+        "Name": {
+            "type": "string"
+        },
+        "Address1": {
+            "type": "string"
+        },
+        "Address2": {
+            "type": "string"
+        },
+        "Address3": {
+            "type": "string"
+        },
+        "Address4": {
+            "type": "string"
+        },
+        "PostCode": {
+            "type": "string"
+        },
+        "Tel": {
+            "type": "string"
+        },
+        "Fax": {
+            "type": "string"
+        },
+        "Email": {
+            "type": "string"
+        },
+        "Code": {
+            "type": "string"
+        },
+        "SalesRegion": {
+            "type": "number"
+        },
+        "StockistId": {
+            "type": "number"
+        },
+        "Contact": {
+            "type": "number"
+        },
+        "Active": {
+            "type": "bool"
+        }
+    }
+}

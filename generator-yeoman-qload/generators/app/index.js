@@ -10,6 +10,8 @@ const mvpList = require("./list.js");
 const mvpDetails = require("./details.js");
 const mvpMasterDetails = require("./masterDetails.js");
 const viewModel = require("./viewModel.js");
+const repository = require("./repository.js");
+
 
 module.exports = class extends Generator {
   // The name `constructor` is important here
@@ -40,11 +42,13 @@ module.exports = class extends Generator {
       name: 'features',
       message: 'Select Features',
       choices: [
-        {name: 'Details', value : 'Details', checked: true},
+       {name: 'Repository', value : 'Repository', checked: false},
+        {name: 'ViewModel', value : 'ViewModel', checked: false},
+        {name: 'Details', value : 'Details', checked: false},
         {name: 'Edit', value : 'Edit', checked: true},
-        {name: 'List', value : 'List', checked: true},
-        {name: 'MasterDeails', value : 'MasterDeails', checked: true},
-        {name: 'Create', value : 'Create', checked: true},
+        {name: 'List', value : 'List', checked: false},
+        {name: 'MasterDeails', value : 'MasterDeails', checked: false},
+        {name: 'Create', value : 'Create', checked: true}      
       ]
     }
     ];
@@ -65,12 +69,25 @@ module.exports = class extends Generator {
 
   writing() {
 
-    var basepath = "C:/Source/Webapis/QloadWinForms/QloadWinForms/";
+   var model = require('./branches.json');
 
-      viewModel.generate(this, basepath);
 
+      var data = {
+      appName: this.props.appName,
+      name: model.title,
+      plural: _.pluralize(model.title),
+      camelCase: _.camelCase(model.title),
+      camelCasePlural: _.pluralize(_.camelCase(model.title)),
+      model: model,
+      viewModelName: _.pluralize(model.title) + 'ViewModel',  
+      _: _,
+    };
+
+    var basepath = "C:/NewWorkingFolder/FPM-Qload/CrmTraining/Qload.Winforms/CRM/";
+
+    
       if(_.includes(this.props.features, 'List') ) {
-            mvpList.generate(this, basepath);
+            mvpList.generate(this, basepath, data);
       }
 
       if(_.includes(this.props.features, 'Details') ) {
@@ -78,13 +95,22 @@ module.exports = class extends Generator {
       }
      
       if(_.includes(this.props.features, 'Edit') ) {
-           mvpEdit.generate(this, basepath);
+           mvpEdit.generate(this, basepath, data);
       }
 
       if(_.includes(this.props.features, 'Details') ) {
-            mvpMasterDetails.generate(this, basepath);
+            mvpMasterDetails.generate(this, basepath, data);
       }
-   
+
+      if(_.includes(this.props.features, 'ViewModel') ) {
+            viewModel.generate(this, basepath, data);
+      }
+
+      if(_.includes(this.props.features, 'Repository') ) {
+            repository.generate(this, basepath, data);
+      }
+     
+
      
   }
   bower() {
