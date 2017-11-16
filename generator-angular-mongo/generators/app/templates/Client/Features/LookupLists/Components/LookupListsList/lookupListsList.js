@@ -3,7 +3,7 @@ var lookupListsList = {
         allowChanges: '@'
     },
     controllerAs: "vm",
-    templateUrl: "src/client/Features//LookupLists/Components/LookupListsList/lookupListsList.Html",
+    template: require('raw-loader!./lookupListsList.Html'),    
     controller: function (lookupListsDataService, lookupListsModalService) {
         var vm = this;
 

@@ -1,6 +1,6 @@
 var <%=data.camelCase%>sHome = {
     controllerAs: "vm",
-    templateUrl: '<%=data.camelCase%>sHome.Html',
+    template: require('raw-loader!./<%=data.camelCase%>sHome.Html'),	    
     controller: function () {
         var vm = this;
         vm.<%=data.camelCase%>s = [];

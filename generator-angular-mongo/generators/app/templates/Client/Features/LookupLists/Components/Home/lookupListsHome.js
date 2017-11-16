@@ -1,6 +1,6 @@
 var lookupListsHome = {
 controllerAs: "vm",
-templateUrl: 'src/client/Features//LookupLists/Components/Home/lookupListsHome.Html',
+template: require('raw-loader!./lookupListsHome.Html'),
 controller: function () {
     var vm = this;
 

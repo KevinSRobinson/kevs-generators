@@ -3,6 +3,7 @@ var lookupListsModalService = function ($uibModal) {
 
 	var add = function () {
 		return $uibModal.open({
+			
 			templateUrl: 'src/client/Features/LookupLists/Modals/ModifyLookupListItem/modifyLookupListsModal.Html',
 			controller: "modifyLookupListItemController",
 			controllerAs: 'vm',
