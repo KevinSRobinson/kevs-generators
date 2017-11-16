@@ -1,9 +1,9 @@
 {
   "features": {
-    "people": {
+    "People": {
       "type": "string"
     },
-    "orgainisation": {
+    "Organisations": {
       "type": "string"
     }
   }

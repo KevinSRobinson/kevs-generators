@@ -132,7 +132,11 @@ module.exports = class extends Generator {
       }
     };
 
+<<<<<<< HEAD
     var basepath = "C:/QloadGenerated/";
+=======
+    var basepath = "C:/DevBranch/Qload.Winforms/Entertainment/";
+>>>>>>> d4b5a3d5798a45901a0641d11d34edb70e024299
 
     if (_.includes(this.props.features, 'WebApi')) {
       webapi.generate(this, basepath, data);

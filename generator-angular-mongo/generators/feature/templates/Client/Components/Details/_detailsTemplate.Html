@@ -1,0 +1,19 @@
+<div class="detailsContainer">
+    <my-page-title><%= data.name %> Details</my-page-title>
+    <!-------------->
+    <!--Header bar-->
+    <!-------------->
+           
+    <% for (var key in data.model.properties) {  %>
+    <td>
+      <my-input-field read-only='true'  field-label='<%=key%>' ng-model='vm.<%=data.camelCase %>.<%= data._.startCase(key).replace(' ', '') %>'  <% if (data.model.properties[key].type==='date'
+        ){ %> input-type='datepopup' <% } %>
+          <% if (data.model.properties[key].type === 'lookup' ){ %>
+            input-type='select'
+            <% } %>></my-input-field>
+    </td>
+    <% } %>
+        </uib-tab>
+       
+    
+    </uib-tabset>

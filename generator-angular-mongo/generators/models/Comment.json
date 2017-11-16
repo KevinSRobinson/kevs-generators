@@ -1,0 +1,13 @@
+{
+    "title": "Comment",
+    "plural": "comments",
+    "type": "object",
+    "properties": {
+        "Title": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        }     
+    }
+}

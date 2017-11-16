@@ -1,0 +1,17 @@
+{
+    "title": "Organisation",
+    "plural": "organisations",
+    "type": "object",
+    "properties": {
+        "Name": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "CompanyType": {
+            "type": "string"
+        }      
+    },
+    "required": ["firstName", "lastName"]
+}

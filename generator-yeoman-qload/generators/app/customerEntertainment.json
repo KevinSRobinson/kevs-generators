@@ -11,6 +11,12 @@
         "Notes": {
             "type": "memo"
         },
+        "FirstName": {
+            "type": "string"
+        },
+        "LastName": {
+            "type": "string"
+        },
         "Contact": {
             "type": "lookup"
         },

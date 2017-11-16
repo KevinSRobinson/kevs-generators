@@ -1,7 +1,11 @@
 {
-
+    "parserOptions": {
+        "ecmaVersion": 6
+      },
     "rules": {
-        "linebreak-style": "off"
+        "linebreak-style": "off",
+        "indent": ["off", "tab"],
+        "padded-blocks": "off"
         // "no-const-assign": "warn",
         // "no-this-before-super": "warn",
         // "no-undef": "warn",
