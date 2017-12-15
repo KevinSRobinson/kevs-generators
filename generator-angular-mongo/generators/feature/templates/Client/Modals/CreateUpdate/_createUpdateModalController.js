@@ -16,7 +16,7 @@ var createUpdate<%=data.name%>ModalController = function ($uibModalInstance, <%=
     };
 
     vm.close = function () {
-      //  $uibModalInstance.close();
+       $uibModalInstance.close();
     };
 
     vm.init();
