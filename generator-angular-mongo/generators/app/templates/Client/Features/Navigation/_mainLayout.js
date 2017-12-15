@@ -1,13 +1,4 @@
 ﻿var mainLayout = {
-<<<<<<< HEAD
-	bindings: {
-	allowChanges: '@'
-	},
-	controllerAs: 'vm',
-	template: require('raw-loader!./mainLayoutTemplate.html'),		
-	controller: function () {
-	var vm = this;
-=======
   bindings: {
     allowChanges: '@'
   },
@@ -15,7 +6,6 @@
   template: require('raw-loader!./mainLayoutTemplate.html'),  
   controller: function () {
     var vm = this;
->>>>>>> d4b5a3d5798a45901a0641d11d34edb70e024299
 
     vm.userName = 'Test Username';
 

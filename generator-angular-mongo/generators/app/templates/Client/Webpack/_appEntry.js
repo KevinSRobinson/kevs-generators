@@ -11,10 +11,19 @@ require('./client/Features/Home/Components/Navigation/mainLayout.js');
 require('./Client/Features/Home/routes.js');
 
 
-require('./Client/Features/Person/routes.js');
-require('./Client/Features/Person/Home/peopleHome');
-require('./Client/Features/Person/List/peopleList');
-require('./Client/Features/Person/Fields/personfields');
-require('./Client/Features/Person/Details/personDetails');
-require('./Client/Features/Person/PersondataService');
-require('./Client/Features/Person/Modals/Services/ServicesController.js');
+<% for (var key in data.model.properties) {  
+    
+    var keyName = data._.camelCase(key).replace(' ', '');
+     %>
+     
+     
+    require('./Client/Features/<%=keyName%>/routes.js');
+    require('./Client/Features/<%=keyName%>/Home/peopleHome');
+    require('./Client/Features/<%=keyName%>/List/peopleList');
+    require('./Client/Features/<%=keyName%>/Fields/personfields');
+    require('./Client/Features/<%=keyName%>/Details/personDetails');
+    require('./Client/Features/<%=keyName%>/PersondataService');
+    require('./Client/Features/<%=keyName%>/Modals/Services/ServicesController.js');
+
+
+    <% } %>

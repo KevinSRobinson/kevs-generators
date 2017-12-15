@@ -3,11 +3,7 @@ bindings: {
 	allowChanges: '@'
 },
 controllerAs: 'vm',
-<<<<<<< HEAD
-template: require('raw-loader!./<%=data.plural%>ListTemplate.html'),	
-=======
 template: require('raw-loader!./<%=data.plural%>ListTemplate.html'),
->>>>>>> d4b5a3d5798a45901a0641d11d34edb70e024299
 controller: function ($state, <%=data.serviceName%>, <%=data.modalServiceName%>) {
     var vm = this;
     vm.error = {};
