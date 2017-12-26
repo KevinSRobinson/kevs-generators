@@ -16,7 +16,7 @@
         vm.isAuthenticated = $rootScope.isAuthenticated;
 
     },
-    templateUrl: './src/client/Features/Login/Components/login.html'
+    template: require('raw-loader!./login.html')    
 };
 
 login.$inject = ['$rootScope', 'authService'];

@@ -2,7 +2,7 @@ var lookupListsFields = {
 	bindings: {
 		ngModel: '='
 	},
-	templateUrl: 'src/client/Features//LookupLists/Components/LookupListsFields/lookupListsFields.Html',
+	template: require('raw-loader!./lookupListsFields.Html'),	
 	controllerAs: "vm",
 	controller: function () {
 		var vm = this;

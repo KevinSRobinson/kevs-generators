@@ -10,11 +10,11 @@
              <% } %>
         </tr>
     </thead>
-
+44
     <tr dir-paginate='<%= data.camelCase %> in vm.<%= data.plural %> | filter:vm.contactFilters.textFilter   |itemsPerPage: vm.pageSize  track by $index'>
 
         <% for (var key in data.model.properties) {  %>
-             <td>{{ <%= data.camelCase %>.<%= data._.startCase(key).replace(' ', '') %> %>  }}</td>
+             <td>{{ <%= data.camelCase %>.<%= data._.camelCase(key).replace(' ', '') %> %>  }}</td>
         <% } %>
             
             <td ng-if="vm.showButtons"> 

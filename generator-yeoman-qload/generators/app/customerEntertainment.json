@@ -1,5 +1,5 @@
 {
-    "title": "CustomerComplaint",
+    "title": "Entertainment",
     "type": "object",
     "properties": {
         "Id": {
@@ -9,7 +9,7 @@
             "type": "string"
         },
         "Notes": {
-            "type": "number"
+            "type": "memo"
         },
         "FirstName": {
             "type": "string"
@@ -18,7 +18,7 @@
             "type": "string"
         },
         "Contact": {
-            "type": "number"
+            "type": "lookup"
         },
         "Attendees": {
             "type": "number"

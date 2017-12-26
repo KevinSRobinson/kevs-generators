@@ -1,0 +1,9 @@
+<template>
+  <require from="./nav-bar.html"></require>
+  
+  <nav-bar router.bind="router" auth.bind="auth" authenticated.bind="authenticated"></nav-bar>
+
+  <div class="page-host container">
+    <router-view></router-view>
+  </div>
+</template>

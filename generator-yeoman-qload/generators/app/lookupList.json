@@ -1,0 +1,12 @@
+{
+    "title": "SystemLookupName",
+    "type": "object",
+    "properties": {
+        "Id": {
+            "type": "number"
+        },       
+        "LookupName": {
+           "type": "number"
+        }
+    }
+}
