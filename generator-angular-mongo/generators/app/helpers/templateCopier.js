@@ -14,18 +14,26 @@ var copyTpl = function (runner, source, destinationPath, settings) {
 
 
 
-var copyTpls = function (runner, source, destPath, files) {
 
+
+var copyTpls = function (runner, source, dest, files) {
+  console.log(dest + ' = ' +  chalk.bgYellow(dest));
 
   console.log(chalk.yellow(source));
 
   for (var file in files) {
     try {
 
-      console.log(chalk.white('file ' + file+  ' = ' + files[file]));
 
+      let sourcePath = source + '_' + files[file];
+      let destPath = dest + files[file];
 
-      runner.fs.copyTpl(runner.templatePath( source + '_' + files[file]), runner.destinationPath(destPath + files[file]), {
+      //log(files[file]);
+      //log(sourcePath);
+
+      console.log(destPath + ' = ' +  chalk.bgBlue(destPath));
+
+      runner.fs.copyTpl(runner.templatePath( sourcePath ), runner.destinationPath(destPath), {
         data: settings
       });
 

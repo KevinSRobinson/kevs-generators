@@ -1,28 +1,14 @@
-let srcPaths = function () {
 
-  var _base = "./"
-  let _core = "/";
-  let _client = "/";
+let _base = ""
 
-  var setBasePath = function (path) {
+module.exports =  {
+  setBasePath: function (path) {
     _base = path;
-  }
-
-  var getClient = function(){
-    return _base + 'Client/';
-  };
-
-  var getCore = function(){
-    return getClient() + 'Core/';
-  };
-
-  return {
-    setBasePath: setBasePath,
-    client: getClient,
-    core: getCore
-  }
-}
-module.exports =  srcPaths;
+  },
+  client: _base + 'Client/',
+  core: _base + 'client/',
+  styles:_base + 'Client/Styles/',
+};
 
 
 // var src = function(basePath){

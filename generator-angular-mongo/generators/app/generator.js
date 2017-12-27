@@ -10,20 +10,17 @@ const chalk = require('chalk');
 var corefiles = ['index.html', 'env.js', 'appConfig.js', 'config.json', 'app.js',
 'routes.js', '.bowerrc', 'bower.json', 'package.json'];
 
-var stylefiles = ['_lessStyles.less'];
+var stylefiles = ['lessStyles.less'];
 
 
 let generate = function(runner){
-  // var srcClientPath = './Client/';
-  // var srcCorePath = srcClientPath + 'Core/';
 
+  console.log(chalk.red("srcPaths.core = " + srcPaths.core));
+   console.log(chalk.red("destPaths.base = " + destPaths().base));
 
-  // srcPaths.setBasePath = './';
+   //copier.copyTpls(runner, srcPaths().core(), destPaths.core, corefiles);
 
-   console.log(srcPaths().core());
-   copier.copyTpls(runner, srcPaths().core(), destPaths.core, corefiles);
-
-   copier.copyTpls(runner, srcPaths().core(), destPaths.core, stylefiles);
+   copier.copyTpls(runner, srcPaths.styles, destPaths().base, stylefiles);
 
 }
 

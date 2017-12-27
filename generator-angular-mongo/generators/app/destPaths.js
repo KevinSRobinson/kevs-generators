@@ -1,34 +1,34 @@
-let destPaths = function () {
+module.exports =  function () {
 
-  var _base = ""
-  let setBasePath = function (path) {
+  let _base = "c:/new/generated/";
+  let setBase = function (path) {
     _base = path;
-  }
+  };
 
   let client = _base + '/js/client/';
-  let destServer = _base + '/Src/Server/';
-  let destFeatures = _base + 'Features/';
-  let destHome = _base + '/Home/';
-  let destLogin = _base + 'Login/';
-  let destClient = dest + '/js/client/';
+  let Server = _base + '/Src/Server/';
+  let Features = _base + 'Features/';
+  let Home = _base + '/Home/';
+  let Login = _base + 'Login/';
+  let Client =  + '/js/client/';
 
-  let getOutputPath = function (runner) {
-    return runner.config.get('destPath');
+  let getOutput = function (runner) {
+    return runner.config.get('destpath');
   };
-  let saveOutputPath = function saveOutputPath(runner, destPath) {
-    _base = destPat;
-    return runner.config.set('destPath', destPath);
+  let saveOutput = function saveOutput(runner, destpath) {
+    _base = Pat;
+    return runner.config.set('destpath', destpath);
   };
 
   return {
     setBase: setBase,
+    base: _base,
     client: client,
-    server: destServer,
-    features: destFeatures,
-    homeh: destHome,
-    login: destLogin,
-    getOutputPath: getOutputPath,
-    saveOutputPath: saveOutputPath
+    server: Server,
+    features: Features,
+    home: Home,
+    login: Login,
+    getOutput: getOutput,
+    saveOutput: saveOutput
   }
-}
-module.exports.destPaths = destPaths;
+};
