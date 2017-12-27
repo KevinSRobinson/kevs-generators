@@ -5,7 +5,6 @@ const yosay = require('yosay');
 const _ = require('lodash');
 const configHelper = require('../helpers/configHelper');
 const core = require('./helpers/client/core.js');
-const gulp = require('./helpers/client/gulp.js');
 const packagemanagers = require('./helpers/client/package-managers.js');
 const serverCore = require('./helpers/Server/serverCore.js');
 const home = require('./helpers/client/home.js');
@@ -93,7 +92,6 @@ module.exports = class extends Generator {
     var srcdataServicesorePath = srcClientPath + 'Core/';
     var srcWebpackPath = srcClientPath + 'Webpack/';
     var srcPackageManagersPath = srcClientPath + 'PackageManagers/';
-    var srcGulpPath = srcClientPath + 'Gulp/';
     var srcFeaturesPath = srcClientPath + 'Features/';
     var srcDataServicesPath = srcClientPath + 'DataServices/';
     var srcNavigationPath = srcFeaturesPath + 'Navigation/';
@@ -146,11 +144,10 @@ module.exports = class extends Generator {
       components.generate(data, this, srcFeaturesPath, destFeaturesPath);
       dataServices.generate(data, this, srcDataServicesPath, destFeaturesPath);
       routes.generate(data, this, srcFeaturesPath, destFeaturesPath);
-
       modals.generate(data, this, srcFeaturesPath, destFeaturesPath);      
  
 
-      //serverCore.generate(data, this, srcServerPath, destServerPath + '/');
+      serverCore.generate(data, this, srcServerPath, destServerPath + '/');
 
 
   }
