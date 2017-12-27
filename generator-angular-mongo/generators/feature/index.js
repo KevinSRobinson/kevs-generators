@@ -1,6 +1,7 @@
 'use strict';
 const Generator = require('yeoman-generator');
 const _ = require('lodash');
+const configHelper = require('../helpers/configHelper');
 
 // Client
 const components = require('./helpers/Client/components.js');
@@ -39,7 +40,7 @@ module.exports = class extends Generator {
     var feature = require('../models/' + this.props.feature + '.json');
 
     // Main Output Path
-    var destPath = 'C:/Repos/Generated/';
+    var destPath = configHelper.getOutputPath(this)
 
     // Client Source Paths
     var srcClientPath = './Client/';
@@ -71,7 +72,7 @@ module.exports = class extends Generator {
 
     // Client
     dataServices.generate(data, this, srcClientPath, destFeaturesPath);
-    featureRoutes.generate(data, this, srcClientPath, destFeaturesPath);
+
     components.generate(data, this, srcClientPath, destFeaturesPath);
 
     // Server

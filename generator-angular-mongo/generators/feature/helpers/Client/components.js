@@ -30,5 +30,5 @@ module.exports.generate = function (data, runner, _srcPath, destPath) {
   data.copier.copyTpl(runner, _srcFieldsPath + '_fieldsTemplate.html', destFieldsComponentsPath + data.camelCasePlural + 'FieldsTemplate.html', data);
    
 
-  data.copier.copyTpl(runner, _srcRoute, destPathBase, data);
+  //data.copier.copyTpl(runner, _srcRoute, destPathBase, data);
 };

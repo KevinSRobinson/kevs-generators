@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var cors = require('cors');
 var errorHandler = require('./routes/utils/errorHandler')();
-var config = require('../../gulp.config')();
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var port = process.env.PORT || config.port;
