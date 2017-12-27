@@ -1,4 +1,31 @@
-    // var src = function(basePath){
+let srcPaths = function () {
+
+  var _base = "./"
+  let _core = "/";
+  let _client = "/";
+
+  var setBasePath = function (path) {
+    _base = path;
+  }
+
+  var getClient = function(){
+    return _base + 'Client/';
+  };
+
+  var getCore = function(){
+    return getClient() + 'Core/';
+  };
+
+  return {
+    setBasePath: setBasePath,
+    client: getClient,
+    core: getCore
+  }
+}
+module.exports =  srcPaths;
+
+
+// var src = function(basePath){
 
     //   var _ClientPath = './Client/';
     //   var _CorePath = _ClientPath + 'Core/';

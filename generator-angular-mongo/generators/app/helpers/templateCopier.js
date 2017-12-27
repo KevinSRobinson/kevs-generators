@@ -1,10 +1,11 @@
 const chalk = require('chalk');
+const settings = require('../settings');
 
 
-var copyTpl = function (runner, source, destinationPath, data) {
+var copyTpl = function (runner, source, destinationPath, settings) {
   try {
     runner.fs.copyTpl(runner.templatePath(source), runner.destinationPath(destinationPath), {
-      data: data
+      settings: settings
     });
   } catch (err) {
     console.log(chalk.red(err));
@@ -13,19 +14,26 @@ var copyTpl = function (runner, source, destinationPath, data) {
 
 
 
-var copyTpls = function (runner, source, destPath, data, files) {
+var copyTpls = function (runner, source, destPath, files) {
+
+
+  console.log(chalk.yellow(source));
 
   for (var file in files) {
     try {
 
-      runner.fs.copyTpl(runner.templatePath( source + '_' + file), runner.destinationPath(destPath + file), {
-        data: data
+      console.log(chalk.white('file ' + file+  ' = ' + files[file]));
+
+
+      runner.fs.copyTpl(runner.templatePath( source + '_' + files[file]), runner.destinationPath(destPath + files[file]), {
+        data: settings
       });
 
 
 
     } catch (err) {
       console.log(chalk.red(err));
+      //console.log(chalk.green(files(file)));
     }
   }
 };

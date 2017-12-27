@@ -1,5 +1,5 @@
 ﻿{
-  "name": "<%=appDetails.appName%>",
+  "name": "<%=data.appName%>",
   "version": "0.0.2",
   "author": "Kevin Robinson",
   "scripts": {
