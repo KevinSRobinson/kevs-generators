@@ -3,6 +3,8 @@ const Generator = require('yeoman-generator');
 const _ = require('lodash');
 const configHelper = require('../helpers/configHelper');
 
+const featureGenerator = require('./generator');
+
 // Client
 const components = require('./helpers/Client/components.js');
 const featureRoutes = require('./helpers/Client/routes.js');
@@ -37,48 +39,10 @@ module.exports = class extends Generator {
     });
   }
   writing() {
+
+
     var feature = require('../models/' + this.props.feature + '.json');
 
-    // Main Output Path
-    var destPath = configHelper.getOutputPath(this)
-
-    // Client Source Paths
-    var srcClientPath = './Client/';
-
-    // Client Destination Paths
-    var destClientPath = destPath + 'Src/Client/';
-    var destFeaturesPath = destClientPath + 'Features/';
-
-    // Server Source Paths
-    var srcServerPath = './Server/';
-
-    // Server Destination Paths
-    var destServerPath = destPath + 'Src/Server/';
-
-    var data = {
-      appName: this.props.appName,
-      name: feature.title,
-      useAuth0: this.props.useAuth0,
-      plural: _.pluralize(feature.title),
-      camelCase: _.camelCase(feature.title),
-      camelCasePlural: _.pluralize(_.camelCase(feature.title)),
-      modalServiceName: _.pluralize(feature.title) + 'ModelService',
-      serviceName: _.pluralize(feature.title) + 'DataService',
-      listComponentTemplateUrl: _.pluralize(feature.title) + 'ListTemplate',
-      _: _,
-      model: feature,
-      copier: require('./templateCopier.js')
-    };
-
-    // Client
-    dataServices.generate(data, this, srcClientPath, destFeaturesPath);
-
-    components.generate(data, this, srcClientPath, destFeaturesPath);
-
-    // Server
-    serverRoutes.generate(data, this, srcServerPath, destServerPath);
-    serverModel.generate(data, this, srcServerPath, destServerPath);
-    serverApi.generate(data, this, srcServerPath, destServerPath);
-    serverController.generate(data, this, srcServerPath, destServerPath);
+    featureGenerator.generate(this, feature);
   }
 };

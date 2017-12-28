@@ -1,16 +1,83 @@
- var copier = function (runner, source, destinationPath, data) {
+const chalk = require('chalk');
+const settings = require('../settings');
+
+
+var copyTpl = function (runner, source, destinationPath, settings) {
+  try {
     runner.fs.copyTpl(runner.templatePath(source), runner.destinationPath(destinationPath), {
-      data: data
+      settings: settings
     });
-  };
+  } catch (err) {
+    console.log(chalk.red(err));
+  }
+};
 
 
-  var copy = function (runner, source, destinationPath, data) {
-    runner.fs.copy(runner.templatePath(source), runner.destinationPath(destinationPath), {
-      data: data
-    });
-  };
 
 
-  module.exports.copyTpl = copier
-  module.exports.copy = copy
+
+var copyTpls = function (runner, source, dest, files) {
+  console.log('dest = '  +  chalk.bgYellow(dest));
+
+  console.log(chalk.yellow(source));
+
+  for (var file in files) {
+    try {
+
+
+      let sourcePath = source + '_' + files[file];
+      let destPath = dest + files[file];
+
+      //log(files[file]);
+      //log(sourcePath);
+
+      console.log('destPath = '  +  chalk.bgYellow(destPath));
+
+      runner.fs.copyTpl(runner.templatePath( sourcePath ), runner.destinationPath(destPath), {
+        data: settings
+      });
+
+
+
+    } catch (err) {
+      console.log(chalk.red(err));
+      //console.log(chalk.green(files(file)));
+    }
+  }
+};
+
+
+var copyTplsWithData = function (runner, source, dest, files, data) {
+  console.log('dest = '  +  chalk.bgYellow(dest));
+
+  console.log(chalk.yellow(source));
+
+  for (var file in files) {
+    try {
+
+
+      let sourcePath = source + '_' + files[file];
+      let destPath = dest + files[file];
+
+      //log(files[file]);
+      //log(sourcePath);
+
+      console.log('destPath = '  +  chalk.bgYellow(destPath));
+
+      runner.fs.copyTpl(runner.templatePath( sourcePath ), runner.destinationPath(destPath), {
+        data: data
+      });
+
+
+
+    } catch (err) {
+      console.log(chalk.red(err));
+      //console.log(chalk.green(files(file)));
+    }
+  }
+};
+
+
+module.exports.copyTplsWithData = copyTplsWithData;
+module.exports.copyTpls = copyTpls;
+module.exports.copyTpl = copyTpl;

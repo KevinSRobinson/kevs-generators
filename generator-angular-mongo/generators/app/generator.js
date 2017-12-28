@@ -1,4 +1,4 @@
-const copier = require('./helpers/templateCopier');
+const copier = require('../../../Core/templateCopier');
 const srcPaths = require('./srcPaths.js');
 const destPaths = require('./destPaths');
 var features = require('./features.json');
@@ -17,10 +17,16 @@ let generate = function(runner){
 
   console.log(chalk.red("srcPaths.core = " + srcPaths.core));
    console.log(chalk.red("destPaths.base = " + destPaths().base));
+   console.log(chalk.red("destPaths.client = " + destPaths().client));
 
-   //copier.copyTpls(runner, srcPaths().core(), destPaths.core, corefiles);
+try {
+  copier.copyTpls(runner, srcPaths.core, destPaths().core, corefiles);
+} catch (error) {
+  console.log(chalk.red("error = " + error));
+}
 
-   copier.copyTpls(runner, srcPaths.styles, destPaths().base, stylefiles);
+
+ //  copier.copyTpls(runner, srcPaths.styles,destPaths().base, stylefiles);
 
 }
 

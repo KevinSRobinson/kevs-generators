@@ -1,13 +1,15 @@
 
 let _base = ""
+let _client = _base + 'Client/';
+let _core = _client + 'Core/';
 
 module.exports =  {
   setBasePath: function (path) {
     _base = path;
   },
-  client: _base + 'Client/',
-  core: _base + 'client/',
-  styles:_base + 'Client/Styles/',
+  client: _client,
+  core: _core ,
+  styles: _core + 'Client/Styles/',
 };
 
 

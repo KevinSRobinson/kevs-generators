@@ -3,10 +3,12 @@
     <!-------------->
     <!--Header bar-->
     <!-------------->
-           
-    <% for (var key in data.model.properties) {  %>
+
+    <% for (var key in data.properties) {  %>
     <td>
-      <my-input-field read-only='true'  field-label='<%=key%>' ng-model='vm.<%=data.camelCase %>.<%= data._.startCase(key).replace(' ', '') %>'  <% if (data.model.properties[key].type==='date'
+      <my-input-field read-only='true'
+                      field-label='<%=key%>'
+                      ng-model='vm.<%=data.name %>.<%= data._.startCase(key).replace(' ', '') %>'  <% if (data.model.properties[key].type==='date'
         ){ %> input-type='datepopup' <% } %>
           <% if (data.model.properties[key].type === 'lookup' ){ %>
             input-type='select'
@@ -14,6 +16,6 @@
     </td>
     <% } %>
         </uib-tab>
-       
-    
+
+
     </uib-tabset>

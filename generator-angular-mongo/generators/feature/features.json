@@ -1,0 +1,10 @@
+{
+  "features": {
+    "People": {
+      "type": "string"
+    },
+    "Organisations": {
+      "type": "string"
+    }
+  }
+}
