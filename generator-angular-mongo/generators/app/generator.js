@@ -1,7 +1,7 @@
 const copier = require('../../../Core/templateCopier');
 const srcPaths = require('./srcPaths.js');
 const destPaths = require('./destPaths');
-var features = require('./features.json');
+
 var person = require('../../../models/person.json');
 var organisation = require('../../../models/organisation.json');
 var models = [];

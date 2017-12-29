@@ -1,13 +1,13 @@
-const copier = require('../templateCopier.js');
+// const copier = require('../templateCopier.js');
 
-module.exports.generate = function (runner, srcPath, destPath) {
+// module.exports.generate = function (runner, srcPath, destPath) {
 
-  var files
+//   var files
 
-  copier.copyTpls(runner, srcPath, destPath, files);
+//   copier.copyTpls(runner, srcPath, destPath, files);
 
 
 
-};
+// };
 
 

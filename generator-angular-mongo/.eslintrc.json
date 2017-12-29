@@ -1,0 +1,11 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+    "rules": {
+        "linebreak-style": "off",
+        "padded-blocks": "off",
+        "no-unused-vars": ["error",  "all"],
+        "camelcase": ["error", { "properties": "never" }]
+    }
+}

@@ -1,4 +1,5 @@
 let _base = './client/';
+let _serverBase = './Server/';
 
 let _baseComponents = _base + '/components/';
 let _modalsBase = _base + '/Modals/';
@@ -6,29 +7,36 @@ let _routesBase = _base + '/Routes/';
 
 
 let _componets  = {
-  list : _baseComponents + '/list/',
-  details : _baseComponents + '/details/',
-  home : _baseComponents + '/home/',
-  fields : _baseComponents + '/fields/'
+	list : _baseComponents + '/list/',
+	details : _baseComponents + '/details/',
+	home : _baseComponents + '/home/',
+	fields : _baseComponents + '/fields/'
 }
 
 let _modals = {
-  modify: _modalsBase +  "CreateUpdate/",
-  delete: _modalsBase +  "Delete/",
-  services: _modalsBase +  "Services/"
+	modify: _modalsBase +  "CreateUpdate/",
+	delete: _modalsBase +  "Delete/",
+	services: _modalsBase +  "Services/"
 }
 
+let _server = {
+	 api : _serverBase + '/Api/',
+	 controllers : _serverBase + '/Controllers/',
+	 models : _serverBase + '/Models/',
+	 routes : _serverBase + '/Routes/',
+}
 
 module.exports = {
-  setBasePath: function (path) {
-    _base = path;
-  },
-  base: _base,
-  componets: _componets,
-  baseComponents: _baseComponents,
-  modalsBase: _modalsBase,
-  modals: _modals,
-  routes: _routesBase
+	setBasePath: function (path) {
+		_base = path;
+	},
+	base: _base,
+	componets: _componets,
+	baseComponents: _baseComponents,
+	modalsBase: _modalsBase,
+	modals: _modals,
+	routes: _routesBase,
+	server: _server
 };
 
 

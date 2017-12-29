@@ -1,5 +1,7 @@
 let _base = "c:/new/generated/";
 let _featureBase = "";
+let Client = +'js/client/';
+
 const chalk = require('chalk');
 let setBase = function (path) {
   _base = path;
@@ -10,24 +12,35 @@ let setFeatureBase = function (path) {
   console.log(chalk.blue("_featureBase = " + _featureBase));
 };
 
+
+let getFeatureBase = function (feature) {
+  return _base + "/Features/" + feature + "/";
+};
 let getFeature = function (feature, method) {
   return _base + "/Features/" + feature + "/" + method + "/";
 };
 let getModal = function (feature, method) {
   return _base + "/Features/" + feature + "/Modals/" + method + "/";
 };
+let getServer = function (feature, method) {
+  return _base + "/Server/" + method + "/" + feature + "/";
+};
 
 let client = _base + 'js/client/';
 let features = client + 'features/';
 
-
 let featureMethod = function (feature, method){
+  return  getFeature(feature, method);
+}
+let method = function (feature, method){
   return  getFeature(feature, method);
 }
 let modalMethod = function (feature, method){
   return  getModal(feature, method);
 }
-
+let serverMethod = function (feature, method){
+  return  getServer(feature, method);
+}
 
 
 let _fields =  _featureBase +  'fields/';
@@ -38,7 +51,7 @@ let Server = _base + 'src/Server/';
 
 
 let Login = _base + 'login/';
-let Client = +'js/client/';
+
 
 let getOutput = function (runner) {
   return runner.config.get('destpath');
@@ -61,7 +74,8 @@ module.exports = {
   base: _base,
   client: client,
   fields: _fields,
-  home: _home,
+	home: _home,
+	method: method,
   featureMethod: featureMethod,
   modalMethod: modalMethod,
   server: Server,
@@ -72,14 +86,15 @@ module.exports = {
   modals: _modals,
   getOutput: getOutput,
   saveOutput: saveOutput,
-  setFeatureBase: setFeatureBase
+  setFeatureBase: setFeatureBase,
+	getFeatureBase: getFeatureBase,
+	serverMethod: serverMethod
 };
 
 
 
 
 
-return
 // // Server Destination Paths
 // var destServerPath = destPath + 'Src/Server/';
 // // Client Destination Paths

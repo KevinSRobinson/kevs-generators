@@ -48,12 +48,8 @@ module.exports = class extends Generator {
   writing() {
 
 
-    var destPath = 'C:/Repos/GeneratedAur/';   
+    var destPath = 'C:/Repos/GeneratedAur/';
 
-
-    //var model = require('./data.json');
-   // var features = require('./features.json');
-    // Core.generate(this, basepath);
 
     var data = {
        appName: this.props.appName,
@@ -63,7 +59,7 @@ module.exports = class extends Generator {
       // camelCasePlural: _.pluralize(_.camelCase(model.title)),
       // modalServiceName: _.pluralize(model.title) + 'ModelService',
       // serviceName: _.pluralize(model.title) + 'DataService',
-      // listComponentTemplateUrl: _.pluralize(model.title) + 'ListTemplate',     
+      // listComponentTemplateUrl: _.pluralize(model.title) + 'ListTemplate',
       // features: features,
       _: _
     };
@@ -75,14 +71,14 @@ module.exports = class extends Generator {
     // var destFeaturesPath = destClientPath + 'Features/';
     // var destDataServicesPath = destClientPath + 'DataServices/';
     // var destHomePath = destFeaturesPath + '/Home/';
-  
+
     // var destNavigationPath = destFeaturesPath + 'Navigation/';
     // var destLoginPath = destFeaturesPath + 'Login/';
     // var destLookupListsPath = destFeaturesPath + 'LookupLists/';
 
 
      var srcClientPath = './';
-  
+
    var srcCorePath = srcClientPath + '/';
     // var srcPackageManagersPath = srcClientPath + 'PackageManagers/';
     // var srcGulpPath = srcClientPath + 'Gulp/';
@@ -90,7 +86,7 @@ module.exports = class extends Generator {
     // var srcFeaturesPath = srcClientPath + 'Features/';
     // var srcHomePath = srcFeaturesPath + 'Home/';
 
-    // var srcFeaturePath = srcClientPath + 'Features/Feature/';   
+    // var srcFeaturePath = srcClientPath + 'Features/Feature/';
     // var srcModalsPath = srcFeaturePath + 'Modals/';
     // var srcLookupListsPath = srcClientPath + '/Features/LookupLists/';
 
@@ -98,7 +94,7 @@ module.exports = class extends Generator {
     // var srcLoginPath = srcFeaturesPath + 'Login/';
     // var srcStylesPath = srcClientPath + 'Styles/';
     // var srcNavigationPath = srcFeaturesPath + 'Navigation/';
-   
+
 
     // var srcServerPath = './Server/';
 
@@ -107,7 +103,7 @@ module.exports = class extends Generator {
     src.generate(data, this, srcCorePath, destClientPath);
     staticFiles.generate(data, this, srcCorePath, destClientPath);
     tests.generate(data, this, srcCorePath, destClientPath);
-    
+
   }
 
   install() {}
