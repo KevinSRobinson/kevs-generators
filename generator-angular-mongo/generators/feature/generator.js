@@ -1,6 +1,8 @@
 
 const srcPaths = require('./srcPaths.js');
 const destPaths = require('./destPaths');
+const featureFiles  = require('./featureFiles');
+const features  = require('./features');
 
 var models = [];
 const _ = require('lodash');
@@ -18,50 +20,16 @@ const copier = require('../../../Core/templateCopier');
 const chalk = require('chalk');
 
 
-var detailsComponentsFiles = ['details.js', 'detailsTemplate.html'];
 
 
-let person =require('../models/person.json');
-let comment =require('../models/comment.json');
-let organisation =require('../models/organisation.json');
 
-let features = [person, comment, organisation];
 
 let generate = function (runner, feature) {
 
   // Main Output Path
-  var destPath = destPaths().features;
-
-  // Client Source Paths
-  var srcClientPath = './Client/';
-
-  // Client Destination Paths
-  var destClientPath = destPath + 'Src/Client/';
-  var destFeaturesPath = destClientPath + 'Features/';
-
-  // Server Source Paths
-  var srcServerPath = './Server/';
-
-  // Server Destination Paths
-  var destServerPath = destPath + 'Src/Server/';
-
-  //var feature = require('../models/' + this.props.feature + '.json');
-
-
-
-  // console.log(chalk.blue("srcPaths.core = " + srcPaths.core));
-  // console.log(chalk.blue("srcPaths.base = " + srcPaths.base));
-  // console.log(chalk.blue("destPaths.base = " + destPaths().base));
-  // console.log(chalk.blue("destPaths.client = " + destPaths().client));
-
-
-
-
+  var destPath = destPaths.features;
 
   for (var feature in features) {
-
-
-
     var data = {
       name: features[feature].title,
       model: features[feature],
@@ -69,12 +37,32 @@ let generate = function (runner, feature) {
       _:_
     };
 
-    console.log(chalk.blue("feature = " + features[feature].properties));
-    console.log(chalk.blue("title = " + features[feature].title));
-    console.log(chalk.blue("data = " + data.properties));
+    var copy = function(source, dest, files) {
+      copier.copyTplsWithData(runner, source, dest, files, data);
+    }
+    //console.log(chalk.blue("title = " + features[feature].title));
+    destPaths.setFeatureBase(features[feature].title);
 
-    copier.copyTplsWithData(runner, srcPaths.details, destPaths().client, detailsComponentsFiles, data);
+    var feature = features[feature].title;
+
+
+    // Routes
+    //copy(srcPaths.featureBase.route, destPaths.details, featureFiles.details);
+    // console.log(chalk.blue("destPaths.details = " + destPaths.details(feature, "Details")));
+    // console.log(chalk.blue("destPaths.details = " + destPaths.featureBase));
+
+    // Components
+     copy(srcPaths.componets.details, destPaths.featureMethod(feature, "Details"), featureFiles.details);
+     copy(srcPaths.componets.fields, destPaths.featureMethod(feature, "Fields"), featureFiles.fields);
+     copy(srcPaths.componets.home, destPaths.featureMethod(feature, "Home"), featureFiles.home);
+     copy(srcPaths.componets.list, destPaths.featureMethod(feature, "List"), featureFiles.list);
+
+    // // // Modals
+     copy(srcPaths.modals.modify, destPaths.modalMethod(feature, "modify"), featureFiles.modifyModal);
+     copy(srcPaths.modals.delete, destPaths.modalMethod(feature, "delete"),  featureFiles.deleteModal);
+     copy(srcPaths.modals.services, destPaths.modalMethod(feature, "services"), featureFiles.modalServices);
   };
+
 
 
 
@@ -92,3 +80,20 @@ let generate = function (runner, feature) {
 }
 
 module.exports.generate = generate;
+
+
+
+
+
+
+
+
+ // console.log(chalk.blue("feature = " + features[feature].properties));
+    // console.log(chalk.blue("title = " + features[feature].title));
+    // console.log(chalk.blue("data = " + data.properties));
+    // console.log(chalk.blue("feature = " + features[feature].properties));
+
+    // console.log(chalk.blue("destPaths.client, = " + destPaths.client));
+    // console.log(chalk.blue("destPaths.client, = " + destPaths.details));
+    // console.log(chalk.blue("destPaths.fields = " + destPaths.fields));
+

@@ -1,20 +1,43 @@
-let _base = './client/components/';
-let _listComponents = _base + '/list/';
-let _details = _base + '/details/';
-let _home = _base + '/home/';
-let _fields = _base + '/fields/';
+let _base = './client/';
+
+let _baseComponents = _base + '/components/';
+let _modalsBase = _base + '/Modals/';
+let _routesBase = _base + '/Routes/';
+
+
+let _componets  = {
+  list : _baseComponents + '/list/',
+  details : _baseComponents + '/details/',
+  home : _baseComponents + '/home/',
+  fields : _baseComponents + '/fields/'
+}
+
+let _modals = {
+  modify: _modalsBase +  "CreateUpdate/",
+  delete: _modalsBase +  "Delete/",
+  services: _modalsBase +  "Services/"
+}
+
 
 module.exports = {
   setBasePath: function (path) {
     _base = path;
   },
   base: _base,
-  list: _listComponents,
-  details: _details,
-  home: _home,
-  fields: _fields
+  componets: _componets,
+  baseComponents: _baseComponents,
+  modalsBase: _modalsBase,
+  modals: _modals,
+  routes: _routesBase
 };
 
+
+
+  // // Client Source Paths
+  // var srcClientPath = './Client/';
+
+  // // Server Source Paths
+  // var srcServerPath = './Server/';
 
 // var src = function(basePath){
 
