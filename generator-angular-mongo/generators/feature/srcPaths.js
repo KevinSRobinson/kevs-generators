@@ -5,7 +5,6 @@ let _baseComponents = _base + '/components/';
 let _modalsBase = _base + '/Modals/';
 let _routesBase = _base + '/Routes/';
 
-
 let _componets  = {
 	list : _baseComponents + '/list/',
 	details : _baseComponents + '/details/',

@@ -47,6 +47,9 @@ var copyTpls = function (runner, source, dest, files) {
 };
 
 
+var fs = require('fs');
+
+
 var copyTplsWithData = function (runner, source, dest, files, data) {
   console.log('dest = '  +  chalk.bgYellow(dest));
 
@@ -61,8 +64,9 @@ var copyTplsWithData = function (runner, source, dest, files, data) {
 
       //log(files[file]);
       //log(sourcePath);
-
-      console.log('destPath = '  +  chalk.bgYellow(destPath));
+      // var files = fs.readdirSync('/' + source + "/");
+      // console.log('sourcePath = '  +  yellow(source));
+      // console.log('files = '  +  blue(files));
 
       runner.fs.copyTpl(runner.templatePath( sourcePath ), runner.destinationPath(destPath), {
         data: data

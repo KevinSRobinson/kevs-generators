@@ -1,6 +1,6 @@
 const src = require('./srcPaths.js');
 const dest = require('./destPaths');
-const featureFiles  = require('./featureFiles');
+const templates  = require('./featureFiles');
 const features  = require('./features');
 const _ = require('lodash');
 const copier = require('../../../Core/templateCopier');
@@ -23,29 +23,36 @@ let generate = function (runner, feature) {
 
 
     //Routes
-   	copy(src.featureBase, dest.getFeatureBase(feature), featureFiles.routes);
+   	copy(src.featureBase, dest.getFeatureBase(feature), templates.routes);
 		console.log("src.componets.details = " + src.componets.details);
     // Components
-	  copy(src.componets.details, dest.featureMethod(feature, "Details"), featureFiles.details);
-  	copy(src.componets.fields, dest.featureMethod(feature, "Fields"), featureFiles.fields);
-  	copy(src.componets.home, dest.featureMethod(feature, "Home"), featureFiles.home);
-  	copy(src.componets.list, dest.featureMethod(feature, "List"), featureFiles.list);
+	  copy(src.componets.details, dest.getClientPath(feature, "Components" ,"Details"), templates.details);
+  	copy(src.componets.fields, dest.getClientPath(feature, "Components" ,"Fields"), templates.fields);
+  	copy(src.componets.home, dest.getClientPath(feature, "Components" ,"Home"), templates.home);
+  	copy(src.componets.list, dest.getClientPath(feature, "Components" ,"List"), templates.list);
 
-    // // // // Modals
-  	copy(src.modals.modify, dest.modalMethod(feature, "Modify"), featureFiles.modifyModal);
-  	copy(src.modals.delete, dest.modalMethod(feature, "Delete"),  featureFiles.deleteModal);
-		copy(src.modals.services, dest.modalMethod(feature, "Services"), featureFiles.modalServices);
+    // Modals
+  	copy(src.modals.modify, dest.getClientPath(feature, "Modals" ,"Modify"), templates.modifyModal);
+  	copy(src.modals.delete, dest.getClientPath(feature, "Modals" ,"Delete"),  templates.deleteModal);
+		copy(src.modals.services, dest.getClientPath(feature, "Modals" ,"Services"), templates.modalServices);
 
 		//Server
-		copy(src.server.api, dest.serverMethod(feature, "Apis"), featureFiles.server.api);
-	  copy(src.server.controllers, dest.serverMethod(feature, "Controllers"), featureFiles.server.controllers);
-	  copy(src.server.models, dest.serverMethod(feature, "Models"), featureFiles.server.models);
-	  copy(src.server.routes, dest.serverMethod(feature, "Routes"), featureFiles.server.routes);
+		copy(src.server.api, dest.serverMethod(feature, "Apis"), templates.server.api);
+	  copy(src.server.controllers, dest.serverMethod(feature, "Controllers"), templates.server.controllers);
+	  copy(src.server.models, dest.serverMethod(feature, "Models"), templates.server.models);
+	  copy(src.server.routes, dest.serverMethod(feature, "Routes"), templates.server.routes);
 
 	};
 
 
+// let sd =[
+// 	src.componets.details, dest.getClientPath(feature, "Components" ,"Details"),
 
+// 	copy(src.componets.details, dest.getClientPath(feature, "Components" ,"Details"), featureFiles.details);
+//   	copy(src.componets.fields, dest.getClientPath(feature, "Components" ,"Fields"), featureFiles.fields);
+//   	copy(src.componets.home, dest.getClientPath(feature, "Components" ,"Home"), featureFiles.home);
+//   	copy(src.componets.list, dest.getClientPath(feature, "Components" ,"List"), featureFiles.list);
+// ]
 
 
   // // Client
