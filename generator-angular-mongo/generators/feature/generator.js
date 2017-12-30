@@ -15,8 +15,11 @@ let generate = function (runner, feature) {
 			_:_
 		};
 
-	  var copy = function(source, dest, files) {
-		copier.copyTplsWithData(runner, source, dest, files, data);
+	  var copy = function(source, dest) {
+
+			src.getClientPath("Components", "Details")
+
+		copier.copyTplsWithData(runner, source, dest, data);
 	};
 
   	var feature = features[feature].title;
@@ -24,23 +27,28 @@ let generate = function (runner, feature) {
 
     //Routes
    	copy(src.featureBase, dest.getFeatureBase(feature), templates.routes);
-		console.log("src.componets.details = " + src.componets.details);
-    // Components
-	  copy(src.componets.details, dest.getClientPath(feature, "Components" ,"Details"), templates.details);
-  	copy(src.componets.fields, dest.getClientPath(feature, "Components" ,"Fields"), templates.fields);
-  	copy(src.componets.home, dest.getClientPath(feature, "Components" ,"Home"), templates.home);
-  	copy(src.componets.list, dest.getClientPath(feature, "Components" ,"List"), templates.list);
+			console.log("src.componets.details = " + src.componets.details);
+		//
 
-    // Modals
-  	copy(src.modals.modify, dest.getClientPath(feature, "Modals" ,"Modify"), templates.modifyModal);
-  	copy(src.modals.delete, dest.getClientPath(feature, "Modals" ,"Delete"),  templates.deleteModal);
-		copy(src.modals.services, dest.getClientPath(feature, "Modals" ,"Services"), templates.modalServices);
+
+		copy(src.getClientPath("Components", "Details"), dest.getClientPath(feature, "Components" ,"Details"));
+		copy(src.getClientPath("Components", "fields"), dest.getClientPath(feature, "Components" ,"fields"));
+		copy(src.getClientPath("Components", "fields"), dest.getClientPath(feature, "Components" ,"fields"));
+		copy(src.getClientPath("Components", "home"), dest.getClientPath(feature, "Components" ,"home"));
+		copy(src.getClientPath("Components", "list"), dest.getClientPath(feature, "Components" ,"list"));
+
+
+
+    // // Modals
+  	// copy(src.modals.modify, dest.getClientPath(feature, "Modals" ,"Modify"));
+  	// copy(src.modals.delete, dest.getClientPath(feature, "Modals" ,"Delete"));
+		// copy(src.modals.services, dest.getClientPath(feature, "Modals" ,"Services"));
 
 		//Server
-		copy(src.server.api, dest.serverMethod(feature, "Apis"), templates.server.api);
-	  copy(src.server.controllers, dest.serverMethod(feature, "Controllers"), templates.server.controllers);
-	  copy(src.server.models, dest.serverMethod(feature, "Models"), templates.server.models);
-	  copy(src.server.routes, dest.serverMethod(feature, "Routes"), templates.server.routes);
+		// copy(src.server.api, dest.serverMethod(feature, "Apis"));
+	  // copy(src.server.controllers, dest.serverMethod(feature, "Controllers"));
+	  // copy(src.server.models, dest.serverMethod(feature, "Models"), templates.server.models);
+	  // copy(src.server.routes, dest.serverMethod(feature, "Routes"), templates.server.routes);
 
 	};
 

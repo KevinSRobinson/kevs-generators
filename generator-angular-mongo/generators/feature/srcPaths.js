@@ -5,6 +5,11 @@ let _baseComponents = _base + '/components/';
 let _modalsBase = _base + '/Modals/';
 let _routesBase = _base + '/Routes/';
 
+let getClientPath = function(section,  method){
+	return _base + "/" + section + "/" + method + "/";
+}
+
+
 let _componets  = {
 	list : _baseComponents + '/list/',
 	details : _baseComponents + '/details/',
@@ -35,7 +40,8 @@ module.exports = {
 	modalsBase: _modalsBase,
 	modals: _modals,
 	routes: _routesBase,
-	server: _server
+	server: _server,
+	getClientPath: getClientPath
 };
 
 
