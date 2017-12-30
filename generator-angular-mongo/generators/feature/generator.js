@@ -1,9 +1,10 @@
 const src = require('./srcPaths.js');
 const dest = require('./destPaths');
-const templates  = require('./featureFiles');
-const features  = require('./features');
+const features = require('./features');
 const _ = require('lodash');
 const copier = require('../../../Core/templateCopier');
+var fs = require('fs');
+const chalk = require('chalk');
 
 let generate = function (runner, feature) {
 
@@ -11,67 +12,71 @@ let generate = function (runner, feature) {
 		var data = {
 			name: features[feature].title,
 			model: features[feature],
-			properties:features[feature].properties,
-			_:_
+			properties: features[feature].properties,
+			_: _
 		};
 
-	  var copy = function(source, dest) {
+		var copy = function (source, dest, feature) {
+			copier.copyTplsWithData(runner, source, dest, feature, data);
+		};
 
-			src.getClientPath("Components", "Details")
+		var copyFolder = function (folder, deep) {
 
-		copier.copyTplsWithData(runner, source, dest, data);
-	};
+			var folders = fs.readdirSync('./generators/feature/templates/' + src.getClientFolder(folder) + "/");
 
-  	var feature = features[feature].title;
+			if (deep == 1) {
+
+				for (var i in folders) {
+					var srcPath = src.getClientPath(folder, folders[i]);
+					var destPath = dest.getClientPath(feature, folder, folders[i]);
+
+					copy(srcPath, destPath, feature);
+				}
+			}
+			else{
+				var srcPath = src.getBaseClientPath(folder);
+				var destPath = dest.getClientPath(feature, folder, folders[i]);
+				console.log(chalk.blue('folder = ' + folder));
+				console.log(chalk.blue('srcPath = ' + srcPath));
+				console.log(chalk.blue('destPath = ' + destPath));
+
+				 copy(srcPath, destPath, feature);
+				//copy(srcPath, destPath, feature);
+			}
+
+		};
+
+		var copyServerFolder = function () {
+
+			var folders = fs.readdirSync('./generators/feature/templates/Server/');
+
+			console.log(chalk.blue("src.serverBase = " + src.serverBase));
+
+			for (var i in folders) {
+				var srcPath = src.getServerFolder(folders[i], folders[i]);
+				var destPath = dest.serverMethod(feature, folders[i]);
 
 
-    //Routes
-   	copy(src.featureBase, dest.getFeatureBase(feature), templates.routes);
-			console.log("src.componets.details = " + src.componets.details);
-		//
+				copy(srcPath, destPath, feature);
+			}
+		};
+
+		var feature = features[feature].title;
 
 
-		copy(src.getClientPath("Components", "Details"), dest.getClientPath(feature, "Components" ,"Details"));
-		copy(src.getClientPath("Components", "fields"), dest.getClientPath(feature, "Components" ,"fields"));
-		copy(src.getClientPath("Components", "fields"), dest.getClientPath(feature, "Components" ,"fields"));
-		copy(src.getClientPath("Components", "home"), dest.getClientPath(feature, "Components" ,"home"));
-		copy(src.getClientPath("Components", "list"), dest.getClientPath(feature, "Components" ,"list"));
+		//Routes
+		//copy(src.featureBase, dest.getFeatureBase(feature), templates.routes);
 
+		copyFolder("Components", 1);
+		copyFolder("Modals", 1);
+		copyFolder("DataServices", 0);
 
-
-    // // Modals
-  	// copy(src.modals.modify, dest.getClientPath(feature, "Modals" ,"Modify"));
-  	// copy(src.modals.delete, dest.getClientPath(feature, "Modals" ,"Delete"));
-		// copy(src.modals.services, dest.getClientPath(feature, "Modals" ,"Services"));
 
 		//Server
-		// copy(src.server.api, dest.serverMethod(feature, "Apis"));
-	  // copy(src.server.controllers, dest.serverMethod(feature, "Controllers"));
-	  // copy(src.server.models, dest.serverMethod(feature, "Models"), templates.server.models);
-	  // copy(src.server.routes, dest.serverMethod(feature, "Routes"), templates.server.routes);
+		copyServerFolder();
 
 	};
 
-
-// let sd =[
-// 	src.componets.details, dest.getClientPath(feature, "Components" ,"Details"),
-
-// 	copy(src.componets.details, dest.getClientPath(feature, "Components" ,"Details"), featureFiles.details);
-//   	copy(src.componets.fields, dest.getClientPath(feature, "Components" ,"Fields"), featureFiles.fields);
-//   	copy(src.componets.home, dest.getClientPath(feature, "Components" ,"Home"), featureFiles.home);
-//   	copy(src.componets.list, dest.getClientPath(feature, "Components" ,"List"), featureFiles.list);
-// ]
-
-
-  // // Client
-  // dataServices.generate(data, this, srcClientPath, destFeaturesPath);
-  // components.generate(data, this, srcClientPath, destFeaturesPath);
-
-  // Server
-  // serverRoutes.generate(data, this, srcServerPath, destServerPath);
-  // serverModel.generate(data, this, srcServerPath, destServerPath);
-  // serverApi.generate(data, this, srcServerPath, destServerPath);
-  // serverController.generate(data, this, srcServerPath, destServerPath);
 
 }
 
@@ -80,14 +85,6 @@ module.exports.generate = generate;
 
 
 
-
-
-// var models = [];
-// const _ = require('lodash');
-// // Client
-// const components = require('./helpers/Client/components.js');
-// const featureRoutes = require('./helpers/Client/routes.js');
-// const dataServices = require('./helpers/Client/dataServices.js');
 
 // // Server
 // const serverRoutes = require('./helpers/Server/routes.js');
@@ -100,12 +97,11 @@ module.exports.generate = generate;
 
 
 
- // console.log(chalk.blue("feature = " + features[feature].properties));
-    // console.log(chalk.blue("title = " + features[feature].title));
-    // console.log(chalk.blue("data = " + data.properties));
-    // console.log(chalk.blue("feature = " + features[feature].properties));
+// console.log(chalk.blue("feature = " + features[feature].properties));
+// console.log(chalk.blue("title = " + features[feature].title));
+// console.log(chalk.blue("data = " + data.properties));
+// console.log(chalk.blue("feature = " + features[feature].properties));
 
-    // console.log(chalk.blue("dest.client, = " + dest.client));
-    // console.log(chalk.blue("dest.client, = " + dest.details));
-    // console.log(chalk.blue("dest.fields = " + dest.fields));
-
+// console.log(chalk.blue("dest.client, = " + dest.client));
+// console.log(chalk.blue("dest.client, = " + dest.details));
+// console.log(chalk.blue("dest.fields = " + dest.fields));

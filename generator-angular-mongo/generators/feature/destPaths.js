@@ -1,6 +1,6 @@
-let _base = "c:/new/generated/";
+let _base = "c:/new/generated/js/";
 let _featureBase = "";
-let _baseClient = _base +'js/client/';
+let _baseClient = _base + 'client/';
 
 const chalk = require('chalk');
 let setBase = function (path) {
@@ -20,7 +20,13 @@ let getFeature = function (feature, method) {
   return _baseClient + "/Features/" + feature + "/" + method + "/";
 };
 let getMethod = function (feature, section, method) {
-  return _baseClient + "/Features/" + feature + "/" + section + "/" + method + "/";
+
+		var path = _baseClient + "/Features/" + feature + "/" + section + "/";
+
+		if(method != undefined){
+			path += method + "/";
+		}
+		return path;
 };
 
 let getServer = function (feature, method) {
